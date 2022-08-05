@@ -13,7 +13,6 @@ public:
 	virtual void Draw() = 0;
 
 	Vector3D m_pos;
-
 protected:
 	void DrawCommon();
 	ID3D11Buffer* m_pVertexBuffer;
