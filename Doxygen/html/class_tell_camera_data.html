@@ -89,25 +89,149 @@ $(document).ready(function(){initNavTree('class_tell_camera_data.html',''); init
   <div class="headertitle"><div class="title">TellCameraData クラス</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>複数のカメラの情報を伝えるクラス(シングルトン)  
+ <a href="class_tell_camera_data.html#details">[詳解]</a></p>
+
+<p><code>#include &lt;<a class="el" href="_tell_camera_data_8h_source.html">TellCameraData.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 静的公開メンバ関数</h2></td></tr>
-<tr class="memitem:af3aa21380a0ab1bef57607a9b0913528"><td class="memItemLeft" align="right" valign="top"><a id="af3aa21380a0ab1bef57607a9b0913528" name="af3aa21380a0ab1bef57607a9b0913528"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>GetInstance</b> ()</td></tr>
-<tr class="separator:af3aa21380a0ab1bef57607a9b0913528"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0443ff14a4506655a77d7cb6373cce6b"><td class="memItemLeft" align="right" valign="top"><a id="a0443ff14a4506655a77d7cb6373cce6b" name="a0443ff14a4506655a77d7cb6373cce6b"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>Terminate</b> ()</td></tr>
-<tr class="separator:a0443ff14a4506655a77d7cb6373cce6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e1a48664b73faff4eb733d08a7b6a60"><td class="memItemLeft" align="right" valign="top"><a id="a6e1a48664b73faff4eb733d08a7b6a60" name="a6e1a48664b73faff4eb733d08a7b6a60"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>AddCamera</b> (const <a class="el" href="struct_camera_data.html">CameraData</a> &amp;data)</td></tr>
-<tr class="separator:a6e1a48664b73faff4eb733d08a7b6a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45a2a204c76c888db9ec1867b79e9da7"><td class="memItemLeft" align="right" valign="top"><a id="a45a2a204c76c888db9ec1867b79e9da7" name="a45a2a204c76c888db9ec1867b79e9da7"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>SubCamera</b> (const <a class="el" href="struct_camera_data.html">CameraData</a> &amp;data)</td></tr>
-<tr class="separator:a45a2a204c76c888db9ec1867b79e9da7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc4ef74c6db081a57909b8e329d618ff"><td class="memItemLeft" align="right" valign="top"><a id="afc4ef74c6db081a57909b8e329d618ff" name="afc4ef74c6db081a57909b8e329d618ff"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>GetCameraData</b> (<a class="el" href="struct_camera_data.html">CameraData</a> *cameraData, CAMERA_NUMBER key)</td></tr>
-<tr class="separator:afc4ef74c6db081a57909b8e329d618ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d666cf272271a3520a31c393f167586"><td class="memItemLeft" align="right" valign="top"><a id="a4d666cf272271a3520a31c393f167586" name="a4d666cf272271a3520a31c393f167586"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>CreateInstance</b> ()</td></tr>
+<tr class="memdesc:a4d666cf272271a3520a31c393f167586"><td class="mdescLeft">&#160;</td><td class="mdescRight">自分のインスタンスを生成 <br /></td></tr>
+<tr class="separator:a4d666cf272271a3520a31c393f167586"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f18d932d03e8ab7e097e2c47690278d"><td class="memItemLeft" align="right" valign="top"><a id="a5f18d932d03e8ab7e097e2c47690278d" name="a5f18d932d03e8ab7e097e2c47690278d"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>DeleteInstance</b> ()</td></tr>
+<tr class="memdesc:a5f18d932d03e8ab7e097e2c47690278d"><td class="mdescLeft">&#160;</td><td class="mdescRight">自分のインスタンスを削除 <br /></td></tr>
+<tr class="separator:a5f18d932d03e8ab7e097e2c47690278d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a512cd9c238fd5406fc39dda6730d51e8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tell_camera_data.html#a512cd9c238fd5406fc39dda6730d51e8">AddCamera</a> (const <a class="el" href="struct_camera_data.html">CameraData</a> &amp;data)</td></tr>
+<tr class="memdesc:a512cd9c238fd5406fc39dda6730d51e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">カメラの情報を追加  <a href="class_tell_camera_data.html#a512cd9c238fd5406fc39dda6730d51e8">[詳解]</a><br /></td></tr>
+<tr class="separator:a512cd9c238fd5406fc39dda6730d51e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af92d9549dd048bad97c3b72c2a54a617"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tell_camera_data.html#af92d9549dd048bad97c3b72c2a54a617">SubCamera</a> (const <a class="el" href="struct_camera_data.html">CameraData</a> &amp;data)</td></tr>
+<tr class="memdesc:af92d9549dd048bad97c3b72c2a54a617"><td class="mdescLeft">&#160;</td><td class="mdescRight">カメラの情報を削除  <a href="class_tell_camera_data.html#af92d9549dd048bad97c3b72c2a54a617">[詳解]</a><br /></td></tr>
+<tr class="separator:af92d9549dd048bad97c3b72c2a54a617"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64e43c285518aa0757cf7197a5f73587"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tell_camera_data.html#a64e43c285518aa0757cf7197a5f73587">GetCameraData</a> (<a class="el" href="struct_camera_data.html">CameraData</a> *cameraData, CAMERA_NUMBER key)</td></tr>
+<tr class="memdesc:a64e43c285518aa0757cf7197a5f73587"><td class="mdescLeft">&#160;</td><td class="mdescRight">カメラの情報を取得  <a href="class_tell_camera_data.html#a64e43c285518aa0757cf7197a5f73587">[詳解]</a><br /></td></tr>
+<tr class="separator:a64e43c285518aa0757cf7197a5f73587"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p >複数のカメラの情報を伝えるクラス(シングルトン) </p>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="a512cd9c238fd5406fc39dda6730d51e8" name="a512cd9c238fd5406fc39dda6730d51e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a512cd9c238fd5406fc39dda6730d51e8">&#9670;&nbsp;</a></span>AddCamera()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TellCameraData::AddCamera </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_camera_data.html">CameraData</a> &amp;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>カメラの情報を追加 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>カメラの情報 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a64e43c285518aa0757cf7197a5f73587" name="a64e43c285518aa0757cf7197a5f73587"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64e43c285518aa0757cf7197a5f73587">&#9670;&nbsp;</a></span>GetCameraData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TellCameraData::GetCameraData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_camera_data.html">CameraData</a> *&#160;</td>
+          <td class="paramname"><em>cameraData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CAMERA_NUMBER&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>カメラの情報を取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">cameraData</td><td>これにカメラのデータを吐き出す </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>個々カメラのID </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>bool trueで成功 </dd></dl>
+
+</div>
+</div>
+<a id="af92d9549dd048bad97c3b72c2a54a617" name="af92d9549dd048bad97c3b72c2a54a617"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af92d9549dd048bad97c3b72c2a54a617">&#9670;&nbsp;</a></span>SubCamera()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TellCameraData::SubCamera </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_camera_data.html">CameraData</a> &amp;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>カメラの情報を削除 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>カメラの情報 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>このクラス詳解は次のファイルから抽出されました:<ul>
 <li>C:/Users/shiih/Desktop/kiyosumi/DX11Template/Source/Game/Camera/<a class="el" href="_tell_camera_data_8h_source.html">TellCameraData.h</a></li>
 <li>C:/Users/shiih/Desktop/kiyosumi/DX11Template/Source/Game/Camera/TellCameraData.cpp</li>

@@ -5,13 +5,19 @@ digraph "C:/Users/shiih/Desktop/kiyosumi/DX11Template/Source/Scene/Scene.h"
   node [fontname="Helvetica",fontsize="10",shape=record];
   Node1 [label="C:/Users/shiih/Desktop\l/kiyosumi/DX11Template\l/Source/Scene/Scene.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="シーンの親"];
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="C:/Users/shiih/Desktop\l/kiyosumi/DX11Template\l/Source/Scene/Clear/GameClearScene.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_game_clear_scene_8h_source.html",tooltip=" "];
+  Node2 [label="C:/Users/shiih/Desktop\l/kiyosumi/DX11Template\l/Source/Scene/Clear/GameClearScene.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_game_clear_scene_8h.html",tooltip="ゲームクリアシーン"];
   Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node3 [label="C:/Users/shiih/Desktop\l/kiyosumi/DX11Template\l/Source/Scene/Over/GameOverScene.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_game_over_scene_8h_source.html",tooltip=" "];
+  Node3 [label="C:/Users/shiih/Desktop\l/kiyosumi/DX11Template\l/Source/Scene/Over/GameOverScene.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_game_over_scene_8h.html",tooltip="ゲームオーバーシーン"];
   Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node4 [label="C:/Users/shiih/Desktop\l/kiyosumi/DX11Template\l/Source/Scene/Play/PlayScene.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_play_scene_8h_source.html",tooltip=" "];
+  Node4 [label="C:/Users/shiih/Desktop\l/kiyosumi/DX11Template\l/Source/Scene/Play/PlayScene.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_play_scene_8h.html",tooltip="プレイシーン"];
   Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node5 [label="C:/Users/shiih/Desktop\l/kiyosumi/DX11Template\l/Source/Scene/SceneManager\l/SceneManager.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_scene_manager_8h_source.html",tooltip=" "];
-  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node6 [label="C:/Users/shiih/Desktop\l/kiyosumi/DX11Template\l/Source/Scene/Title/TitleScene.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_title_scene_8h_source.html",tooltip=" "];
+  Node5 [label="C:/Users/shiih/Desktop\l/kiyosumi/DX11Template\l/Source/Scene/SceneManager\l/SceneManager.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_scene_manager_8h.html",tooltip="シーンを管理する"];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="C:/Users/shiih/Desktop\l/kiyosumi/DX11Template\l/Source/System/Director\l/Director.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_director_8h.html",tooltip="プログラムの管理"];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="C:/Users/shiih/Desktop\l/kiyosumi/DX11Template\l/Source/main.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8cpp.html",tooltip="実行したときにここから始まる"];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="C:/Users/shiih/Desktop\l/kiyosumi/DX11Template\l/Source/Scene/Title/TitleScene.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_title_scene_8h.html",tooltip="タイトルシーン"];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="C:/Users/shiih/Desktop\l/kiyosumi/DX11Template\l/Source/Scene/Title/TitleScene.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_title_scene_8cpp.html",tooltip="タイトルシーン"];
 }

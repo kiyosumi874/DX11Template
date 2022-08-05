@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['tag_5fscene_0',['TAG_SCENE',['../_scene_8h.html#aff4a429c6104eb58fdf4249ebd217bd8',1,'Scene.h']]],
-  ['tellcameradata_1',['TellCameraData',['../class_tell_camera_data.html',1,'']]],
-  ['titlescene_2',['TitleScene',['../class_title_scene.html',1,'']]]
+  ['releaseshader_0',['ReleaseShader',['../class_shader_director.html#a9ad6700590c7a584120110d789138eeb',1,'ShaderDirector']]],
+  ['run_1',['Run',['../class_director.html#ab92d6a6ee4f407e7a248c3d60a3f4f47',1,'Director']]]
 ];

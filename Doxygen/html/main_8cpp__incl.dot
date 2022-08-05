@@ -13,4 +13,8 @@ digraph "C:/Users/shiih/Desktop/kiyosumi/DX11Template/Source/main.cpp"
   Node4 [label="System/Window/Window.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_window_8h.html",tooltip="Window生成,WndProc(CALLBACK関数)の管理"];
   Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node5 [label="windows.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node3 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="Scene/SceneManager\l/SceneManager.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_scene_manager_8h.html",tooltip="シーンを管理する"];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Scene/Scene.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_scene_8h.html",tooltip="シーンの親"];
 }

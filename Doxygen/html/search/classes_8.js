@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['vector3d_0',['Vector3D',['../structmath_1_1_vector3_d.html',1,'math']]]
+  ['tellcameradata_0',['TellCameraData',['../class_tell_camera_data.html',1,'']]],
+  ['titlescene_1',['TitleScene',['../classscene_1_1_title_scene.html',1,'scene']]]
 ];

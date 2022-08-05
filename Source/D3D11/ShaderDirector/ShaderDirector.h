@@ -15,6 +15,10 @@
 #pragma warning(disable:26812)
 
 // あとでメッシュなどのクラスに移動したいなー
+/**
+* @struct PrimitiveVertex
+* @brief メッシュ
+*/
 struct PrimitiveVertex
 {
 	D3DXVECTOR3 pos;

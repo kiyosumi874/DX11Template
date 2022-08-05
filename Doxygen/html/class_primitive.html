@@ -92,6 +92,11 @@ $(document).ready(function(){initNavTree('class_primitive.html',''); initResizab
   <div class="headertitle"><div class="title">Primitive クラス<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Pointなどの親クラス  
+ <a href="class_primitive.html#details">[詳解]</a></p>
+
+<p><code>#include &lt;<a class="el" href="_primitive_8h_source.html">Primitive.h</a>&gt;</code></p>
 <div class="dynheader">
 Primitive の継承関係図</div>
 <div class="dyncontent">
@@ -105,15 +110,17 @@ Primitive 連携図</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 公開メンバ関数</h2></td></tr>
+<tr class="memitem:ae6b6e9440d482575d1dcbf77a936c201"><td class="memItemLeft" align="right" valign="top"><a id="ae6b6e9440d482575d1dcbf77a936c201" name="ae6b6e9440d482575d1dcbf77a936c201"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Primitive</b> ()</td></tr>
+<tr class="memdesc:ae6b6e9440d482575d1dcbf77a936c201"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンストラクタ <br /></td></tr>
+<tr class="separator:ae6b6e9440d482575d1dcbf77a936c201"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f86e42ef9dbf02c7247acb64bdddb1c"><td class="memItemLeft" align="right" valign="top"><a id="a1f86e42ef9dbf02c7247acb64bdddb1c" name="a1f86e42ef9dbf02c7247acb64bdddb1c"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><b>‾Primitive</b> ()</td></tr>
+<tr class="memdesc:a1f86e42ef9dbf02c7247acb64bdddb1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">デストラクタ <br /></td></tr>
 <tr class="separator:a1f86e42ef9dbf02c7247acb64bdddb1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a332a3ebfb7d3ef7e2c26d86cd70fa2ad"><td class="memItemLeft" align="right" valign="top"><a id="a332a3ebfb7d3ef7e2c26d86cd70fa2ad" name="a332a3ebfb7d3ef7e2c26d86cd70fa2ad"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()=0</td></tr>
-<tr class="separator:a332a3ebfb7d3ef7e2c26d86cd70fa2ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a389c7ee8e7812b7b7e298a11ff951786"><td class="memItemLeft" align="right" valign="top"><a id="a389c7ee8e7812b7b7e298a11ff951786" name="a389c7ee8e7812b7b7e298a11ff951786"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Draw</b> ()=0</td></tr>
-<tr class="separator:a389c7ee8e7812b7b7e298a11ff951786"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27957f6fba9c740ab841669bdb563026"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_primitive.html#a27957f6fba9c740ab841669bdb563026">Draw</a> ()=0</td></tr>
+<tr class="memdesc:a27957f6fba9c740ab841669bdb563026"><td class="mdescLeft">&#160;</td><td class="mdescRight">描画  <a href="class_primitive.html#a27957f6fba9c740ab841669bdb563026">[詳解]</a><br /></td></tr>
+<tr class="separator:a27957f6fba9c740ab841669bdb563026"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 公開変数類</h2></td></tr>
@@ -123,9 +130,10 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Draw</b> ()=0
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 限定公開メンバ関数</h2></td></tr>
-<tr class="memitem:ac3ef5480f0dc05b873064f23106207e8"><td class="memItemLeft" align="right" valign="top"><a id="ac3ef5480f0dc05b873064f23106207e8" name="ac3ef5480f0dc05b873064f23106207e8"></a>
+<tr class="memitem:aca738ac79ea569858886ad51bf1d610a"><td class="memItemLeft" align="right" valign="top"><a id="aca738ac79ea569858886ad51bf1d610a" name="aca738ac79ea569858886ad51bf1d610a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>DrawCommon</b> ()</td></tr>
-<tr class="separator:ac3ef5480f0dc05b873064f23106207e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:aca738ac79ea569858886ad51bf1d610a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primitive共通の描画 <br /></td></tr>
+<tr class="separator:aca738ac79ea569858886ad51bf1d610a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 限定公開変数類</h2></td></tr>
@@ -136,9 +144,41 @@ ID3D11Buffer *&#160;</td><td class="memItemRight" valign="bottom"><b>m_pVertexBu
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_is2D</b></td></tr>
 <tr class="separator:a4ad76d38d3388bfcb57b3bba5c2b8075"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p >Pointなどの親クラス </p>
+</div><h2 class="groupheader">関数詳解</h2>
+<a id="a27957f6fba9c740ab841669bdb563026" name="a27957f6fba9c740ab841669bdb563026"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27957f6fba9c740ab841669bdb563026">&#9670;&nbsp;</a></span>Draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Primitive::Draw </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>描画 </p>
+
+<p><a class="el" href="class_point.html#a36530505e034e4fc9ce0bb32fa5b7fae">Point</a>で実装されています。</p>
+
+</div>
+</div>
 <hr/>このクラス詳解は次のファイルから抽出されました:<ul>
-<li>C:/Users/shiih/Desktop/kiyosumi/DX11Template/Source/D3D11/Primitive/<a class="el" href="_primitive_8h_source.html">Primitive.h</a></li>
-<li>C:/Users/shiih/Desktop/kiyosumi/DX11Template/Source/D3D11/Primitive/Primitive.cpp</li>
+<li>C:/Users/shiih/Desktop/kiyosumi/DX11Template/Source/Game/Primitive/<a class="el" href="_primitive_8h_source.html">Primitive.h</a></li>
+<li>C:/Users/shiih/Desktop/kiyosumi/DX11Template/Source/Game/Primitive/<a class="el" href="_primitive_8cpp.html">Primitive.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

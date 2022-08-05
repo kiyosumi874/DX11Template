@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['gameclearscene_0',['GameClearScene',['../class_game_clear_scene.html',1,'']]],
-  ['gameoverscene_1',['GameOverScene',['../class_game_over_scene.html',1,'']]],
-  ['getwindowhandle_2',['GetWindowHandle',['../class_window.html#a405e12174ee2a229fc4cc224bdab7dc8',1,'Window']]],
-  ['getwindowinstance_3',['GetWindowInstance',['../class_window.html#a23d5897ff301d9d43f4420870484caf4',1,'Window']]]
+  ['fps_0',['Fps',['../class_fps.html',1,'']]],
+  ['fps_2ecpp_1',['Fps.cpp',['../_fps_8cpp.html',1,'']]],
+  ['fps_2eh_2',['Fps.h',['../_fps_8h.html',1,'']]]
 ];

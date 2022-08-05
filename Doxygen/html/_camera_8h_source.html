@@ -91,7 +91,7 @@ $(document).ready(function(){initNavTree('_camera_8h_source.html',''); initResiz
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="_math_8h.html">System/Math/Math.h</a>&quot;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;d3dx10.h&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;CameraStruct.h&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="_camera_struct_8h.html">CameraStruct.h</a>&quot;</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// using宣言</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">using</span> <a class="code hl_struct" href="structmath_1_1_vector3_d.html">math::Vector3D</a>;</div>
@@ -103,39 +103,41 @@ $(document).ready(function(){initNavTree('_camera_8h_source.html',''); initResiz
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <a class="code hl_function" href="class_camera.html#ada2fca9b73f0719cd64915a1223cd4ac">‾Camera</a>();</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_camera.html#ac51187cc65cf5eb4c33ebfca8f72210f">SetCameraNumber</a>(CAMERA_NUMBER key);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_camera.html#a37485fce44a1951f25e3646b7e6792e4">SetCameraNumber</a>(<span class="keyword">const</span> CAMERA_NUMBER key);</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="comment">// cameraの位置をセット</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">void</span> SetCameraPosition(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <span class="keywordtype">float</span> z);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="comment">// cameraの位置と注視の位置をセット</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">void</span> SetCameraPositionGaze(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <span class="keywordtype">float</span> z, <span class="keywordtype">float</span> gx, <span class="keywordtype">float</span> gy, <span class="keywordtype">float</span> gz);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keyword">const</span> <a class="code hl_struct" href="struct_camera_data.html">CameraData</a> GetCameraData()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <a class="code hl_struct" href="struct_camera_data.html">CameraData</a> data;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        data.matrixView = m_matrixView;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        data.matrixProj = m_matrixProj;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        data.key = m_key;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">return</span> data;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">void</span> SetViewProj();</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <a class="code hl_struct" href="structmath_1_1_vector3_d.html">Vector3D</a> m_pos; <span class="comment">// cameraの位置</span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <a class="code hl_struct" href="structmath_1_1_vector3_d.html">Vector3D</a> m_gazePos; <span class="comment">// カメラの注視</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">bool</span> m_isGaze; <span class="comment">// true-&gt;注視ありモード</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    D3DXMATRIX m_matrixView;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    D3DXMATRIX m_matrixProj;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    CAMERA_NUMBER m_key;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>};</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_camera.html#a5796efc19c8668934c9a791139b538e0">SetCameraPosition</a>(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <span class="keywordtype">float</span> z);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_camera.html#a8a0e736903f64f0f334a9625e69ee3c8">SetCameraPositionGaze</a>(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <span class="keywordtype">float</span> z, <span class="keywordtype">float</span> gx, <span class="keywordtype">float</span> gy, <span class="keywordtype">float</span> gz);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="class_camera.html#ad7ae56e47212672a52a15aa3049d4502">   68</a></span>    <span class="keyword">const</span> <a class="code hl_struct" href="struct_camera_data.html">CameraData</a> <a class="code hl_function" href="class_camera.html#ad7ae56e47212672a52a15aa3049d4502">GetCameraData</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <a class="code hl_struct" href="struct_camera_data.html">CameraData</a> data;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        data.matrixView = m_matrixView;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        data.matrixProj = m_matrixProj;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        data.key = m_key;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keywordflow">return</span> data;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    }</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordtype">void</span> SetViewProj();</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <a class="code hl_struct" href="structmath_1_1_vector3_d.html">Vector3D</a> m_pos; <span class="comment">// cameraの位置</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <a class="code hl_struct" href="structmath_1_1_vector3_d.html">Vector3D</a> m_gazePos; <span class="comment">// カメラの注視</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordtype">bool</span> m_isGaze; <span class="comment">// true-&gt;注視ありモード</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    D3DXMATRIX m_matrixView; <span class="comment">// ビュー行列</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    D3DXMATRIX m_matrixProj; <span class="comment">// プロジェクション行列</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    CAMERA_NUMBER m_key; <span class="comment">// カメラの識別ID</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>};</div>
+<div class="ttc" id="a_camera_struct_8h_html"><div class="ttname"><a href="_camera_struct_8h.html">CameraStruct.h</a></div><div class="ttdoc">camera系の構造体</div></div>
 <div class="ttc" id="a_math_8h_html"><div class="ttname"><a href="_math_8h.html">Math.h</a></div><div class="ttdoc">算術系便利ファイル</div></div>
 <div class="ttc" id="aclass_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdoc">Cameraクラス</div><div class="ttdef"><b>Definition:</b> Camera.h:22</div></div>
 <div class="ttc" id="aclass_camera_html_a01f94c3543f56ede7af49dc778f19331"><div class="ttname"><a href="class_camera.html#a01f94c3543f56ede7af49dc778f19331">Camera::Camera</a></div><div class="ttdeci">Camera()</div><div class="ttdoc">コンストラクタ</div><div class="ttdef"><b>Definition:</b> Camera.cpp:19</div></div>
-<div class="ttc" id="aclass_camera_html_ac51187cc65cf5eb4c33ebfca8f72210f"><div class="ttname"><a href="class_camera.html#ac51187cc65cf5eb4c33ebfca8f72210f">Camera::SetCameraNumber</a></div><div class="ttdeci">void SetCameraNumber(CAMERA_NUMBER key)</div><div class="ttdoc">key設定</div><div class="ttdef"><b>Definition:</b> Camera.cpp:36</div></div>
-<div class="ttc" id="aclass_camera_html_ada2fca9b73f0719cd64915a1223cd4ac"><div class="ttname"><a href="class_camera.html#ada2fca9b73f0719cd64915a1223cd4ac">Camera::‾Camera</a></div><div class="ttdeci">‾Camera()</div><div class="ttdoc">デストラクタ</div><div class="ttdef"><b>Definition:</b> Camera.cpp:28</div></div>
-<div class="ttc" id="astruct_camera_data_html"><div class="ttname"><a href="struct_camera_data.html">CameraData</a></div><div class="ttdef"><b>Definition:</b> CameraStruct.h:10</div></div>
+<div class="ttc" id="aclass_camera_html_a37485fce44a1951f25e3646b7e6792e4"><div class="ttname"><a href="class_camera.html#a37485fce44a1951f25e3646b7e6792e4">Camera::SetCameraNumber</a></div><div class="ttdeci">void SetCameraNumber(const CAMERA_NUMBER key)</div><div class="ttdoc">key設定</div><div class="ttdef"><b>Definition:</b> Camera.cpp:39</div></div>
+<div class="ttc" id="aclass_camera_html_a5796efc19c8668934c9a791139b538e0"><div class="ttname"><a href="class_camera.html#a5796efc19c8668934c9a791139b538e0">Camera::SetCameraPosition</a></div><div class="ttdeci">void SetCameraPosition(float x, float y, float z)</div><div class="ttdoc">cameraの位置をセット</div><div class="ttdef"><b>Definition:</b> Camera.cpp:51</div></div>
+<div class="ttc" id="aclass_camera_html_a8a0e736903f64f0f334a9625e69ee3c8"><div class="ttname"><a href="class_camera.html#a8a0e736903f64f0f334a9625e69ee3c8">Camera::SetCameraPositionGaze</a></div><div class="ttdeci">void SetCameraPositionGaze(float x, float y, float z, float gx, float gy, float gz)</div><div class="ttdoc">cameraの位置と注視の位置をセット</div><div class="ttdef"><b>Definition:</b> Camera.cpp:67</div></div>
+<div class="ttc" id="aclass_camera_html_ad7ae56e47212672a52a15aa3049d4502"><div class="ttname"><a href="class_camera.html#ad7ae56e47212672a52a15aa3049d4502">Camera::GetCameraData</a></div><div class="ttdeci">const CameraData GetCameraData() const</div><div class="ttdoc">カメラのデータ取得</div><div class="ttdef"><b>Definition:</b> Camera.h:68</div></div>
+<div class="ttc" id="aclass_camera_html_ada2fca9b73f0719cd64915a1223cd4ac"><div class="ttname"><a href="class_camera.html#ada2fca9b73f0719cd64915a1223cd4ac">Camera::‾Camera</a></div><div class="ttdeci">‾Camera()</div><div class="ttdoc">デストラクタ</div><div class="ttdef"><b>Definition:</b> Camera.cpp:30</div></div>
+<div class="ttc" id="astruct_camera_data_html"><div class="ttname"><a href="struct_camera_data.html">CameraData</a></div><div class="ttdoc">カメラのデータ</div><div class="ttdef"><b>Definition:</b> CameraStruct.h:28</div></div>
 <div class="ttc" id="astructmath_1_1_vector3_d_html"><div class="ttname"><a href="structmath_1_1_vector3_d.html">math::Vector3D</a></div><div class="ttdoc">positionなどに使おう</div><div class="ttdef"><b>Definition:</b> Math.h:22</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

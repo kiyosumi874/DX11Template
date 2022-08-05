@@ -1,0 +1,15 @@
+digraph "C:/Users/shiih/Desktop/kiyosumi/DX11Template/Source/Game/Primitive/Point"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_6d9dcc3fb5bbfd2e716f66d0d6841752 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="Primitive", fontname="Helvetica", fontsize="10", URL="dir_6d9dcc3fb5bbfd2e716f66d0d6841752.html"]
+  dir_1c268c29ddec649377eb8503c9d46e94 [shape=box, label="Point", style="filled,bold,", fillcolor="#edf0f7", color="grey25", URL="dir_1c268c29ddec649377eb8503c9d46e94.html"];
+  }
+  dir_86602465ad759445696399282595f21f [shape=box, label="System", style="dashed,", fillcolor="#edf0f7", color="red", URL="dir_86602465ad759445696399282595f21f.html"];
+  dir_d6f806a0f8acb4e9216b2e39be4b704c [shape=box, label="D3D11", style="dashed,", fillcolor="#edf0f7", color="red", URL="dir_d6f806a0f8acb4e9216b2e39be4b704c.html"];
+  dir_1c268c29ddec649377eb8503c9d46e94->dir_86602465ad759445696399282595f21f [headlabel="1", labeldistance=1.5 headhref="dir_000010_000016.html"];
+  dir_1c268c29ddec649377eb8503c9d46e94->dir_d6f806a0f8acb4e9216b2e39be4b704c [headlabel="2", labeldistance=1.5 headhref="dir_000010_000002.html"];
+}

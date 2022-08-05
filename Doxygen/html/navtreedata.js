@@ -26,7 +26,11 @@ var NAVTREE =
 [
   [ "DX11Template", "index.html", [
     [ "名前空間", "namespaces.html", [
-      [ "名前空間一覧", "namespaces.html", "namespaces_dup" ]
+      [ "名前空間一覧", "namespaces.html", "namespaces_dup" ],
+      [ "名前空間メンバ", "namespacemembers.html", [
+        [ "全て", "namespacemembers.html", null ],
+        [ "列挙型", "namespacemembers_enum.html", null ]
+      ] ]
     ] ],
     [ "クラス", "annotated.html", [
       [ "クラス一覧", "annotated.html", "annotated_dup" ],
