@@ -17,8 +17,10 @@
 * @brief コンストラクタ
 */
 Camera::Camera()
+	: m_isGaze(false)
+	, m_key(CAMERA_NUMBER::CAMERA_NONE)
 {
-	
+	// 未実装
 }
 
 /**
@@ -27,25 +29,41 @@ Camera::Camera()
 */
 Camera::~Camera()
 {
+	// 未実装
 }
 
 /**
 * @fn SetCameraNumber
 * @brief key設定
 */
-void Camera::SetCameraNumber(CAMERA_NUMBER key)
+void Camera::SetCameraNumber(const CAMERA_NUMBER key)
 {
 	m_key = key;
 }
 
-// cameraの位置をセット
+/**
+* @fn SetCameraPosition
+* @brief cameraの位置をセット
+* @param[in] x カメラのX座標
+* @param[in] y カメラのY座標
+* @param[in] z カメラのZ座標
+*/
 void Camera::SetCameraPosition(float x, float y, float z)
 {
 	m_pos = Vector3D(x, y, z);
 	SetViewProj();
 }
 
-// cameraの位置と注視の位置をセット
+/**
+* @fn SetCameraPositionGaze
+* @brief cameraの位置と注視の位置をセット
+* @param[in] x カメラのX座標
+* @param[in] y カメラのY座標
+* @param[in] z カメラのZ座標
+* @param[in] gx 注視するX座標
+* @param[in] gy 注視するY座標
+* @param[in] gz 注視するZ座標
+*/
 void Camera::SetCameraPositionGaze(float x, float y, float z, float gx, float gy, float gz)
 {
 	m_pos = Vector3D(x, y, z);
@@ -54,6 +72,10 @@ void Camera::SetCameraPositionGaze(float x, float y, float z, float gx, float gy
 	SetViewProj();
 }
 
+/**
+* @fn SetViewProj
+* @brief ビュー行列とプロジェクション行列を計算
+*/
 void Camera::SetViewProj()
 {
 	// ビュー

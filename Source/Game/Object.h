@@ -1,24 +1,56 @@
+/**
+* @file Object.h
+* @brief ゲームオブジェクト
+* @author shiihara_kiyosumi
+* @date 2022_08_05
+*/
+
+// ヘッダーファイルのインクルード
 #pragma once
 #include <list>
 #include "Component.h"
 
+// using宣言
 using std::list;
 
+/**
+* @class Object
+* @brief ゲームオブジェクト
+*/
 class Object
 {
 public:
+    /**
+    * @fn Object
+    * @brief コンストラクタ
+    */
     Object() {}
 
+    /**
+    * @fn ~Object
+    * @brief デストラクタ
+    */
     ~Object() 
     { for (auto com : m_componentList) { delete com; } }
 
+    /**
+    * @fn Update
+    * @brief 更新
+    */
     void Update()
     { for (auto com : m_componentList) { com->Update(); } }
 
+    /**
+    * @fn Draw
+    * @brief 描画
+    */
     void Draw()
     { for (auto com : m_componentList) { com->Draw(); } }
 
-    //オブジェクトが持っているコンポーネントを取得
+    /**
+    * @fn GetComponent
+    * @brief オブジェクトが持っているコンポーネント取得
+    */
     template<class T>
     T* GetComponent()
     {
@@ -33,7 +65,10 @@ public:
         return nullptr;
     }
 
-    //オブジェクトが持っているコンポーネントを追加
+    /**
+    * @fn GetComponent
+    * @brief オブジェクトが持っているコンポーネント追加
+    */
     template<class T>
     T* AddComponent()
     {
@@ -44,5 +79,5 @@ public:
         return buff;
     }
 
-    list<Component*> m_componentList;
+    list<Component*> m_componentList; // コンポーネントリスト
 };

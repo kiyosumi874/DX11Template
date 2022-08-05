@@ -1,9 +1,21 @@
+/**
+* @file Primitive.cpp
+* @brief プリミティブ(親クラス)
+* @author shiihara_kiyosumi
+* @date 2022_08_05
+*/
+
+// ヘッダーファイルのインクルード
 #include "Primitive.h"
 #include "System/Common.h"
 #include "D3D11/Direct3D11.h"
 #include "D3D11/ShaderDirector/ShaderDirector.h"
 #include "Game/Camera/TellCameraData.h"
 
+/**
+* @fn Primitive
+* @brief コンストラクタ
+*/
 Primitive::Primitive()
 	: m_pos(Vector3D())
 	, m_pVertexBuffer(NULL)
@@ -11,11 +23,19 @@ Primitive::Primitive()
 {
 }
 
+/**
+* @fn ~Primitive
+* @brief デストラクタ
+*/
 Primitive::~Primitive()
 {
 	SAFE_RELEASE(m_pVertexBuffer);
 }
 
+/**
+* @fn DrawCommon
+* @brief Primitive共通の描画
+*/
 void Primitive::DrawCommon()
 {
 	SHADER_KIND kind = PRIMITIVE;
