@@ -37,14 +37,34 @@ public:
 	* @fn SetCameraNumber
 	* @brief key設定
 	*/
-	void SetCameraNumber(CAMERA_NUMBER key);
+	void SetCameraNumber(const CAMERA_NUMBER key);
 
-	// cameraの位置をセット
+	/**
+	* @fn SetCameraPosition
+	* @brief cameraの位置をセット
+	* @param[in] x カメラのX座標
+	* @param[in] y カメラのY座標
+	* @param[in] z カメラのZ座標
+	*/
 	void SetCameraPosition(float x, float y, float z);
 
-	// cameraの位置と注視の位置をセット
+	/**
+	* @fn SetCameraPositionGaze
+	* @brief cameraの位置と注視の位置をセット
+	* @param[in] x カメラのX座標
+	* @param[in] y カメラのY座標
+	* @param[in] z カメラのZ座標
+	* @param[in] gx 注視するX座標
+	* @param[in] gy 注視するY座標
+	* @param[in] gz 注視するZ座標
+	*/
 	void SetCameraPositionGaze(float x, float y, float z, float gx, float gy, float gz);
 
+	/**
+	* @fn GetCameraData
+	* @brief カメラのデータ取得
+	* @return CameraData カメラのデータ
+	*/
 	const CameraData GetCameraData() const
 	{
 		CameraData data;
@@ -55,12 +75,16 @@ public:
 	}
 
 private:
+	/**
+	* @fn SetViewProj
+	* @brief ビュー行列とプロジェクション行列を計算
+	*/
 	void SetViewProj();
 
 	Vector3D m_pos; // cameraの位置
 	Vector3D m_gazePos; // カメラの注視
 	bool m_isGaze; // true->注視ありモード
-	D3DXMATRIX m_matrixView;
-	D3DXMATRIX m_matrixProj;
-	CAMERA_NUMBER m_key;
+	D3DXMATRIX m_matrixView; // ビュー行列
+	D3DXMATRIX m_matrixProj; // プロジェクション行列
+	CAMERA_NUMBER m_key; // カメラの識別ID
 };
