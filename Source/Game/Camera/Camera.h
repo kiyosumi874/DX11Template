@@ -1,6 +1,6 @@
 /**
 * @file Camera.h
-* @brief Camera
+* @brief Camera(コンポーネント)
 * @author shiihara_kiyosumi
 * @date 2022_08_02
 */
@@ -10,28 +10,28 @@
 #include "System/Math/Math.h"
 #include <d3dx10.h>
 #include "CameraStruct.h"
+#include "Game/Component/Component.h"
+#include "Game/Component/Transform/Transform.h"
 
 // using宣言
 using math::Vector3D;
 
 /**
 * @class Camera
-* @brief Cameraクラス
+* @brief Cameraクラス(コンポーネント)
 */
-class Camera
+class Camera : public Component
 {
 public:
 	/**
-	* @fn Camera
-	* @brief コンストラクタ
+	* @fn Start
+	* @brief 生成したときに最初に一回だけ走る関数
 	*/
-	Camera();
-
-	/**
-	* @fn ~Camera
-	* @brief デストラクタ
-	*/
-	~Camera();
+	void Start() override
+	{
+		m_isGaze = false;
+		m_key = CAMERA_NUMBER::CAMERA_NONE;
+	}
 
 	/**
 	* @fn SetCameraNumber

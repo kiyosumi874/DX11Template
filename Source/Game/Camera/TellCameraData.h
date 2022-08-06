@@ -60,7 +60,7 @@ public:
 	* @brief ƒJƒƒ‰‚Ìî•ñ‚ğíœ
 	* @param[in] data ƒJƒƒ‰‚Ìî•ñ
 	*/
-	static bool SubCamera(const CameraData& data)
+	static bool SubCamera(const CAMERA_NUMBER key)
 	{
 		auto& cameraDataVec = m_this->m_cameraDataVec;
 
@@ -71,7 +71,7 @@ public:
 
 		for (auto it = cameraDataVec.begin(); it != cameraDataVec.end();)
 		{
-			if (it->key == data.key)
+			if (it->key == key)
 			{
 				it = cameraDataVec.erase(it);
 				return true;

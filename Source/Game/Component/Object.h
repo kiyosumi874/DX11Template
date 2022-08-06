@@ -31,7 +31,14 @@ public:
     * @brief デストラクタ
     */
     ~Object() 
-    { for (auto com : m_componentList) { delete com; } }
+    { 
+        for (auto com : m_componentList)
+        {
+            com->Terminate();
+            delete com;
+        } 
+        m_componentList.clear();
+    }
 
     /**
     * @fn Update
@@ -73,8 +80,8 @@ public:
     T* AddComponent()
     {
         T* buff = new T();
-        buff->Parent = this;
-        m_componentList.push_back(buff);
+        buff->m_parent = this;
+        m_componentList.emplace_back(buff);
         buff->Start();
         return buff;
     }

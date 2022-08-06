@@ -50,17 +50,23 @@
     <Filter Include="Source\System\Fps">
       <UniqueIdentifier>{e24564cb-cc63-47cb-9bbd-e9f410086393}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Game\Primitive">
-      <UniqueIdentifier>{32d7519f-6b81-40c4-b0bb-85b9bcb7d59c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Game\Primitive\Point">
-      <UniqueIdentifier>{0df26a3f-26f9-45ec-9b3d-1d7119b66852}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Game\Primitive\Shader">
-      <UniqueIdentifier>{616e8862-8ebc-4338-ab67-72323f0375f7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\D3D11\ShaderDirector">
       <UniqueIdentifier>{d0832c1d-a8c8-44fe-ad56-42ba19d12fbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Game\Component">
+      <UniqueIdentifier>{cc6aadd6-04b8-41ee-8331-e8854ebe601b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Game\Component\Primitive">
+      <UniqueIdentifier>{32d7519f-6b81-40c4-b0bb-85b9bcb7d59c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Game\Component\Primitive\Point">
+      <UniqueIdentifier>{0df26a3f-26f9-45ec-9b3d-1d7119b66852}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Game\Component\Primitive\Shader">
+      <UniqueIdentifier>{616e8862-8ebc-4338-ab67-72323f0375f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Game\Component\Transform">
+      <UniqueIdentifier>{bad79055-435c-4f1c-a927-38820eae62e3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -106,14 +112,14 @@
     <ClCompile Include="Source\Game\Camera\TellCameraData.cpp">
       <Filter>Source\Game\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Primitive\Point\Point.cpp">
-      <Filter>Source\Game\Primitive\Point</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Game\Primitive\Primitive.cpp">
-      <Filter>Source\Game\Primitive</Filter>
-    </ClCompile>
     <ClCompile Include="Source\D3D11\ShaderDirector\ShaderDirector.cpp">
       <Filter>Source\D3D11\ShaderDirector</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Component\Primitive\Primitive.cpp">
+      <Filter>Source\Game\Component\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Component\Primitive\Point\Point.cpp">
+      <Filter>Source\Game\Component\Primitive\Point</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -165,36 +171,39 @@
     <ClInclude Include="Source\Game\Camera\CameraStruct.h">
       <Filter>Source\Game\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Object.h">
-      <Filter>Source\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Component.h">
-      <Filter>Source\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Primitive\Point\Point.h">
-      <Filter>Source\Game\Primitive\Point</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Primitive\Primitive.h">
-      <Filter>Source\Game\Primitive</Filter>
-    </ClInclude>
     <ClInclude Include="Source\D3D11\ShaderDirector\ShaderDirector.h">
       <Filter>Source\D3D11\ShaderDirector</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Game\Component\Primitive\Primitive.h">
+      <Filter>Source\Game\Component\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Component\Component.h">
+      <Filter>Source\Game\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Component\Object.h">
+      <Filter>Source\Game\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Component\Primitive\Point\Point.h">
+      <Filter>Source\Game\Component\Primitive\Point</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Component\Transform\Transform.h">
+      <Filter>Source\Game\Component\Transform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Source\Game\Primitive\Shader\Primitive.hlsli">
-      <Filter>Source\Game\Primitive\Shader</Filter>
+    <None Include="Source\Game\Component\Primitive\Shader\Primitive.hlsli">
+      <Filter>Source\Game\Component\Primitive\Shader</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Source\Game\Primitive\Shader\PrimitivePS.hlsl">
-      <Filter>Source\Game\Primitive\Shader</Filter>
+    <FxCompile Include="Source\Game\Component\Primitive\Shader\PrimitivePS.hlsl">
+      <Filter>Source\Game\Component\Primitive\Shader</Filter>
     </FxCompile>
-    <FxCompile Include="Source\Game\Primitive\Shader\PrimitiveVS.hlsl">
-      <Filter>Source\Game\Primitive\Shader</Filter>
+    <FxCompile Include="Source\Game\Component\Primitive\Shader\PrimitiveVS.hlsl">
+      <Filter>Source\Game\Component\Primitive\Shader</Filter>
     </FxCompile>
-    <FxCompile Include="Source\Game\Primitive\Shader\PrimitiveVS2D.hlsl">
-      <Filter>Source\Game\Primitive\Shader</Filter>
+    <FxCompile Include="Source\Game\Component\Primitive\Shader\PrimitiveVS2D.hlsl">
+      <Filter>Source\Game\Component\Primitive\Shader</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

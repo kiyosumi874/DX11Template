@@ -10,9 +10,6 @@
 #pragma once
 #include "Scene/Scene.h"
 
-// クラスの前方宣言
-class Point;
-class Camera;
 
 /**
 * @namespace scene
@@ -54,8 +51,7 @@ namespace scene
 		void Draw() override;
 
 	private:
-		Camera* m_pCamera; // カメラクラスのポインタ
-		Point* m_pPoint; // ポイントクラス(点を打つだけ)のポインタ
+		//Camera* m_pCamera; // カメラクラスのポインタ
 	};
 
 }

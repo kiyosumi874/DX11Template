@@ -17,7 +17,6 @@ class Object;
 */
 class Component
 {
-protected:
 public:
     /**
     * @fn Component
@@ -31,20 +30,19 @@ public:
     * @fn ~Component
     * @brief デストラクタ
     */
-    virtual ~Component()
-    {
-        if (m_parent)
-        {
-            delete m_parent;
-            m_parent = nullptr;
-        }
-    }
+    virtual ~Component() {}
 
     /**
     * @fn Start
     * @brief 生成したときに最初に一回だけ走る関数
     */
     virtual void Start() {}
+
+    /**
+    * @fn Terminate
+    * @brief 削除したときに最初に一回だけ走る関数
+    */
+    virtual void Terminate() {}
 
     /**
     * @fn Update

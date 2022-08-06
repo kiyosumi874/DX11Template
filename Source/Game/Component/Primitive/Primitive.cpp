@@ -1,32 +1,20 @@
-/**
-* @file Primitive.cpp
-* @brief プリミティブ(親クラス)
-* @author shiihara_kiyosumi
-* @date 2022_08_05
-*/
-
 // ヘッダーファイルのインクルード
 #include "Primitive.h"
 #include "System/Common.h"
 #include "D3D11/Direct3D11.h"
 #include "D3D11/ShaderDirector/ShaderDirector.h"
 #include "Game/Camera/TellCameraData.h"
+#include "Game/Component/Object.h"
+#include "Game/Component/Transform/Transform.h"
 
-/**
-* @fn Primitive
-* @brief コンストラクタ
-*/
+
 Primitive::Primitive()
-	: m_pos(Vector3D())
-	, m_pVertexBuffer(NULL)
+	: m_pVertexBuffer(NULL)
 	, m_is2D(false)
+	, m_transform(nullptr)
 {
 }
 
-/**
-* @fn ~Primitive
-* @brief デストラクタ
-*/
 Primitive::~Primitive()
 {
 	SAFE_RELEASE(m_pVertexBuffer);
@@ -55,7 +43,7 @@ void Primitive::DrawCommon()
 	if (SUCCEEDED(Direct3D11::GetDeviceContext()->Map(shaderVar.pConstantBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &pData)))
 	{
 		D3DXMATRIX world;
-		D3DXMatrixTranslation(&world, m_pos.x, m_pos.y, m_pos.z);
+		D3DXMatrixTranslation(&world, m_transform->m_position.x, m_transform->m_position.y, m_transform->m_position.z);
 
 		CameraData data;
 		ZeroMemory(&data, sizeof(CameraData));
@@ -99,3 +87,4 @@ void Primitive::DrawCommon()
 	//プリミティブをレンダリング
 	Direct3D11::GetDeviceContext()->Draw(1, 0);
 }
+

@@ -104,7 +104,7 @@ HRESULT ShaderDirector::CreatePrimitiveShader()
 	ID3DBlob* pCompiledShader = NULL;
 
 	// バーテックスシェーダー作成
-	m_this->CreateVS(&pCompiledShader, "Source/Game/Primitive/Shader/PrimitiveVS.hlsl", PRIMITIVE);
+	m_this->CreateVS(&pCompiledShader, "Source/Game/Component/Primitive/Shader/PrimitiveVS.hlsl", PRIMITIVE);
 
 	//頂点インプットレイアウトを定義	
 	D3D11_INPUT_ELEMENT_DESC layout[] =
@@ -115,7 +115,7 @@ HRESULT ShaderDirector::CreatePrimitiveShader()
 	SAFE_RELEASE(pCompiledShader);
 
 	// ピクセルシェーダー作成
-	m_this->CreatePS(&pCompiledShader, "Source/Game/Primitive/Shader/PrimitivePS.hlsl", PRIMITIVE);
+	m_this->CreatePS(&pCompiledShader, "Source/Game/Component/Primitive/Shader/PrimitivePS.hlsl", PRIMITIVE);
 	SAFE_RELEASE(pCompiledShader);
 
 	//コンスタントバッファー作成　ここでは変換行列渡し用
@@ -135,7 +135,7 @@ HRESULT ShaderDirector::CreatePrimitive2DShader()
 	ID3DBlob* pCompiledShader = NULL;
 
 	// バーテックスシェーダー作成
-	if (FAILED(m_this->CreateVS(&pCompiledShader, "Source/Game/Primitive/Shader/PrimitiveVS2D.hlsl", PRIMITIVE2D)))
+	if (FAILED(m_this->CreateVS(&pCompiledShader, "Source/Game/Component/Primitive/Shader/PrimitiveVS2D.hlsl", PRIMITIVE2D)))
 	{
 		return E_FAIL;
 	}
@@ -150,7 +150,7 @@ HRESULT ShaderDirector::CreatePrimitive2DShader()
 	SAFE_RELEASE(pCompiledShader);
 
 	// ピクセルシェーダー作成
-	if (FAILED(m_this->CreatePS(&pCompiledShader, "Source/Game/Primitive/Shader/PrimitivePS.hlsl", PRIMITIVE2D)))
+	if (FAILED(m_this->CreatePS(&pCompiledShader, "Source/Game/Component/Primitive/Shader/PrimitivePS.hlsl", PRIMITIVE2D)))
 	{
 		SAFE_RELEASE(pCompiledShader);
 		return E_FAIL;
