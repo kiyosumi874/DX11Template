@@ -1,6 +1,6 @@
 /**
 * @file Camera.h
-* @brief Camera
+* @brief Camera(コンポーネント)
 * @author shiihara_kiyosumi
 * @date 2022_08_02
 */
@@ -11,26 +11,6 @@
 
 // 必要なライブラリファイルのロード
 #pragma comment(lib,"d3dx10.lib")
-
-/**
-* @fn Camera
-* @brief コンストラクタ
-*/
-Camera::Camera()
-	: m_isGaze(false)
-	, m_key(CAMERA_NUMBER::CAMERA_NONE)
-{
-	// 未実装
-}
-
-/**
-* @fn ~Camera
-* @brief デストラクタ
-*/
-Camera::~Camera()
-{
-	// 未実装
-}
 
 /**
 * @fn SetCameraNumber

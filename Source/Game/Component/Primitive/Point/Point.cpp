@@ -1,6 +1,6 @@
 /**
 * @file Point.cpp
-* @brief 点を描画
+* @brief 点を描画(コンポーネント)
 * @author shiihara_kiyosumi
 * @date 2022_08_05
 */
@@ -9,37 +9,18 @@
 #include "Point.h"
 #include "D3D11/Direct3D11.h"
 #include "D3D11/ShaderDirector/ShaderDirector.h"
+#include "Game/Component/Transform/Transform.h"
+#include "Game/Component/Object.h"
 
 /**
-* @fn Point
-* @brief コンストラクタ
+* @fn Start
+* @brief 生成したときに最初に一回だけ走る関数
 */
-Point::Point()
+void Point::Start()
 {
-	m_is2D = false;
+	m_is2D = true;
+	m_transform = m_parent->GetComponent<Transform>();
 	CreateVertexBuffer();
-}
-
-/**
-* @fn Point
-* @brief 引数付きコンストラクタ
-* @param[in] pos 座標
-* @param[in] is2D trueで2D描画
-*/
-Point::Point(const Vector3D& pos, bool is2D)
-{
-	m_is2D = is2D;
-	m_pos = pos;
-	CreateVertexBuffer();
-}
-
-/**
-* @fn ~Point
-* @brief デストラクタ
-*/
-Point::~Point()
-{
-	// 未実装
 }
 
 /**

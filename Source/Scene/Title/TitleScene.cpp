@@ -11,15 +11,16 @@
 #include <Windows.h>
 #include "System/Input/Input.h"
 #include "D3D11/ShaderDirector/ShaderDirector.h"
-#include "Game/Primitive/Point/Point.h"
 #include "System/Math/Math.h"
 #include "System/Common.h"
 #include "Game/Camera/Camera.h"
 #include "Game/Camera/TellCameraData.h"
 #include "Game/Camera/CameraStruct.h"
+#include "Game/Component/Primitive/Point/Point.h"
+#include "Game/Component/Transform/Transform.h"
 
 // using宣言
-using math::Vector3D; using scene::TitleScene; using scene::TAG_SCENE;
+using scene::TitleScene; using scene::TAG_SCENE;
 
 /**
 * @fn TitleScene
@@ -32,15 +33,45 @@ TitleScene::TitleScene()
 
 	// camera
 	{
-		m_pCamera = new Camera();
-		m_pCamera->SetCameraNumber(CAMERA_NUMBER::CAMERA_0);
-		m_pCamera->SetCameraPosition(0, 0, -2);
-		TellCameraData::AddCamera(m_pCamera->GetCameraData());
+		Object* obj = new Object;
+		auto camera = obj->AddComponent<Camera>();
+		camera->SetCameraNumber(CAMERA_NUMBER::CAMERA_0);
+		camera->SetCameraPosition(0, 0, -2);
+		TellCameraData::AddCamera(camera->GetCameraData());
+		m_objectList.emplace_back(obj);
 	}
 
 
-	auto pos = Vector3D(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 0.0f);
-	m_pPoint = new Point(pos, true);
+	// 2Dで点を描画
+	{
+		Object* obj = nullptr;
+		for (int i = 0; i < 100; i++)
+		{
+			for (int j = 0; j < 100; j++)
+			{
+				obj = new Object;
+				auto transform = obj->AddComponent<Transform>();
+				transform->m_position.x = 640 / 2 + i * 4 - 50 * 4;
+				transform->m_position.y = 480 / 2 + j * 4 - 50 * 4;
+				transform->m_position.z = 0.0f;
+				auto point = obj->AddComponent<Point>();
+				point->Is2D(true);
+				m_objectList.emplace_back(obj);
+			}
+		}
+	}
+
+	// 3Dで点を描画
+	{
+		/*Object* obj = new Object;
+		auto transform = obj->AddComponent<Transform>();
+		transform->m_position.x = 0.0f;
+		transform->m_position.y = 0.0f;
+		transform->m_position.z = 0.0f;
+		obj->AddComponent<Point>();
+		obj->GetComponent<Point>()->Is2D(false);
+		m_objectList.emplace_back(obj);*/
+	}
 
 }
 
@@ -50,9 +81,7 @@ TitleScene::TitleScene()
 */
 TitleScene::~TitleScene()
 {
-	SAFE_DELETE(m_pPoint);
-	TellCameraData::SubCamera(m_pCamera->GetCameraData());
-	SAFE_DELETE(m_pCamera);
+	TellCameraData::SubCamera(CAMERA_NUMBER::CAMERA_0);
 }
 
 /**
@@ -68,6 +97,12 @@ TAG_SCENE TitleScene::Update()
 		return TAG_SCENE::PLAY;
 	}
 
+	// オブジェクトの更新
+	for (auto obj : m_objectList)
+	{
+		obj->Update();
+	}
+
 	// ループが続く
 	return TAG_SCENE::NONE;
 }
@@ -78,7 +113,11 @@ TAG_SCENE TitleScene::Update()
 */
 void TitleScene::Draw()
 {
-	m_pPoint->Draw();
+	// オブジェクトの描画
+	for (auto obj : m_objectList)
+	{
+		obj->Draw();
+	}
 
 	MyOutputDebugString("TitleScene\n");
 }
