@@ -1,12 +1,12 @@
 /**
-* @file Point.cpp
-* @brief 点を描画(コンポーネント)
+* @file Line.cpp
+* @brief 線を描画(コンポーネント)
 * @author shiihara_kiyosumi
-* @date 2022_08_05
+* @date 2022_08_08
 */
 
 // ヘッダーファイルのインクルード
-#include "Point.h"
+#include "Line.h"
 #include "D3D11/Direct3D11.h"
 #include "D3D11/ShaderDirector/ShaderDirector.h"
 #include "Game/Component/Transform/Transform.h"
@@ -16,7 +16,7 @@
 * @fn Start
 * @brief 生成したときに最初に一回だけ走る関数
 */
-void Point::Start()
+void Line::Start()
 {
 	m_transform = m_parent->GetComponent<Transform>();
 }
@@ -25,41 +25,44 @@ void Point::Start()
 * @fn Draw
 * @brief 描画
 */
-void Point::Draw()
+void Line::Draw()
 {
 	SetVertexBuffer();
 	
 	DrawCommon();
 	//プリミティブ・トポロジーをセット
-	Direct3D11::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_POINTLIST);
+	Direct3D11::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_LINELIST);
 	//プリミティブをレンダリング
-	Direct3D11::GetDeviceContext()->Draw(1, 0);
+	Direct3D11::GetDeviceContext()->Draw(2, 0);
 }
 
 /**
 * @fn Init
 * @brief 初期化(絶対呼び出して)
-* @param[in] pos1 描画する点の座標
+* @param[in] pos1 描画する線の起点座標
+* @param[in] pos2 描画する線の終点座標
 */
-void Point::Init(const Vector3D& pos1)
+void Line::Init(const Vector3D& pos1, const Vector3D& pos2)
 {
-	CreateVertexBuffer(pos1);
+	CreateVertexBuffer(pos1, pos2);
 }
 
 /**
-* @fn CreateVertexBuffer
-* @brief バーテックスバッファー作成
-* @param[in] pos1 描画する点の座標
+* @fn SetVertexBuffer
+* @brief バーテックスバッファーをセット
+* @param[in] pos1 描画する線の起点座標
+* @param[in] pos2 描画する線の終点座標
 */
-void Point::CreateVertexBuffer(const Vector3D& pos1)
+void Line::CreateVertexBuffer(const Vector3D& pos1, const Vector3D& pos2)
 {
 	PrimitiveVertex vertices[] =
 	{
-		D3DXVECTOR3(pos1.x, pos1.y, pos1.z)
+		D3DXVECTOR3(pos1.x, pos1.y, pos1.z),
+		D3DXVECTOR3(pos2.x, pos2.y, pos2.z),
 	};
 	D3D11_BUFFER_DESC bd;
 	bd.Usage = D3D11_USAGE_DEFAULT;
-	bd.ByteWidth = sizeof(PrimitiveVertex) * 1;
+	bd.ByteWidth = sizeof(PrimitiveVertex) * 2;
 	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	bd.CPUAccessFlags = 0;
 	bd.MiscFlags = 0;
@@ -76,7 +79,7 @@ void Point::CreateVertexBuffer(const Vector3D& pos1)
 * @fn SetVertexBuffer
 * @brief バーテックスバッファーをセット
 */
-void Point::SetVertexBuffer()
+void Line::SetVertexBuffer()
 {
 	//バーテックスバッファーをセット
 	UINT stride = sizeof(PrimitiveVertex);

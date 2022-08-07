@@ -17,6 +17,7 @@
 #include "Game/Camera/TellCameraData.h"
 #include "Game/Camera/CameraStruct.h"
 #include "Game/Component/Primitive/Point/Point.h"
+#include "Game/Component/Primitive/Line/Line.h"
 #include "Game/Component/Transform/Transform.h"
 
 // usingéŒ¾
@@ -41,36 +42,14 @@ TitleScene::TitleScene()
 		m_objectList.emplace_back(obj);
 	}
 
-
-	// 2D‚Å“_‚ğ•`‰æ
+	// 2D‚Åü‚ğ•`‰æ
 	{
-		Object* obj = nullptr;
-		for (int i = 0; i < 100; i++)
-		{
-			for (int j = 0; j < 100; j++)
-			{
-				obj = new Object;
-				auto transform = obj->AddComponent<Transform>();
-				transform->m_position.x = 640 / 2 + i * 4 - 50 * 4;
-				transform->m_position.y = 480 / 2 + j * 4 - 50 * 4;
-				transform->m_position.z = 0.0f;
-				auto point = obj->AddComponent<Point>();
-				point->Is2D(true);
-				m_objectList.emplace_back(obj);
-			}
-		}
-	}
-
-	// 3D‚Å“_‚ğ•`‰æ
-	{
-		/*Object* obj = new Object;
-		auto transform = obj->AddComponent<Transform>();
-		transform->m_position.x = 0.0f;
-		transform->m_position.y = 0.0f;
-		transform->m_position.z = 0.0f;
-		obj->AddComponent<Point>();
-		obj->GetComponent<Point>()->Is2D(false);
-		m_objectList.emplace_back(obj);*/
+		Object* obj = new Object;
+		obj->AddComponent<Transform>();
+		auto line = obj->AddComponent<Line>();
+		line->Is2D(true);
+		line->Init(Vector3D(200, 30, 0), Vector3D(500, 300, 0));
+		m_objectList.emplace_back(obj);
 	}
 
 }

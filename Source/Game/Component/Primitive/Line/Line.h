@@ -1,8 +1,8 @@
 /**
-* @file Point.h
-* @brief 点を描画(コンポーネント)
+* @file Line.h
+* @brief 線を描画(コンポーネント)
 * @author shiihara_kiyosumi
-* @date 2022_08_05
+* @date 2022_08_08
 */
 
 // ヘッダーファイルのインクルード
@@ -14,10 +14,10 @@
 using math::Vector3D;
 
 /**
-* @class Point
-* @brief 点を描画するクラス
+* @class Line
+* @brief 線を描画するクラス
 */
-class Point : public Primitive
+class Line : public Primitive
 {
 public:
 	/**
@@ -35,18 +35,19 @@ public:
 	/**
 	* @fn Init
 	* @brief 初期化(絶対呼び出して)
-	* @param[in] pos1 描画する点の座標
+	* @param[in] pos1 描画する線の起点座標
+	* @param[in] pos2 描画する線の終点座標
 	*/
-	void Init(const Vector3D& pos1);
+	void Init(const Vector3D& pos1, const Vector3D& pos2);
 
 private:
 	/**
 	* @fn CreateVertexBuffer
 	* @brief バーテックスバッファー作成
-	* @param[in] pos1 描画する点の座標
+	* @param[in] pos1 描画する線の起点座標
+	* @param[in] pos2 描画する線の終点座標
 	*/
-	void CreateVertexBuffer(const Vector3D& pos1);
-
+	void CreateVertexBuffer(const Vector3D& pos1, const Vector3D& pos2);
 
 	/**
 	* @fn SetVertexBuffer
