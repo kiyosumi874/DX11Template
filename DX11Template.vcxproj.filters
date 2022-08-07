@@ -68,6 +68,9 @@
     <Filter Include="Source\Game\Component\Transform">
       <UniqueIdentifier>{bad79055-435c-4f1c-a927-38820eae62e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Game\Component\Primitive\Line">
+      <UniqueIdentifier>{93825597-ebff-4ef6-94dd-2633fbbdb9a0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp">
@@ -120,6 +123,9 @@
     </ClCompile>
     <ClCompile Include="Source\Game\Component\Primitive\Point\Point.cpp">
       <Filter>Source\Game\Component\Primitive\Point</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Component\Primitive\Line\Line.cpp">
+      <Filter>Source\Game\Component\Primitive\Line</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +194,9 @@
     </ClInclude>
     <ClInclude Include="Source\Game\Component\Transform\Transform.h">
       <Filter>Source\Game\Component\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Component\Primitive\Line\Line.h">
+      <Filter>Source\Game\Component\Primitive\Line</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

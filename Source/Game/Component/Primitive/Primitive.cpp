@@ -82,9 +82,6 @@ void Primitive::DrawCommon()
 	Direct3D11::GetDeviceContext()->PSSetConstantBuffers(0, 1, &shaderVar.pConstantBuffer);
 	//頂点インプットレイアウトをセット
 	Direct3D11::GetDeviceContext()->IASetInputLayout(shaderVar.pInputLayout);
-	//プリミティブ・トポロジーをセット
-	Direct3D11::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_POINTLIST);
-	//プリミティブをレンダリング
-	Direct3D11::GetDeviceContext()->Draw(1, 0);
+	
 }
 
