@@ -18,6 +18,8 @@
 #include "Game/Camera/CameraStruct.h"
 #include "Game/Component/Primitive/Point/Point.h"
 #include "Game/Component/Primitive/Line/Line.h"
+#include "Game/Component/Primitive/Triangle/Triangle.h"
+#include "Game/Component/Primitive/Quad/Quad.h"
 #include "Game/Component/Transform/Transform.h"
 
 // usingéŒ¾
@@ -48,7 +50,49 @@ TitleScene::TitleScene()
 		obj->AddComponent<Transform>();
 		auto line = obj->AddComponent<Line>();
 		line->Is2D(true);
+		line->SetColor(Vector3D(1, 0, 0));
 		line->Init(Vector3D(200, 30, 0), Vector3D(500, 300, 0));
+		m_objectList.emplace_back(obj);
+	}
+	
+	
+
+	
+
+	// 2D‚ÅŽlŠpŒ`‚ð•`‰æ
+	{
+		Object* obj = new Object;
+		auto tranceform = obj->AddComponent<Transform>();
+		tranceform->m_scale = Vector3D(0.3f, 0.3f, 0.3f);
+		tranceform->m_position = Vector3D(100, 100, 0.0f);
+		auto line = obj->AddComponent<Quad>();
+		line->Is2D(true);
+		line->SetColor(Vector3D(0, 1.0f, 0));
+		line->Init(Vector3D(0, 0, 0), Vector3D(WINDOW_WIDTH, 0, 0), Vector3D(0, WINDOW_HEIGHT, 0), Vector3D(WINDOW_WIDTH, WINDOW_HEIGHT, 0));
+		m_objectList.emplace_back(obj);
+	}
+
+	// 3D‚ÅŽlŠpŒ`‚ð•`‰æ
+	{
+		Object* obj = new Object;
+		auto tranceform = obj->AddComponent<Transform>();
+		tranceform->m_scale = Vector3D(0.3f, 0.3f, 0.3f);
+		tranceform->m_rotation = Vector3D(0.0f, 0.0f, 45 * D3DX_PI / 180);
+		tranceform->m_position = Vector3D(0.3f, 0.0f, 0.0f);
+		auto line = obj->AddComponent<Quad>();
+		line->SetColor(Vector3D(0, 0, 0.3f));
+		line->Init(Vector3D(-0.5, -0.5, 0), Vector3D(-0.5, 0.5, 0), Vector3D(0.5, -0.5, 0), Vector3D(0.5, 0.5, 0));
+		m_objectList.emplace_back(obj);
+	}
+
+	// 3D‚ÅŽOŠpŒ`‚ð•`‰æ
+	{
+		Object* obj = new Object;
+		auto tranceform = obj->AddComponent<Transform>();
+		tranceform->m_rotation = Vector3D(45 * D3DX_PI / 180, 45 * D3DX_PI / 180, 45 * D3DX_PI / 180);
+		auto line = obj->AddComponent<Triangle>();
+		line->Init(Vector3D(0.0f, 0.5f, 0.0f), Vector3D(0.5f, -0.5f, 0.0f), Vector3D(-0.5f, -0.5f, 0.0f));
+		line->SetColor(Vector3D(0, 0.3f, 0.3f));
 		m_objectList.emplace_back(obj);
 	}
 

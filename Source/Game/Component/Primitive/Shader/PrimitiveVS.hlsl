@@ -1,10 +1,5 @@
 #include "Primitive.hlsli"
 
-cbuffer global
-{
-    matrix g_WVP;
-};
-
 
 PS_INPUT VS(float4 pos : POSITION)
 {

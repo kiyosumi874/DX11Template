@@ -31,6 +31,7 @@ struct PrimitiveVertex
 struct PrimitiveConstantBuffer
 {
 	D3DXMATRIX mWVP; // matrixWorldViewProjection
+	D3DXVECTOR4 color;
 };
 
 /**
@@ -40,6 +41,7 @@ struct PrimitiveConstantBuffer
 struct PrimitiveConstantBuffer2D
 {
 	alignas(16) D3DXMATRIX mW;
+	alignas(16) D3DXVECTOR4 color;
 	alignas(16) float viewPortWidth;
 	alignas(16) float viewPortHeight;
 };

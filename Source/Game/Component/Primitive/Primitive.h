@@ -9,6 +9,10 @@
 #pragma once
 #include <D3D11.h>
 #include "Game/Component/Component.h"
+#include "System/Math/Math.h"
+
+// using宣言
+using math::Vector3D;
 
 class Transform;
 
@@ -32,7 +36,6 @@ public:
 	virtual ~Primitive() override;
 
 	Transform* m_transform; // transform
-
 	/**
 	* @fn Is2D
 	* @brief trueで2D描画
@@ -43,6 +46,16 @@ public:
 		m_is2D = is2D;
 	}
 
+	/**
+	* @fn SetColor
+	* @brief プリミティブの色設定
+	* @param[in] color 色
+	*/
+	void SetColor(const Vector3D& color)
+	{
+		m_color = color;
+	}
+
 protected:
 	/**
 	* @fn DrawCommon
@@ -51,4 +64,5 @@ protected:
 	void DrawCommon();
 	ID3D11Buffer* m_pVertexBuffer; // バーテックスバッファー
 	bool m_is2D; // trueで2D描画 ViewとProjが無視される,ウィンドウサイズをVSに渡して2Dに調節する
+	Vector3D m_color; // 色
 };
