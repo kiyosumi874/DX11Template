@@ -43,7 +43,26 @@ void Primitive::DrawCommon()
 	if (SUCCEEDED(Direct3D11::GetDeviceContext()->Map(shaderVar.pConstantBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &pData)))
 	{
 		D3DXMATRIX world;
-		D3DXMatrixTranslation(&world, m_transform->m_position.x, m_transform->m_position.y, m_transform->m_position.z);
+
+		// アフィン変換
+		{
+			D3DXMATRIX scale;
+			D3DXMATRIX rotate;
+			D3DXMATRIX pos;
+
+			D3DXMatrixIdentity(&world); // 行列の初期化
+
+			D3DXMatrixScaling(&scale, m_transform->m_scale.x, m_transform->m_scale.y, m_transform->m_scale.z);
+			D3DXMatrixRotationYawPitchRoll(&rotate, m_transform->m_rotation.x, m_transform->m_rotation.y, m_transform->m_rotation.z);
+			D3DXMatrixTranslation(&pos, m_transform->m_position.x, m_transform->m_position.y, m_transform->m_position.z);
+
+			// DirectXは左手座標系なのでScaleから乗算
+			D3DXMatrixMultiply(&world, &world, &scale);
+			D3DXMatrixMultiply(&world, &world, &rotate);
+			D3DXMatrixMultiply(&world, &world, &pos);
+		}
+		
+
 
 		CameraData data;
 		ZeroMemory(&data, sizeof(CameraData));
@@ -60,9 +79,16 @@ void Primitive::DrawCommon()
 		D3DXMatrixTranspose(&m, &m);
 		D3DXMatrixTranspose(&world, &world);
 		cb.mWVP = m;
+		D3DXVECTOR4 color;
+		color.x = m_color.x;
+		color.y = m_color.y;
+		color.z = m_color.z;
+		color.w = 1.0f;
+		cb.color = color;
 		cb2.mW = world;
 		cb2.viewPortWidth = WINDOW_WIDTH;
 		cb2.viewPortHeight = WINDOW_HEIGHT;
+		cb2.color = color;
 		if (m_is2D)
 		{
 			memcpy_s(pData.pData, pData.RowPitch, (void*)(&cb2), sizeof(cb2));

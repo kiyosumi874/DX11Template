@@ -71,6 +71,12 @@
     <Filter Include="Source\Game\Component\Primitive\Line">
       <UniqueIdentifier>{93825597-ebff-4ef6-94dd-2633fbbdb9a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Game\Component\Primitive\Triangle">
+      <UniqueIdentifier>{8989bc4e-b67e-4be6-8fda-28ea84b78955}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Game\Component\Primitive\Quad">
+      <UniqueIdentifier>{44b27590-9e64-41f9-898f-057652edc186}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp">
@@ -126,6 +132,12 @@
     </ClCompile>
     <ClCompile Include="Source\Game\Component\Primitive\Line\Line.cpp">
       <Filter>Source\Game\Component\Primitive\Line</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Component\Primitive\Triangle\Triangle.cpp">
+      <Filter>Source\Game\Component\Primitive\Triangle</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Component\Primitive\Quad\Quad.cpp">
+      <Filter>Source\Game\Component\Primitive\Quad</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -198,9 +210,18 @@
     <ClInclude Include="Source\Game\Component\Primitive\Line\Line.h">
       <Filter>Source\Game\Component\Primitive\Line</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Game\Component\Primitive\Triangle\Triangle.h">
+      <Filter>Source\Game\Component\Primitive\Triangle</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Component\Primitive\Quad\Quad.h">
+      <Filter>Source\Game\Component\Primitive\Quad</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Game\Component\Primitive\Shader\Primitive.hlsli">
+      <Filter>Source\Game\Component\Primitive\Shader</Filter>
+    </None>
+    <None Include="Source\Game\Component\Primitive\Shader\Primitive2D.hlsli">
       <Filter>Source\Game\Component\Primitive\Shader</Filter>
     </None>
   </ItemGroup>
@@ -212,6 +233,9 @@
       <Filter>Source\Game\Component\Primitive\Shader</Filter>
     </FxCompile>
     <FxCompile Include="Source\Game\Component\Primitive\Shader\PrimitiveVS2D.hlsl">
+      <Filter>Source\Game\Component\Primitive\Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Source\Game\Component\Primitive\Shader\PrimitivePS2D.hlsl">
       <Filter>Source\Game\Component\Primitive\Shader</Filter>
     </FxCompile>
   </ItemGroup>

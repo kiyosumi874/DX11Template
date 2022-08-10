@@ -1,11 +1,5 @@
-#include "Primitive.hlsli"
+#include "Primitive2D.hlsli"
 
-cbuffer global
-{
-    matrix g_W : packoffset(c0); //ワールド行列
-    float g_ViewPortWidth : packoffset(c4); //ビューポート（スクリーン）横サイズ
-    float g_ViewPortHeight : packoffset(c5); //ビューポート（スクリーン）縦サイズ
-};
 
 
 PS_INPUT VS(float4 pos : POSITION)

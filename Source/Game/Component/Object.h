@@ -81,7 +81,7 @@ public:
     {
         T* buff = new T();
         buff->m_parent = this;
-        m_componentList.emplace_back(buff);
+        m_componentList.emplace_front(buff);
         buff->Start();
         return buff;
     }

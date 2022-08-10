@@ -107,7 +107,7 @@ bool Director::MainLoop()
 	Input::Update();
 	Fps::Update();
 	Fps::Draw();
-	Direct3D11::Clear(0,0,0);
+	Direct3D11::Clear(150.0f, 150.0f, 150.0f);
 	isTerm = m_pSceneManager->GameLoop();
 	Direct3D11::Present();
 	return isTerm;

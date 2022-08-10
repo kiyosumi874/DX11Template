@@ -150,7 +150,7 @@ HRESULT ShaderDirector::CreatePrimitive2DShader()
 	SAFE_RELEASE(pCompiledShader);
 
 	// ピクセルシェーダー作成
-	if (FAILED(m_this->CreatePS(&pCompiledShader, "Source/Game/Component/Primitive/Shader/PrimitivePS.hlsl", PRIMITIVE2D)))
+	if (FAILED(m_this->CreatePS(&pCompiledShader, "Source/Game/Component/Primitive/Shader/PrimitivePS2D.hlsl", PRIMITIVE2D)))
 	{
 		SAFE_RELEASE(pCompiledShader);
 		return E_FAIL;

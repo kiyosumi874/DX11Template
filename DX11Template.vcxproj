@@ -26,6 +26,8 @@
     <ClCompile Include="Source\Game\Component\Primitive\Line\Line.cpp" />
     <ClCompile Include="Source\Game\Component\Primitive\Point\Point.cpp" />
     <ClCompile Include="Source\Game\Component\Primitive\Primitive.cpp" />
+    <ClCompile Include="Source\Game\Component\Primitive\Quad\Quad.cpp" />
+    <ClCompile Include="Source\Game\Component\Primitive\Triangle\Triangle.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Scene\Clear\GameClearScene.cpp" />
     <ClCompile Include="Source\Scene\Over\GameOverScene.cpp" />
@@ -49,6 +51,8 @@
     <ClInclude Include="Source\Game\Component\Primitive\Line\Line.h" />
     <ClInclude Include="Source\Game\Component\Primitive\Point\Point.h" />
     <ClInclude Include="Source\Game\Component\Primitive\Primitive.h" />
+    <ClInclude Include="Source\Game\Component\Primitive\Quad\Quad.h" />
+    <ClInclude Include="Source\Game\Component\Primitive\Triangle\Triangle.h" />
     <ClInclude Include="Source\Game\Component\Transform\Transform.h" />
     <ClInclude Include="Source\Scene\Clear\GameClearScene.h" />
     <ClInclude Include="Source\Scene\Over\GameOverScene.h" />
@@ -65,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Game\Component\Primitive\Shader\Primitive.hlsli" />
+    <None Include="Source\Game\Component\Primitive\Shader\Primitive2D.hlsli" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Source\Game\Component\Primitive\Shader\PrimitivePS.hlsl">
@@ -73,6 +78,16 @@
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PS</EntryPointName>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="Source\Game\Component\Primitive\Shader\PrimitivePS2D.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PS</EntryPointName>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PS</EntryPointName>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="Source\Game\Component\Primitive\Shader\PrimitiveVS.hlsl">
