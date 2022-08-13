@@ -1,0 +1,5 @@
+posX:1109.00
+posY:540.00
+scaleX:1.11
+scaleY:1.10
+rotateZ:0.00

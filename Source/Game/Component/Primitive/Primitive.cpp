@@ -52,11 +52,12 @@ void Primitive::DrawCommon()
 
 			D3DXMatrixIdentity(&world); // 行列の初期化
 
-			D3DXMatrixScaling(&scale, m_transform->m_scale.x, m_transform->m_scale.y, m_transform->m_scale.z);
-			D3DXMatrixRotationYawPitchRoll(&rotate, m_transform->m_rotation.x, m_transform->m_rotation.y, m_transform->m_rotation.z);
-			D3DXMatrixTranslation(&pos, m_transform->m_position.x, m_transform->m_position.y, m_transform->m_position.z);
+			D3DXMatrixScaling(&scale, m_transform->scale.x, m_transform->scale.y, m_transform->scale.z);
+			D3DXMatrixRotationYawPitchRoll(&rotate, m_transform->rotation.x, m_transform->rotation.y, m_transform->rotation.z);
+			//D3DXMatrixRotationY(&rotate, timeGetTime() / 1000.0f);
+			D3DXMatrixTranslation(&pos, m_transform->position.x, m_transform->position.y, m_transform->position.z);
 
-			// DirectXは左手座標系なのでScaleから乗算
+			// DirectXは行優先なのでScaleから乗算
 			D3DXMatrixMultiply(&world, &world, &scale);
 			D3DXMatrixMultiply(&world, &world, &rotate);
 			D3DXMatrixMultiply(&world, &world, &pos);
@@ -74,17 +75,24 @@ void Primitive::DrawCommon()
 			MyOutputDebugString("カメラ取得失敗");
 		}
 
-		//ワールド、カメラ、射影行列を渡す
+		//ワールド、ビュー、射影行列を渡す
 		D3DXMATRIX m = world * data.matrixView * data.matrixProj;
+		// なぜD3DXMatrixTransposeをしなきゃならないの？
+		// ->DirectXは行優先HLSLは列優先だからだ！
 		D3DXMatrixTranspose(&m, &m);
 		D3DXMatrixTranspose(&world, &world);
 		cb.mWVP = m;
+		cb.mW = world;
+		D3DXVECTOR3 light(0, 0.5, -1);
+		D3DXVec3Normalize(&light, &light);
+		cb.lightDir = (D3DXVECTOR4)light;
 		D3DXVECTOR4 color;
 		color.x = m_color.x;
 		color.y = m_color.y;
 		color.z = m_color.z;
 		color.w = 1.0f;
 		cb.color = color;
+		cb.eye = D3DXVECTOR4(data.pos.x, data.pos.y, data.pos.z, 0.0f);
 		cb2.mW = world;
 		cb2.viewPortWidth = WINDOW_WIDTH;
 		cb2.viewPortHeight = WINDOW_HEIGHT;

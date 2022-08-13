@@ -1,6 +1,6 @@
 /**
 * @file ShaderDirector.h
-* @brief シェーダーの管理
+* @brief シェーダーの管理(いまはこれ自体にデータがあるが今後処理だけにして使いまわせるようにする)
 * @details ShaderDirectorクラスはシングルトンなので注意
 * @author shiihara_kiyosumi
 * @date 2022_08_05
@@ -9,17 +9,20 @@
 // ヘッダーファイルのインクルード
 #include "ShaderDirector.h"
 #include "System/Common.h"
-#include "D3D11/Direct3D11.h"
-#include <d3dx11.h>
-#include <d3dcompiler.h>
 #include <cassert>
+#include "System/Math/Math.h"
 
-// 必要なライブラリファイルのロード
-#pragma comment(lib,"d3dx11.lib")
-#pragma comment(lib,"d3dCompiler.lib")
+
+
+// using宣言
+using math::Vector3D;
 
 // クラスの静的変数の初期化
 ShaderDirector* ShaderDirector::m_this = nullptr;
+
+
+
+
 
 /**
 * @fn CreateShader
@@ -104,22 +107,28 @@ HRESULT ShaderDirector::CreatePrimitiveShader()
 	ID3DBlob* pCompiledShader = NULL;
 
 	// バーテックスシェーダー作成
-	m_this->CreateVS(&pCompiledShader, "Source/Game/Component/Primitive/Shader/PrimitiveVS.hlsl", PRIMITIVE);
+	//m_this->CreateVS(&pCompiledShader, "Source/Game/Component/Primitive/Shader/PrimitiveVS.hlsl", PRIMITIVE);
+	D3D11::CreateVertexShader(&m_shaderVariableArray[PRIMITIVE].pVertexShader, &pCompiledShader, "Source/Game/Component/Primitive/Shader/PrimitiveVS.hlsl");
 
 	//頂点インプットレイアウトを定義	
 	D3D11_INPUT_ELEMENT_DESC layout[] =
 	{
-		{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+		{ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 	};
-	m_this->CreateIL(&pCompiledShader, layout, 1, PRIMITIVE);
+	UINT numElements = sizeof(layout) / sizeof(layout[0]);
+	D3D11::CreateInputLayout(&m_shaderVariableArray[PRIMITIVE].pInputLayout, &pCompiledShader, layout, numElements);
+	//m_this->CreateIL(&pCompiledShader, layout, numElements, PRIMITIVE);
 	SAFE_RELEASE(pCompiledShader);
 
 	// ピクセルシェーダー作成
-	m_this->CreatePS(&pCompiledShader, "Source/Game/Component/Primitive/Shader/PrimitivePS.hlsl", PRIMITIVE);
+	//m_this->CreatePS(&pCompiledShader, "Source/Game/Component/Primitive/Shader/PrimitivePS.hlsl", PRIMITIVE);
+	D3D11::CreatePixelShader(&m_shaderVariableArray[PRIMITIVE].pPixelShader, &pCompiledShader, "Source/Game/Component/Primitive/Shader/PrimitivePS.hlsl");
 	SAFE_RELEASE(pCompiledShader);
 
 	//コンスタントバッファー作成　ここでは変換行列渡し用
-	m_this->CreateCB(sizeof(PrimitiveConstantBuffer), PRIMITIVE);
+	D3D11::CreateConstantBuffer(&m_shaderVariableArray[PRIMITIVE].pConstantBuffer, sizeof(PrimitiveConstantBuffer));
+	//m_this->CreateCB(sizeof(PrimitiveConstantBuffer), PRIMITIVE);
 	
 	return S_OK;
 }
@@ -152,7 +161,6 @@ HRESULT ShaderDirector::CreatePrimitive2DShader()
 	// ピクセルシェーダー作成
 	if (FAILED(m_this->CreatePS(&pCompiledShader, "Source/Game/Component/Primitive/Shader/PrimitivePS2D.hlsl", PRIMITIVE2D)))
 	{
-		SAFE_RELEASE(pCompiledShader);
 		return E_FAIL;
 	}
 	SAFE_RELEASE(pCompiledShader);

@@ -27,12 +27,12 @@ public:
 	*/
 	void Start() override
 	{
-		m_position = Vector3D(0.0f, 0.0f, 0.0f);
-		m_rotation = Vector3D(0.0f, 0.0f, 0.0f);
-		m_scale = Vector3D(1.0f, 1.0f, 1.0f);
+		position = Vector3D(0.0f, 0.0f, 0.0f);
+		rotation = Vector3D(0.0f, 0.0f, 0.0f);
+		scale = Vector3D(1.0f, 1.0f, 1.0f);
 	}
 
-	Vector3D m_position; // ç¿ïW
-	Vector3D m_rotation; // âÒì]
-	Vector3D m_scale; // ägëÂó¶
+	Vector3D position; // ç¿ïW
+	Vector3D rotation; // âÒì]
+	Vector3D scale; // ägëÂó¶
 };

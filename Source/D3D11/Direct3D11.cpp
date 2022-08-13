@@ -153,7 +153,7 @@ HRESULT Direct3D11::Init(HWND hWnd)
 		return E_FAIL;
 	}
 	UINT mask = 0xffffffff;
-	//m_pDeviceContext->OMSetBlendState(m_pBlendState, NULL, mask);
+	m_this->m_pDeviceContext->OMSetBlendState(m_this->m_pBlendState, NULL, mask);
 
 	return S_OK;
 }

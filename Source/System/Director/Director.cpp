@@ -13,7 +13,9 @@
 #include "System/Fps/Fps.h"
 #include "System/Input/Input.h"
 #include "Game/Camera/TellCameraData.h"
-
+#include "imgui.h"
+#include "imgui_impl_win32.h"
+#include "imgui_impl_dx11.h"
 /**
 * @fn Director
 * @brief コンストラクタ
@@ -35,6 +37,9 @@ Director::Director()
 */
 Director::~Director()
 {
+	ImGui_ImplDX11_Shutdown();
+	ImGui_ImplWin32_Shutdown();
+	ImGui::DestroyContext();
 	SAFE_DELETE(m_pSceneManager);
 	TellCameraData::DeleteInstance();
 	ShaderDirector::DeleteInstance();
@@ -59,11 +64,29 @@ HRESULT Director::Init(HINSTANCE hInstance)
 		MFAIL(m_pWindow->Init(hInstance, WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_NAME), "ウィンドウ作成失敗");
 	}
 
+
 	// Direct3D11Wrapper生成
 	{
 		MFAIL(Direct3D11::Init(m_pWindow->GetWindowHandle()), "Direct3D初期化失敗");
 	}
 
+	// imgui
+	{
+		// Setup Dear ImGui context
+		IMGUI_CHECKVERSION();
+		ImGui::CreateContext();
+		ImGuiIO& io = ImGui::GetIO(); (void)io;
+		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+
+		// Setup Dear ImGui style
+		ImGui::StyleColorsDark();
+		//ImGui::StyleColorsLight();
+
+		// Setup Platform/Renderer backends
+		ImGui_ImplWin32_Init(m_pWindow->GetWindowHandle());
+		ImGui_ImplDX11_Init(Direct3D11::GetDevice(), Direct3D11::GetDeviceContext());
+	}
 
 	// sceneManager生成
 	{
@@ -103,12 +126,20 @@ void Director::Run()
 
 bool Director::MainLoop()
 {
+	ImGui_ImplDX11_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+	ImGui::NewFrame();
+
 	bool isTerm = false;
 	Input::Update();
 	Fps::Update();
 	Fps::Draw();
 	Direct3D11::Clear(150.0f, 150.0f, 150.0f);
 	isTerm = m_pSceneManager->GameLoop();
+
+	ImGui::Render();
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+
 	Direct3D11::Present();
 	return isTerm;
 }

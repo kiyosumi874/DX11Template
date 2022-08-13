@@ -10,8 +10,8 @@
 #include <stdio.h>
 
 #define WINDOW_NAME "テンプレ" // このアプリケーションの名前
-#define WINDOW_WIDTH 640 // ウィンドウの横幅
-#define WINDOW_HEIGHT 480 // ウィンドウの縦幅
+#define WINDOW_WIDTH 1920 // ウィンドウの横幅
+#define WINDOW_HEIGHT 1080 // ウィンドウの縦幅
 const float MIN_FRAME_TIME = 1.0f / 60.0f;
 // 便利マクロたち
 #define SAFE_DELETE(p) { if(p) { delete (p); (p)=NULL; } }

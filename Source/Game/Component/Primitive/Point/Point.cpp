@@ -53,19 +53,31 @@ void Point::Init(const Vector3D& pos1)
 */
 void Point::CreateVertexBuffer(const Vector3D& pos1)
 {
-	PrimitiveVertex vertices[] =
-	{
-		D3DXVECTOR3(pos1.x, pos1.y, pos1.z)
-	};
 	D3D11_BUFFER_DESC bd;
 	bd.Usage = D3D11_USAGE_DEFAULT;
-	bd.ByteWidth = sizeof(PrimitiveVertex) * 1;
 	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	bd.CPUAccessFlags = 0;
 	bd.MiscFlags = 0;
 
 	D3D11_SUBRESOURCE_DATA InitData;
-	InitData.pSysMem = vertices;
+	if (m_is2D)
+	{
+		bd.ByteWidth = sizeof(PrimitiveVertex2D);
+		PrimitiveVertex2D vertices[] =
+		{
+			D3DXVECTOR3(pos1.x, pos1.y, pos1.z),
+		};
+		InitData.pSysMem = vertices;
+	}
+	else
+	{
+		bd.ByteWidth = sizeof(PrimitiveVertex);
+		PrimitiveVertex vertices[] =
+		{
+			D3DXVECTOR3(pos1.x, pos1.y, pos1.z),D3DXVECTOR3(0,0,1),
+		};
+		InitData.pSysMem = vertices;
+	}
 	if (FAILED(Direct3D11::GetDevice()->CreateBuffer(&bd, &InitData, &m_pVertexBuffer)))
 	{
 		// エラーメッセージ
@@ -79,7 +91,17 @@ void Point::CreateVertexBuffer(const Vector3D& pos1)
 void Point::SetVertexBuffer()
 {
 	//バーテックスバッファーをセット
-	UINT stride = sizeof(PrimitiveVertex);
-	UINT offset = 0;
-	Direct3D11::GetDeviceContext()->IASetVertexBuffers(0, 1, &m_pVertexBuffer, &stride, &offset);
+	if (m_is2D)
+	{
+		UINT stride = sizeof(PrimitiveVertex2D);
+		UINT offset = 0;
+		Direct3D11::GetDeviceContext()->IASetVertexBuffers(0, 1, &m_pVertexBuffer, &stride, &offset);
+	}
+	else
+	{
+		UINT stride = sizeof(PrimitiveVertex);
+		UINT offset = 0;
+		Direct3D11::GetDeviceContext()->IASetVertexBuffers(0, 1, &m_pVertexBuffer, &stride, &offset);
+	}
+	
 }

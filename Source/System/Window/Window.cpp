@@ -7,14 +7,18 @@
 
 // ヘッダーファイルのインクルード
 #include "Window.h"
+#include "imgui.h"
 
 // 静的変数の初期化
 Window* Window::m_windowInstance = nullptr;
 
+// extern宣言
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
 //	ウィンドウプロシージャ
 LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	//if (ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam)) { return true; }
+	if (ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam)) { return true; }
 
 	return Window::GetWindowInstance()->MsgProc(hWnd, uMsg, wParam, lParam);
 }
