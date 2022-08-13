@@ -11,6 +11,7 @@
 #include "D3D11/ShaderDirector/ShaderDirector.h"
 #include "Game/Component/Transform/Transform.h"
 #include "Game/Component/Object.h"
+#include <cassert>
 
 /**
 * @fn Start
@@ -59,26 +60,29 @@ void Quad::Init(const Vector3D& pos1, const Vector3D& pos2, const Vector3D& pos3
 */
 void Quad::CreateVertexBuffer(const Vector3D& pos1, const Vector3D& pos2, const Vector3D& pos3, const Vector3D& pos4)
 {
-	PrimitiveVertex vertices[] =
+	if (m_is2D)
 	{
-		D3DXVECTOR3(pos1.x, pos1.y, pos1.z),
-		D3DXVECTOR3(pos2.x, pos2.y, pos2.z),
-		D3DXVECTOR3(pos3.x, pos3.y, pos3.z),
-		D3DXVECTOR3(pos4.x, pos4.y, pos4.z),
-	};
-	D3D11_BUFFER_DESC bd;
-	bd.Usage = D3D11_USAGE_DEFAULT;
-	bd.ByteWidth = sizeof(PrimitiveVertex) * 4;
-	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-	bd.CPUAccessFlags = 0;
-	bd.MiscFlags = 0;
-
-	D3D11_SUBRESOURCE_DATA InitData;
-	InitData.pSysMem = vertices;
-	if (FAILED(Direct3D11::GetDevice()->CreateBuffer(&bd, &InitData, &m_pVertexBuffer)))
-	{
-		// エラーメッセージ
+		PrimitiveVertex2D vertices[] =
+		{
+			D3DXVECTOR3(pos1.x, pos1.y, 0.0f),
+			D3DXVECTOR3(pos2.x, pos2.y, 0.0f),
+			D3DXVECTOR3(pos3.x, pos3.y, 0.0f),
+			D3DXVECTOR3(pos4.x, pos4.y, 0.0f),
+		};
+		assert(SUCCEEDED(D3D11::CreateVertexBuffer<PrimitiveVertex2D>(&m_pVertexBuffer, vertices, 4)));
 	}
+	else
+	{
+		PrimitiveVertex vertices[] =
+		{
+			D3DXVECTOR3(pos1.x, pos1.y, pos1.z),D3DXVECTOR3(0,0,-1),
+			D3DXVECTOR3(pos2.x, pos2.y, pos2.z),D3DXVECTOR3(0,0,-1),
+			D3DXVECTOR3(pos3.x, pos3.y, pos3.z),D3DXVECTOR3(0,0,-1),
+			D3DXVECTOR3(pos4.x, pos4.y, pos4.z),D3DXVECTOR3(0,0,-1),
+		};
+		assert(SUCCEEDED(D3D11::CreateVertexBuffer<PrimitiveVertex>(&m_pVertexBuffer, vertices, 4)));
+	}
+	
 }
 
 /**
@@ -88,7 +92,16 @@ void Quad::CreateVertexBuffer(const Vector3D& pos1, const Vector3D& pos2, const 
 void Quad::SetVertexBuffer()
 {
 	//バーテックスバッファーをセット
-	UINT stride = sizeof(PrimitiveVertex);
-	UINT offset = 0;
-	Direct3D11::GetDeviceContext()->IASetVertexBuffers(0, 1, &m_pVertexBuffer, &stride, &offset);
+	if (m_is2D)
+	{
+		UINT stride = sizeof(PrimitiveVertex2D);
+		UINT offset = 0;
+		Direct3D11::GetDeviceContext()->IASetVertexBuffers(0, 1, &m_pVertexBuffer, &stride, &offset);
+	}
+	else
+	{
+		UINT stride = sizeof(PrimitiveVertex);
+		UINT offset = 0;
+		Direct3D11::GetDeviceContext()->IASetVertexBuffers(0, 1, &m_pVertexBuffer, &stride, &offset);
+	}
 }

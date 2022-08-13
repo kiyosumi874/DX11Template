@@ -8,6 +8,10 @@
 // ヘッダーファイルのインクルード
 #pragma once
 #include <d3dx10.h>
+#include "System/Math/Math.h"
+
+// using宣言
+using math::Vector3D;
 
 /**
 * @enum class CAMERA_NUMBER
@@ -28,5 +32,7 @@ struct CameraData
 {
 	D3DXMATRIX matrixView;
 	D3DXMATRIX matrixProj;
+	Vector3D pos;
+	Vector3D gazePos;
 	CAMERA_NUMBER key;
 };

@@ -70,6 +70,8 @@ public:
 		CameraData data;
 		data.matrixView = m_matrixView;
 		data.matrixProj = m_matrixProj;
+		data.pos = m_pos;
+		data.gazePos = m_gazePos;
 		data.key = m_key;
 		return data;
 	}

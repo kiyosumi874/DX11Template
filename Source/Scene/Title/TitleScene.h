@@ -51,7 +51,10 @@ namespace scene
 		void Draw() override;
 
 	private:
-		//Camera* m_pCamera; // カメラクラスのポインタ
+#ifdef _DEBUG
+		bool ImageImGuiConfig(Object** pObj, const char* windowName, const char* fileName, const int ID);
+#endif // _DEBUG
+
 	};
 
 }

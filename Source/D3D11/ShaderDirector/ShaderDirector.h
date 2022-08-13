@@ -10,9 +10,115 @@
 #pragma once
 #include <D3D11.h>
 #include <D3DX10.h>
+#include <d3dx11.h>
+#include <d3dcompiler.h>
+#include "D3D11/Direct3D11.h"
+#include <System/Common.h>
+
+// 必要なライブラリファイルのロード
+#pragma comment(lib,"d3dx11.lib")
+#pragma comment(lib,"d3dCompiler.lib")
 
 // enumによる警告を消す
 #pragma warning(disable:26812)
+
+
+
+namespace D3D11
+{
+	/**
+	* @fn CreateVertexBuffer
+	*/
+	template<typename T> static HRESULT CreateVertexBuffer(ID3D11Buffer** ppVertexBuffer, T* vertices, int vertexNum)
+	{
+		D3D11_BUFFER_DESC bd;
+		bd.ByteWidth = sizeof(T) * vertexNum;
+		bd.Usage = D3D11_USAGE_DEFAULT;
+		bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+		bd.CPUAccessFlags = 0;
+		bd.MiscFlags = 0;
+
+		D3D11_SUBRESOURCE_DATA InitData;
+		InitData.pSysMem = vertices;
+
+		return Direct3D11::GetDevice()->CreateBuffer(&bd, &InitData, ppVertexBuffer);
+	}
+
+	template<typename T> static void SetVertexBuffer(ID3D11Buffer** ppVertexBuffer)
+	{
+		UINT stride = sizeof(T);
+		UINT offset = 0;
+		Direct3D11::GetDeviceContext()->IASetVertexBuffers(0, 1, ppVertexBuffer, &stride, &offset);
+	}
+
+	static HRESULT CreateVertexShader(ID3D11VertexShader** ppVertexShader, ID3DBlob** ppCompiledShader, LPCSTR fileName)
+	{
+		auto& pCompiledShader = *ppCompiledShader;
+		ID3DBlob* pErrors = NULL;
+
+		if (FAILED(D3DX11CompileFromFile(fileName, NULL, NULL, "VS", "vs_5_0", D3D10_SHADER_DEBUG | D3D10_SHADER_SKIP_OPTIMIZATION, 0, NULL, &pCompiledShader, &pErrors, NULL)))
+		{
+			char* p = (char*)pErrors->GetBufferPointer();
+			MessageBoxA(0, p, 0, MB_OK);
+			return E_FAIL;
+		}
+		SAFE_RELEASE(pErrors);
+		if (FAILED(Direct3D11::GetDevice()->CreateVertexShader(pCompiledShader->GetBufferPointer(), pCompiledShader->GetBufferSize(), NULL, ppVertexShader)))
+		{
+			return E_FAIL;
+		}
+		return S_OK;
+	}
+
+	static HRESULT CreateInputLayout(ID3D11InputLayout** ppInputLayout, ID3DBlob** ppCompiledShader, D3D11_INPUT_ELEMENT_DESC* layoutArray, int elementCount)
+	{
+		auto& pCompiledShader = *ppCompiledShader;
+		//頂点インプットレイアウトを作成
+		if (FAILED(Direct3D11::GetDevice()->CreateInputLayout(layoutArray, elementCount, pCompiledShader->GetBufferPointer(), pCompiledShader->GetBufferSize(), ppInputLayout)))
+		{
+			return E_FAIL;
+		}
+		return S_OK;
+	}
+
+	static HRESULT CreatePixelShader(ID3D11PixelShader** ppPixelShader, ID3DBlob** ppCompiledShader, LPCSTR fileName)
+	{
+		auto& pCompiledShader = *ppCompiledShader;
+		ID3DBlob* pErrors = NULL;
+
+		if (FAILED(D3DX11CompileFromFile(fileName, NULL, NULL, "PS", "ps_5_0", D3D10_SHADER_DEBUG | D3D10_SHADER_SKIP_OPTIMIZATION, 0, NULL, &pCompiledShader, &pErrors, NULL)))
+		{
+			char* p = (char*)pErrors->GetBufferPointer();
+			MessageBoxA(0, p, 0, MB_OK);
+			return E_FAIL;
+		}
+		SAFE_RELEASE(pErrors);
+		if (FAILED(Direct3D11::GetDevice()->CreatePixelShader(pCompiledShader->GetBufferPointer(), pCompiledShader->GetBufferSize(), NULL, ppPixelShader)))
+		{
+			return E_FAIL;
+		}
+		return S_OK;
+	}
+
+	static HRESULT CreateConstantBuffer(ID3D11Buffer** ppConstantBuffer, UINT constantBufferSize)
+	{
+		//コンスタントバッファー作成　ここでは変換行列渡し用
+		D3D11_BUFFER_DESC cb;
+		cb.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+		cb.ByteWidth = constantBufferSize;
+		cb.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+		cb.MiscFlags = 0;
+		cb.StructureByteStride = 0;
+		cb.Usage = D3D11_USAGE_DYNAMIC;
+
+		if (FAILED(Direct3D11::GetDevice()->CreateBuffer(&cb, NULL, ppConstantBuffer)))
+		{
+			return E_FAIL;
+		}
+		return S_OK;
+	}
+}
+
 
 // あとでメッシュなどのクラスに移動したいなー
 /**
@@ -20,6 +126,12 @@
 * @brief メッシュ
 */
 struct PrimitiveVertex
+{
+	D3DXVECTOR3 pos;
+	D3DXVECTOR3 normal;//法線　シェーディング（陰影計算）には法線は必須
+};
+
+struct PrimitiveVertex2D
 {
 	D3DXVECTOR3 pos;
 };
@@ -30,8 +142,11 @@ struct PrimitiveVertex
 */
 struct PrimitiveConstantBuffer
 {
-	D3DXMATRIX mWVP; // matrixWorldViewProjection
-	D3DXVECTOR4 color;
+	D3DXMATRIX mW;//ワールド行列
+	D3DXMATRIX mWVP;//ワールドから射影までの変換行列
+	D3DXVECTOR4 lightDir;//ライト方向
+	D3DXVECTOR4 color;//ディフューズ色	
+	D3DXVECTOR4 eye;//視点	
 };
 
 /**
