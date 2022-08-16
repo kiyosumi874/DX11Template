@@ -28,6 +28,7 @@
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="Source\D3D11\Direct3D11.cpp" />
     <ClCompile Include="Source\D3D11\ShaderDirector\ShaderDirector.cpp" />
+    <ClCompile Include="Source\D3D9\Direct3D9.cpp" />
     <ClCompile Include="Source\Game\Camera\Camera.cpp" />
     <ClCompile Include="Source\Game\Camera\TellCameraData.cpp" />
     <ClCompile Include="Source\Game\Component\Image\Image.cpp" />
@@ -36,6 +37,7 @@
     <ClCompile Include="Source\Game\Component\Primitive\Primitive.cpp" />
     <ClCompile Include="Source\Game\Component\Primitive\Quad\Quad.cpp" />
     <ClCompile Include="Source\Game\Component\Primitive\Triangle\Triangle.cpp" />
+    <ClCompile Include="Source\Game\Component\StaticMesh\StaticMesh.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Scene\Clear\GameClearScene.cpp" />
     <ClCompile Include="Source\Scene\Over\GameOverScene.cpp" />
@@ -59,6 +61,7 @@
     <ClInclude Include="imgui\imstb_truetype.h" />
     <ClInclude Include="Source\D3D11\Direct3D11.h" />
     <ClInclude Include="Source\D3D11\ShaderDirector\ShaderDirector.h" />
+    <ClInclude Include="Source\D3D9\Direct3D9.h" />
     <ClInclude Include="Source\Game\Camera\Camera.h" />
     <ClInclude Include="Source\Game\Camera\CameraStruct.h" />
     <ClInclude Include="Source\Game\Camera\TellCameraData.h" />
@@ -70,6 +73,7 @@
     <ClInclude Include="Source\Game\Component\Primitive\Primitive.h" />
     <ClInclude Include="Source\Game\Component\Primitive\Quad\Quad.h" />
     <ClInclude Include="Source\Game\Component\Primitive\Triangle\Triangle.h" />
+    <ClInclude Include="Source\Game\Component\StaticMesh\StaticMesh.h" />
     <ClInclude Include="Source\Game\Component\Transform\Transform.h" />
     <ClInclude Include="Source\Scene\Clear\GameClearScene.h" />
     <ClInclude Include="Source\Scene\Over\GameOverScene.h" />
@@ -90,6 +94,14 @@
     <None Include="Source\Game\Component\Primitive\Shader\Primitive2D.hlsli" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="Shader\Mesh.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
     <FxCompile Include="Shader\UI.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Effect</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>

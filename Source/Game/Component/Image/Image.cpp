@@ -30,7 +30,34 @@ void Image::Update()
 
 void Image::Draw()
 {
-	SetVertexBuffer<ImageVertex>(&m_pVertexBuffer);
+	// アルファブレンド用ブレンドステート作成
+	if (m_isAlpha)
+	{
+		D3D11_BLEND_DESC bd;
+		ZeroMemory(&bd, sizeof(D3D11_BLEND_DESC));
+		bd.IndependentBlendEnable = false;
+		bd.AlphaToCoverageEnable = false;
+		bd.RenderTarget[0].BlendEnable = true;
+		bd.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+		bd.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+		bd.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+		bd.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+		bd.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+		bd.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+		bd.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+		ID3D11BlendState* pBlendState;
+		Direct3D11::GetDevice()->CreateBlendState(&bd, &pBlendState);
+		UINT mask = 0xffffffff;
+		Direct3D11::GetDeviceContext()->OMSetBlendState(pBlendState, NULL, mask);
+	}
+	else
+	{
+		UINT mask = 0xffffffff;
+		Direct3D11::GetDeviceContext()->OMSetBlendState(NULL, NULL, mask);
+	}
+	
+
+	SetVertexBuffer(&m_pVertexBuffer, sizeof(ImageVertex));
 
 	//使用するシェーダーのセット
 	Direct3D11::GetDeviceContext()->VSSetShader(m_pVertexShader, NULL, 0);
@@ -55,7 +82,7 @@ void Image::Draw()
 			D3DXMatrixIdentity(&world); // 行列の初期化
 
 			D3DXMatrixScaling(&scale, transform->scale.x, transform->scale.y, transform->scale.z);
-			D3DXMatrixRotationYawPitchRoll(&rotate, transform->rotation.x, transform->rotation.y, transform->rotation.z);
+			D3DXMatrixRotationYawPitchRoll(&rotate, transform->rotation.y, transform->rotation.x, transform->rotation.z);
 			D3DXMatrixTranslation(&pos, transform->position.x, transform->position.y, transform->position.z);
 
 			// DirectXは行優先なのでScaleから乗算
@@ -118,7 +145,7 @@ void Image::Init(const Vector3D& centerPos, const Vector3D& size, const char* te
 	// ブロブ作成　ブロブとはシェーダーの塊みたいなもの。XXシェーダーとして特徴を持たない。後で各種シェーダーに成り得る。
 	ID3DBlob* pCompiledShader = NULL;
 
-	if (FAILED(CreateVertexShader(&m_pVertexShader, &pCompiledShader, "Shader/UI.hlsl")))
+	if (FAILED(CreateVertexShader(&m_pVertexShader, &pCompiledShader, "Shader/UI.hlsl", "VS")))
 	{
 		MyOutputDebugString("UIDirectorでCreateVertexShaderが失敗しました");
 	}
@@ -139,7 +166,7 @@ void Image::Init(const Vector3D& centerPos, const Vector3D& size, const char* te
 	}
 	SAFE_RELEASE(pCompiledShader);
 
-	if (FAILED(CreatePixelShader(&m_pPixelShader, &pCompiledShader, "Shader/UI.hlsl")))
+	if (FAILED(CreatePixelShader(&m_pPixelShader, &pCompiledShader, "Shader/UI.hlsl", "PS")))
 	{
 		MyOutputDebugString("UIDirectorでCreatePixelShaderが失敗しました");
 	}

@@ -86,6 +86,12 @@
     <Filter Include="imgui">
       <UniqueIdentifier>{3cbd8ef2-a824-41af-9352-5046df05a9cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\D3D9">
+      <UniqueIdentifier>{92bddd32-54a0-4e0b-b250-f05c8d00a99f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Game\Component\StaticMesh">
+      <UniqueIdentifier>{177fe5d3-7a94-41f9-b3ba-3225dcf4dba2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp">
@@ -171,6 +177,12 @@
     </ClCompile>
     <ClCompile Include="imgui\imgui_widgets.cpp">
       <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\D3D9\Direct3D9.cpp">
+      <Filter>Source\D3D9</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Component\StaticMesh\StaticMesh.cpp">
+      <Filter>Source\Game\Component\StaticMesh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -279,6 +291,12 @@
     <ClInclude Include="Source\System\File.h">
       <Filter>Source\System</Filter>
     </ClInclude>
+    <ClInclude Include="Source\D3D9\Direct3D9.h">
+      <Filter>Source\D3D9</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Component\StaticMesh\StaticMesh.h">
+      <Filter>Source\Game\Component\StaticMesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Game\Component\Primitive\Shader\Primitive.hlsli">
@@ -302,6 +320,9 @@
       <Filter>Source\Game\Component\Primitive\Shader</Filter>
     </FxCompile>
     <FxCompile Include="Shader\UI.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\Mesh.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>

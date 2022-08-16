@@ -10,6 +10,7 @@
 #include "System/Common.h"
 #include "D3D11/Direct3D11.h"
 #include "D3D11/ShaderDirector/ShaderDirector.h"
+#include "D3D9/Direct3D9.h"
 #include "System/Fps/Fps.h"
 #include "System/Input/Input.h"
 #include "Game/Camera/TellCameraData.h"
@@ -25,6 +26,7 @@ Director::Director()
 	// ƒNƒ‰ƒX‚ª‰Šú‰»‚³‚ê‚é
 	ZeroMemory(this, sizeof(Director));
 	Direct3D11::CreateInstance();
+	Direct3D9::CreateInstance();
 	Input::CreateInstance();
 	Fps::CreateInstance();
 	ShaderDirector::CreateInstance();
@@ -45,6 +47,7 @@ Director::~Director()
 	ShaderDirector::DeleteInstance();
 	Fps::DeleteInstance();
 	Input::DeleteInstance();
+	Direct3D9::DeleteInstance();
 	Direct3D11::DeleteInstance();
 	SAFE_DELETE(m_pWindow);
 }
@@ -68,6 +71,11 @@ HRESULT Director::Init(HINSTANCE hInstance)
 	// Direct3D11Wrapper¶¬
 	{
 		MFAIL(Direct3D11::Init(m_pWindow->GetWindowHandle()), "Direct3D‰Šú‰»¸”s");
+	}
+
+	// Direct3D9¶¬
+	{
+		MFAIL(Direct3D9::Init(), "Direct3D‰Šú‰»¸”s");
 	}
 
 	// imgui
