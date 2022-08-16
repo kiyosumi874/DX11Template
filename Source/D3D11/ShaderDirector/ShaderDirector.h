@@ -44,19 +44,19 @@ namespace D3D11
 		return Direct3D11::GetDevice()->CreateBuffer(&bd, &InitData, ppVertexBuffer);
 	}
 
-	template<typename T> static void SetVertexBuffer(ID3D11Buffer** ppVertexBuffer)
+	static void SetVertexBuffer(ID3D11Buffer** ppVertexBuffer, UINT bytesPerVertex)
 	{
-		UINT stride = sizeof(T);
+		UINT stride = bytesPerVertex;
 		UINT offset = 0;
 		Direct3D11::GetDeviceContext()->IASetVertexBuffers(0, 1, ppVertexBuffer, &stride, &offset);
 	}
 
-	static HRESULT CreateVertexShader(ID3D11VertexShader** ppVertexShader, ID3DBlob** ppCompiledShader, LPCSTR fileName)
+	static HRESULT CreateVertexShader(ID3D11VertexShader** ppVertexShader, ID3DBlob** ppCompiledShader, LPCSTR fileName, LPCSTR entryPointName)
 	{
 		auto& pCompiledShader = *ppCompiledShader;
 		ID3DBlob* pErrors = NULL;
 
-		if (FAILED(D3DX11CompileFromFile(fileName, NULL, NULL, "VS", "vs_5_0", D3D10_SHADER_DEBUG | D3D10_SHADER_SKIP_OPTIMIZATION, 0, NULL, &pCompiledShader, &pErrors, NULL)))
+		if (FAILED(D3DX11CompileFromFile(fileName, NULL, NULL, entryPointName, "vs_5_0", D3D10_SHADER_DEBUG | D3D10_SHADER_SKIP_OPTIMIZATION, 0, NULL, &pCompiledShader, &pErrors, NULL)))
 		{
 			char* p = (char*)pErrors->GetBufferPointer();
 			MessageBoxA(0, p, 0, MB_OK);
@@ -81,12 +81,12 @@ namespace D3D11
 		return S_OK;
 	}
 
-	static HRESULT CreatePixelShader(ID3D11PixelShader** ppPixelShader, ID3DBlob** ppCompiledShader, LPCSTR fileName)
+	static HRESULT CreatePixelShader(ID3D11PixelShader** ppPixelShader, ID3DBlob** ppCompiledShader, LPCSTR fileName, LPCSTR entryPointName)
 	{
 		auto& pCompiledShader = *ppCompiledShader;
 		ID3DBlob* pErrors = NULL;
 
-		if (FAILED(D3DX11CompileFromFile(fileName, NULL, NULL, "PS", "ps_5_0", D3D10_SHADER_DEBUG | D3D10_SHADER_SKIP_OPTIMIZATION, 0, NULL, &pCompiledShader, &pErrors, NULL)))
+		if (FAILED(D3DX11CompileFromFile(fileName, NULL, NULL, entryPointName, "ps_5_0", D3D10_SHADER_DEBUG | D3D10_SHADER_SKIP_OPTIMIZATION, 0, NULL, &pCompiledShader, &pErrors, NULL)))
 		{
 			char* p = (char*)pErrors->GetBufferPointer();
 			MessageBoxA(0, p, 0, MB_OK);

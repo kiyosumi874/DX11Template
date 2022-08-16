@@ -24,6 +24,7 @@
 #include "Game/Component/Transform/Transform.h"
 #include "Game/Component/Image/Image.h"
 #include "System/File.h"
+#include "Game/Component/StaticMesh/StaticMesh.h"
 // using宣言
 using scene::TitleScene; using scene::TAG_SCENE;
 
@@ -85,7 +86,14 @@ TitleScene::TitleScene()
 		m_objectList.emplace_back(obj);
 	}
 	
-
+	// staticMesh
+	{
+		Object* obj = new Object;
+		auto transform = obj->AddComponent<Transform>();
+		auto staticMesh = obj->AddComponent<StaticMesh>();
+		staticMesh->Init("model/RobotA_pivot.x");
+		m_objectList.emplace_back(obj);
+	}
 	
 }
 
@@ -124,7 +132,6 @@ TAG_SCENE TitleScene::Update()
 		}
 	}
 #endif // _DEBUG
-	
 
 	// オブジェクトの更新
 	for (auto obj : m_objectList)

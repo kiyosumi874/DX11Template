@@ -108,7 +108,7 @@ HRESULT ShaderDirector::CreatePrimitiveShader()
 
 	// バーテックスシェーダー作成
 	//m_this->CreateVS(&pCompiledShader, "Source/Game/Component/Primitive/Shader/PrimitiveVS.hlsl", PRIMITIVE);
-	D3D11::CreateVertexShader(&m_shaderVariableArray[PRIMITIVE].pVertexShader, &pCompiledShader, "Source/Game/Component/Primitive/Shader/PrimitiveVS.hlsl");
+	D3D11::CreateVertexShader(&m_shaderVariableArray[PRIMITIVE].pVertexShader, &pCompiledShader, "Source/Game/Component/Primitive/Shader/PrimitiveVS.hlsl", "VS");
 
 	//頂点インプットレイアウトを定義	
 	D3D11_INPUT_ELEMENT_DESC layout[] =
@@ -123,7 +123,7 @@ HRESULT ShaderDirector::CreatePrimitiveShader()
 
 	// ピクセルシェーダー作成
 	//m_this->CreatePS(&pCompiledShader, "Source/Game/Component/Primitive/Shader/PrimitivePS.hlsl", PRIMITIVE);
-	D3D11::CreatePixelShader(&m_shaderVariableArray[PRIMITIVE].pPixelShader, &pCompiledShader, "Source/Game/Component/Primitive/Shader/PrimitivePS.hlsl");
+	D3D11::CreatePixelShader(&m_shaderVariableArray[PRIMITIVE].pPixelShader, &pCompiledShader, "Source/Game/Component/Primitive/Shader/PrimitivePS.hlsl", "PS");
 	SAFE_RELEASE(pCompiledShader);
 
 	//コンスタントバッファー作成　ここでは変換行列渡し用
