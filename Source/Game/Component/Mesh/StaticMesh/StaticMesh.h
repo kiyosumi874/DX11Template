@@ -12,9 +12,11 @@
 #include "Game/Component/Component.h"
 #include "Game/Component/Transform/Transform.h"
 #include "System/Common.h"
+#include <vector>
 
 // using宣言
 using math::Vector3D;
+using std::vector;
 
 struct ConstantBuffer0
 {
@@ -34,11 +36,11 @@ struct ConstantBuffer1
 //オリジナル　マテリアル構造体
 struct MyMaterial
 {
-	CHAR name[110];
+	CHAR name[100];
 	D3DXVECTOR4 ambient;//アンビエント
 	D3DXVECTOR4 diffuse;//ディフューズ
 	D3DXVECTOR4 specular;//スペキュラー
-	CHAR textureName[110];//テクスチャーファイル名
+	CHAR textureName[256];//テクスチャーファイル名
 	ID3D11ShaderResourceView* pTexture;
 	DWORD numFace;//そのマテリアルであるポリゴン数
 	MyMaterial()
@@ -52,7 +54,7 @@ struct MyMaterial
 };
 
 //頂点の構造体
-struct MY_VERTEX
+struct MyVertex
 {
 	D3DXVECTOR3 pos;
 	D3DXVECTOR3 norm;
@@ -85,6 +87,12 @@ public:
 	void Draw() override;
 
 	/**
+	* @fn Terminate
+	* @brief 終了処理
+	*/
+	void Terminate() override;
+
+	/**
 	* @fn Init
 	* @brief 初期化
 	*/
@@ -99,18 +107,24 @@ private:
 	*/
 	HRESULT LoadXMesh(const char* fileName);
 
+	HRESULT FetchMaterial();
 
-	Transform* m_transform; // トランスフォーム
+	HRESULT CreateIndexBuffer();
+
+	HRESULT CreateVertexBuffer();
+
+	HRESULT CreateSampler();
+
 	LPD3DXMESH m_pMesh; // メッシュ
+	LPD3DXBUFFER m_pD3DXMtrlBuffer;
 	DWORD m_numMaterial; // マテリアルの数
 
 	DWORD m_numAttribute; // 属性数
 	DWORD m_attributeID[300]; // 300属性まで
 
 	// resource
-	char m_textureFileName[8][256];//テクスチャーファイル名（８枚まで）
-	ID3D11SamplerState* m_pSampleLinear;//テクスチャーのサンプラー
-	MyMaterial* m_pMaterial;
+	ID3D11SamplerState* m_pSampler;//テクスチャーのサンプラー
+	vector<MyMaterial> m_materialVec;
 
 	ID3D11InputLayout* m_pVertexLayout;
 	ID3D11VertexShader* m_pVertexShader;
@@ -118,7 +132,6 @@ private:
 	ID3D11Buffer* m_pConstantBuffer0;
 	ID3D11Buffer* m_pConstantBuffer1;
 	ID3D11Buffer* m_pVertexBuffer;
-	ID3D11Buffer** m_ppIndexBuffer;
-
+	vector<ID3D11Buffer*> m_pIndexBufferVec;
 	bool m_useTexture;
 };

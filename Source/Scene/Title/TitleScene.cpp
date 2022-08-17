@@ -24,7 +24,9 @@
 #include "Game/Component/Transform/Transform.h"
 #include "Game/Component/Image/Image.h"
 #include "System/File.h"
-#include "Game/Component/StaticMesh/StaticMesh.h"
+#include "Game/Component/Mesh/StaticMesh/StaticMesh.h"
+#include "Game/Component/Mesh/HierarchyMesh/HierarchyMesh.h"
+#include "Game/Component/Mesh/SkinMesh/SkinMesh.h"
 // usingéŒ¾
 using scene::TitleScene; using scene::TAG_SCENE;
 
@@ -54,7 +56,46 @@ TitleScene::TitleScene()
 		m_objectList.emplace_back(obj);
 	}
 
-	
+	// HierarchyMesh
+	{
+		Object* obj = new Object;
+		auto transform = obj->AddComponent<Transform>();
+		transform->position.x = -0.5;
+		transform->position.y = -1.0;
+		transform->position.z = 1.0;
+		auto staticMesh = obj->AddComponent<HierarchyMesh>();
+		staticMesh->Init("model/RobotA_1motion_2truck.x");
+		m_objectList.emplace_back(obj);
+	}
+	{
+		Object* obj = new Object;
+		auto transform = obj->AddComponent<Transform>();
+		transform->position.x = -0.8;
+		transform->position.y = -1.0;
+		transform->position.z = 0.5;
+		auto staticMesh = obj->AddComponent<HierarchyMesh>();
+		staticMesh->Init("model/Josh_Motion_Wakeup.x");
+		m_objectList.emplace_back(obj);
+	}
+
+	// staticMesh
+	{
+		Object* obj = new Object;
+		auto transform = obj->AddComponent<Transform>();
+		auto staticMesh = obj->AddComponent<StaticMesh>();
+		staticMesh->Init("model/RobotA_pivot.x");
+		m_objectList.emplace_back(obj);
+	}
+
+	// SkinMesh
+	{
+		Object* obj = new Object;
+		auto transform = obj->AddComponent<Transform>();
+		transform->position.x = 0.5;
+		auto skinMesh = obj->AddComponent<SkinMesh>();
+		skinMesh->Init("model/Hand_animation_1motion_2truck.x");
+		m_objectList.emplace_back(obj);
+	}
 
 	// UI0
 	{
@@ -86,14 +127,9 @@ TitleScene::TitleScene()
 		m_objectList.emplace_back(obj);
 	}
 	
-	// staticMesh
-	{
-		Object* obj = new Object;
-		auto transform = obj->AddComponent<Transform>();
-		auto staticMesh = obj->AddComponent<StaticMesh>();
-		staticMesh->Init("model/RobotA_pivot.x");
-		m_objectList.emplace_back(obj);
-	}
+	
+
+	
 	
 }
 

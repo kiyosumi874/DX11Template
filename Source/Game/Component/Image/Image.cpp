@@ -113,6 +113,17 @@ void Image::Draw()
 
 }
 
+void Image::Terminate()
+{
+	SAFE_RELEASE(m_pInputLayout);
+	SAFE_RELEASE(m_pVertexShader);
+	SAFE_RELEASE(m_pPixelShader);
+	SAFE_RELEASE(m_pConstantBuffer);
+	SAFE_RELEASE(m_pVertexBuffer);
+	SAFE_RELEASE(m_pSampler);
+	SAFE_RELEASE(m_pTexture);
+}
+
 /**
 * @fn Init
 * @brief èâä˙âª

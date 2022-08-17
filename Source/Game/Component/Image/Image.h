@@ -64,6 +64,12 @@ public:
 	void Draw();
 
 	/**
+	* @fn Terminate
+	* @brief I—¹ˆ—
+	*/
+	void Terminate() override;
+
+	/**
 	* @fn Init
 	* @brief ‰Šú‰»
 	* @param[in] pos1 ’†S‚ÌˆÊ’u
