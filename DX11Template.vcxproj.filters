@@ -89,8 +89,17 @@
     <Filter Include="Source\D3D9">
       <UniqueIdentifier>{92bddd32-54a0-4e0b-b250-f05c8d00a99f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Game\Component\StaticMesh">
+    <Filter Include="Source\Game\Component\Mesh">
+      <UniqueIdentifier>{e6cd5d70-9d55-4167-a1f1-ca2faff92ba3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Game\Component\Mesh\SkinMesh">
+      <UniqueIdentifier>{15932fd8-edf4-498b-aae1-2634d38f93f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Game\Component\Mesh\StaticMesh">
       <UniqueIdentifier>{177fe5d3-7a94-41f9-b3ba-3225dcf4dba2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Game\Component\Mesh\HierarchyMesh">
+      <UniqueIdentifier>{6a809ce3-e19f-4324-af37-d7519af9ef0f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -181,8 +190,17 @@
     <ClCompile Include="Source\D3D9\Direct3D9.cpp">
       <Filter>Source\D3D9</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Component\StaticMesh\StaticMesh.cpp">
-      <Filter>Source\Game\Component\StaticMesh</Filter>
+    <ClCompile Include="Source\Game\Component\Mesh\HierarchyMesh\HierarchyMesh.cpp">
+      <Filter>Source\Game\Component\Mesh\HierarchyMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Component\Mesh\StaticMesh\StaticMesh.cpp">
+      <Filter>Source\Game\Component\Mesh\StaticMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Component\Mesh\Mesh.cpp">
+      <Filter>Source\Game\Component\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Component\Mesh\SkinMesh\SkinMesh.cpp">
+      <Filter>Source\Game\Component\Mesh\SkinMesh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -294,8 +312,17 @@
     <ClInclude Include="Source\D3D9\Direct3D9.h">
       <Filter>Source\D3D9</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Component\StaticMesh\StaticMesh.h">
-      <Filter>Source\Game\Component\StaticMesh</Filter>
+    <ClInclude Include="Source\Game\Component\Mesh\HierarchyMesh\HierarchyMesh.h">
+      <Filter>Source\Game\Component\Mesh\HierarchyMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Component\Mesh\StaticMesh\StaticMesh.h">
+      <Filter>Source\Game\Component\Mesh\StaticMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Component\Mesh\Mesh.h">
+      <Filter>Source\Game\Component\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Component\Mesh\SkinMesh\SkinMesh.h">
+      <Filter>Source\Game\Component\Mesh\SkinMesh</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -323,6 +350,9 @@
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="Shader\Mesh.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\Geometry_Material_Texture_Skin.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>

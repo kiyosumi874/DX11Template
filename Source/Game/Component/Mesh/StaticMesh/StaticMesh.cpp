@@ -111,30 +111,31 @@ void StaticMesh::Draw()
 	for (DWORD i = 0; i < m_numAttribute; i++)
 	{
 		//使用されていないマテリアル対策
-		if (m_pMaterial[m_attributeID[i]].numFace == 0)
+		if (m_materialVec[m_attributeID[i]].numFace == 0)
 		{
 			continue;
 		}
 		//インデックスバッファーをセット
-		Direct3D11::GetDeviceContext()->IASetIndexBuffer(m_ppIndexBuffer[i], DXGI_FORMAT_R32_UINT, 0);
+		Direct3D11::GetDeviceContext()->IASetIndexBuffer(m_pIndexBufferVec[i], DXGI_FORMAT_R32_UINT, 0);
+		//Direct3D11::GetDeviceContext()->IASetIndexBuffer(m_ppIndexBuffer[i], DXGI_FORMAT_R32_UINT, 0);
 		//マテリアルの各要素をエフェクト（シェーダー）に渡す
 		D3D11_MAPPED_SUBRESOURCE pData;
 		if (SUCCEEDED(Direct3D11::GetDeviceContext()->Map(m_pConstantBuffer1, 0, D3D11_MAP_WRITE_DISCARD, 0, &pData)))
 		{
 			ConstantBuffer1 sg;
-			sg.ambient = m_pMaterial[m_attributeID[i]].ambient;//アンビエントををシェーダーに渡す
-			sg.diffuse = m_pMaterial[m_attributeID[i]].diffuse;//ディフューズカラーをシェーダーに渡す
-			sg.specular = m_pMaterial[m_attributeID[i]].specular;//スペキュラーをシェーダーに渡す
+			sg.ambient = m_materialVec[m_attributeID[i]].ambient;//アンビエントををシェーダーに渡す
+			sg.diffuse = m_materialVec[m_attributeID[i]].diffuse;//ディフューズカラーをシェーダーに渡す
+			sg.specular = m_materialVec[m_attributeID[i]].specular;//スペキュラーをシェーダーに渡す
 			memcpy_s(pData.pData, pData.RowPitch, (void*)&sg, sizeof(ConstantBuffer1));
 			Direct3D11::GetDeviceContext()->Unmap(m_pConstantBuffer1, 0);
 		}
 		Direct3D11::GetDeviceContext()->VSSetConstantBuffers(1, 1, &m_pConstantBuffer1);
 		Direct3D11::GetDeviceContext()->PSSetConstantBuffers(1, 1, &m_pConstantBuffer1);
 		//テクスチャーをシェーダーに渡す
-		if (m_pMaterial[m_attributeID[i]].pTexture)
+		if (m_materialVec[m_attributeID[i]].pTexture)
 		{
-			Direct3D11::GetDeviceContext()->PSSetSamplers(0, 1, &m_pSampleLinear);
-			Direct3D11::GetDeviceContext()->PSSetShaderResources(0, 1, &m_pMaterial[m_attributeID[i]].pTexture);
+			Direct3D11::GetDeviceContext()->PSSetSamplers(0, 1, &m_pSampler);
+			Direct3D11::GetDeviceContext()->PSSetShaderResources(0, 1, &m_materialVec[m_attributeID[i]].pTexture);
 		}
 		else
 		{
@@ -142,9 +143,28 @@ void StaticMesh::Draw()
 			Direct3D11::GetDeviceContext()->PSSetShaderResources(0, 1, Nothing);
 		}
 		//プリミティブをレンダリング
-		Direct3D11::GetDeviceContext()->DrawIndexed(m_pMaterial[m_attributeID[i]].numFace * 3, 0, 0);
+		Direct3D11::GetDeviceContext()->DrawIndexed(m_materialVec[m_attributeID[i]].numFace * 3, 0, 0);
 	}
 
+}
+
+void StaticMesh::Terminate()
+{
+	for (auto it : m_pIndexBufferVec)
+	{
+		SAFE_RELEASE(it);
+	}
+	m_pIndexBufferVec.clear();
+	SAFE_RELEASE(m_pVertexBuffer);
+	SAFE_RELEASE(m_pConstantBuffer1);
+	SAFE_RELEASE(m_pConstantBuffer0);
+	SAFE_RELEASE(m_pPixelShader);
+	SAFE_RELEASE(m_pVertexShader);
+	SAFE_RELEASE(m_pVertexLayout);
+	m_materialVec.clear();
+	SAFE_RELEASE(m_pSampler);
+	SAFE_RELEASE(m_pD3DXMtrlBuffer);
+	SAFE_RELEASE(m_pMesh);
 }
 
 /**
@@ -158,8 +178,31 @@ HRESULT StaticMesh::Init(const char* fileName)
 		return E_FAIL;
 	}
 
-	//hlslファイル読み込み ブロブ作成　ブロブとはシェーダーの塊みたいなもの。XXシェーダーとして特徴を持たない。後で各種シェーダーに成り得る。
-	ID3D10Blob* pCompiledShader = NULL;
+	// マテリアルをpD3DXMtrlBufferから取得
+	if (FAILED(FetchMaterial()))
+	{
+		SAFE_RELEASE(m_pD3DXMtrlBuffer);
+		return E_FAIL;
+	}
+	SAFE_RELEASE(m_pD3DXMtrlBuffer); // もう使わん
+
+	// インデックスバッファー作成
+	if (FAILED(CreateIndexBuffer()))
+	{
+		return E_FAIL;
+	}
+
+	// バーテックスバッファー作成
+	if (FAILED(CreateVertexBuffer()))
+	{
+		return E_FAIL;
+	}
+
+	//テクスチャー用サンプラー作成
+	if (FAILED(CreateSampler()))
+	{
+		return E_FAIL;
+	}
 
 	// using宣言
 	using D3D11::CreateVertexShader;
@@ -167,19 +210,14 @@ HRESULT StaticMesh::Init(const char* fileName)
 	using D3D11::CreateInputLayout;
 	using D3D11::CreateConstantBuffer;
 
-	//ブロブからバーテックスシェーダー作成
-	if (m_useTexture)
-	{
-		CreateVertexShader(&m_pVertexShader, &pCompiledShader, "Shader/Mesh.hlsl", "VS");
-	}
-	else
-	{
-		CreateVertexShader(&m_pVertexShader, &pCompiledShader, "Shader/Mesh.hlsl", "VS_NoTex");
-	}
+	//hlslファイル読み込み ブロブ作成　ブロブとはシェーダーの塊みたいなもの。XXシェーダーとして特徴を持たない。後で各種シェーダーに成り得る。
+	ID3D10Blob* pCompiledShader = NULL;
 
-	//頂点インプットレイアウトを定義
 	if (m_useTexture)
 	{
+		//ブロブからバーテックスシェーダー作成
+		CreateVertexShader(&m_pVertexShader, &pCompiledShader, "Shader/Mesh.hlsl", "VS");
+		//頂点インプットレイアウトを定義
 		D3D11_INPUT_ELEMENT_DESC layout[] =
 		{
 			{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
@@ -188,9 +226,14 @@ HRESULT StaticMesh::Init(const char* fileName)
 		};
 		UINT numElements = 3;
 		CreateInputLayout(&m_pVertexLayout, &pCompiledShader, layout, numElements);
+		//ブロブからピクセルシェーダー作成
+		CreatePixelShader(&m_pPixelShader, &pCompiledShader, "Shader/Mesh.hlsl", "PS");
 	}
 	else
 	{
+		//ブロブからバーテックスシェーダー作成
+		CreateVertexShader(&m_pVertexShader, &pCompiledShader, "Shader/Mesh.hlsl", "VS_NoTex");
+		//頂点インプットレイアウトを定義
 		D3D11_INPUT_ELEMENT_DESC layout[] =
 		{
 			{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
@@ -198,14 +241,7 @@ HRESULT StaticMesh::Init(const char* fileName)
 		};
 		UINT numElements = 2;
 		CreateInputLayout(&m_pVertexLayout, &pCompiledShader, layout, numElements);
-	}
-
-	if (m_useTexture)
-	{
-		CreatePixelShader(&m_pPixelShader, &pCompiledShader, "Shader/Mesh.hlsl", "PS");
-	}
-	else
-	{
+		//ブロブからピクセルシェーダー作成
 		CreatePixelShader(&m_pPixelShader, &pCompiledShader, "Shader/Mesh.hlsl", "PS_NoTex");
 	}
 	SAFE_RELEASE(pCompiledShader);
@@ -225,58 +261,65 @@ HRESULT StaticMesh::Init(const char* fileName)
 */
 HRESULT StaticMesh::LoadXMesh(const char* fileName)
 {
-	LPD3DXBUFFER pD3DXMtrlBuffer = NULL;
 
 	if (FAILED(D3DXLoadMeshFromXA(fileName, D3DXMESH_SYSTEMMEM | D3DXMESH_32BIT,
-		Direct3D9::GetDevice(), NULL, &pD3DXMtrlBuffer, NULL,
+		Direct3D9::GetDevice(), NULL, &m_pD3DXMtrlBuffer, NULL,
 		&m_numMaterial, &m_pMesh)))
 	{
 		MessageBoxA(NULL, "Xファイルの読み込みに失敗しました", NULL, MB_OK);
 		return E_FAIL;
 	}
 
-	//この時点で、ファイルから取り出したメッシュデータが、Dx9のD3DXメッシュに入っている、
-	D3D11_BUFFER_DESC bd;
-	D3D11_SUBRESOURCE_DATA InitData;
+	// この時点で、ファイルから取り出したメッシュデータが、Dx9のD3DXメッシュに入っている、
+	// あとは、そこから好きな情報を取り出してDx11の自前メッシュに利用するだけ。
 
-	//あとは、そこから好きな情報を取り出してDx11の自前メッシュに利用するだけ。
-	D3DXMATERIAL* d3dxMaterials = (D3DXMATERIAL*)pD3DXMtrlBuffer->GetBufferPointer();
-	m_pMaterial = new MyMaterial[m_numMaterial];
-	m_ppIndexBuffer = new ID3D11Buffer * [m_numMaterial];
+	
 
+	return S_OK;
+}
+
+HRESULT StaticMesh::FetchMaterial()
+{
+	D3DXMATERIAL* d3dxMaterials = (D3DXMATERIAL*)m_pD3DXMtrlBuffer->GetBufferPointer();
+	m_materialVec.resize(m_numMaterial);
 	for (DWORD i = 0; i < m_numMaterial; i++)
 	{
 		//アンビエント
-		m_pMaterial[i].ambient.x = d3dxMaterials[i].MatD3D.Ambient.r;
-		m_pMaterial[i].ambient.y = d3dxMaterials[i].MatD3D.Ambient.g;
-		m_pMaterial[i].ambient.z = d3dxMaterials[i].MatD3D.Ambient.b;
-		m_pMaterial[i].ambient.w = d3dxMaterials[i].MatD3D.Ambient.a;
+		m_materialVec[i].ambient.x = d3dxMaterials[i].MatD3D.Ambient.r;
+		m_materialVec[i].ambient.y = d3dxMaterials[i].MatD3D.Ambient.g;
+		m_materialVec[i].ambient.z = d3dxMaterials[i].MatD3D.Ambient.b;
+		m_materialVec[i].ambient.w = d3dxMaterials[i].MatD3D.Ambient.a;
 		//ディフューズ
-		m_pMaterial[i].diffuse.x = d3dxMaterials[i].MatD3D.Diffuse.r;
-		m_pMaterial[i].diffuse.y = d3dxMaterials[i].MatD3D.Diffuse.g;
-		m_pMaterial[i].diffuse.z = d3dxMaterials[i].MatD3D.Diffuse.b;
-		m_pMaterial[i].diffuse.w = d3dxMaterials[i].MatD3D.Diffuse.a;
+		m_materialVec[i].diffuse.x = d3dxMaterials[i].MatD3D.Diffuse.r;
+		m_materialVec[i].diffuse.y = d3dxMaterials[i].MatD3D.Diffuse.g;
+		m_materialVec[i].diffuse.z = d3dxMaterials[i].MatD3D.Diffuse.b;
+		m_materialVec[i].diffuse.w = d3dxMaterials[i].MatD3D.Diffuse.a;
 		//スペキュラー
-		m_pMaterial[i].specular.x = d3dxMaterials[i].MatD3D.Specular.r;
-		m_pMaterial[i].specular.y = d3dxMaterials[i].MatD3D.Specular.g;
-		m_pMaterial[i].specular.z = d3dxMaterials[i].MatD3D.Specular.b;
-		m_pMaterial[i].specular.w = d3dxMaterials[i].MatD3D.Specular.a;
+		m_materialVec[i].specular.x = d3dxMaterials[i].MatD3D.Specular.r;
+		m_materialVec[i].specular.y = d3dxMaterials[i].MatD3D.Specular.g;
+		m_materialVec[i].specular.z = d3dxMaterials[i].MatD3D.Specular.b;
+		m_materialVec[i].specular.w = d3dxMaterials[i].MatD3D.Specular.a;
 		//テクスチャーがあれば
 		if (d3dxMaterials[i].pTextureFilename != NULL &&
 			lstrlenA(d3dxMaterials[i].pTextureFilename) > 0)
 		{
 			m_useTexture = true;
-			strcpy_s(m_pMaterial[i].textureName, d3dxMaterials[i].pTextureFilename);
+			strcpy_s(m_materialVec[i].textureName, d3dxMaterials[i].pTextureFilename);
 			//テクスチャーを作成
 			if (FAILED(D3DX11CreateShaderResourceViewFromFileA(Direct3D11::GetDevice(),
-				m_pMaterial[i].textureName, NULL, NULL, &m_pMaterial[i].pTexture, NULL)))
+				m_materialVec[i].textureName, NULL, NULL, &m_materialVec[i].pTexture, NULL)))
 			{
 				return E_FAIL;
 			}
 		}
 	}
+	return S_OK;
+}
 
+HRESULT StaticMesh::CreateIndexBuffer()
+{
 	//インデックスバッファーを作成
+	m_pIndexBufferVec.resize(m_numMaterial);
 	//メッシュの属性情報を得る。属性情報でインデックスバッファーから細かいマテリアルごとのインデックスバッファを分離できる
 	D3DXATTRIBUTERANGE* pAttrTable = NULL;
 
@@ -292,6 +335,9 @@ HRESULT StaticMesh::LoadXMesh(const char* fileName)
 	int* pIndex = NULL;
 	m_pMesh->LockIndexBuffer(D3DLOCK_READONLY, (void**)&pIndex);
 
+	D3D11_BUFFER_DESC bd;
+	D3D11_SUBRESOURCE_DATA InitData;
+
 	//属性ごとのインデックスバッファを作成
 	for (DWORD i = 0; i < m_numAttribute; i++)
 	{
@@ -305,28 +351,31 @@ HRESULT StaticMesh::LoadXMesh(const char* fileName)
 
 		InitData.pSysMem = &pIndex[pAttrTable[i].FaceStart * 3];//大きいインデックスバッファ内のオフセット(*3を忘れずに）
 
-		if (FAILED(Direct3D11::GetDevice()->CreateBuffer(&bd, &InitData, &m_ppIndexBuffer[i])))
+		if (FAILED(Direct3D11::GetDevice()->CreateBuffer(&bd, &InitData, &m_pIndexBufferVec[i])))
 		{
-			return FALSE;
+			return E_FAIL;
 		}
-		m_pMaterial[m_attributeID[i]].numFace = pAttrTable[i].FaceCount;
+		m_materialVec[m_attributeID[i]].numFace = pAttrTable[i].FaceCount;
 	}
 	delete[] pAttrTable;
 	m_pMesh->UnlockIndexBuffer();
+	return S_OK;
+}
 
-	pD3DXMtrlBuffer->Release();
-
+HRESULT StaticMesh::CreateVertexBuffer()
+{
 	//バーテックスバッファーを作成
-
+	D3D11_BUFFER_DESC bd;
+	D3D11_SUBRESOURCE_DATA InitData;
 	//D3DXMESHの場合、ロックしないとD3DXバーテックスバッファーから取り出せないのでロックする。
 	LPDIRECT3DVERTEXBUFFER9 pVB = NULL;
 	m_pMesh->GetVertexBuffer(&pVB);
 	DWORD dwStride = m_pMesh->GetNumBytesPerVertex();
 	BYTE* pVertices = NULL;
-	MY_VERTEX* pvVertex = NULL;
+	MyVertex* pvVertex = NULL;
 	if (SUCCEEDED(pVB->Lock(0, 0, (VOID**)&pVertices, 0)))
 	{
-		pvVertex = (MY_VERTEX*)pVertices;
+		pvVertex = (MyVertex*)pVertices;
 		//Dx9のD3DMESHのバーテックスバッファーからの情報で、Dx11のバーテックスバッファを作成
 		bd.Usage = D3D11_USAGE_DEFAULT;
 		bd.ByteWidth = m_pMesh->GetNumBytesPerVertex() * m_pMesh->GetNumVertices();
@@ -352,13 +401,16 @@ HRESULT StaticMesh::LoadXMesh(const char* fileName)
 		}
 
 		if (FAILED(Direct3D11::GetDevice()->CreateBuffer(&bd, &InitData, &m_pVertexBuffer)))
-			return FALSE;
+			return E_FAIL;
 
 		pVB->Unlock();
 	}
 	SAFE_RELEASE(pVB);
+	return S_OK;
+}
 
-	//テクスチャー用サンプラー作成
+HRESULT StaticMesh::CreateSampler()
+{
 	D3D11_SAMPLER_DESC SamDesc;
 	ZeroMemory(&SamDesc, sizeof(D3D11_SAMPLER_DESC));
 
@@ -366,7 +418,10 @@ HRESULT StaticMesh::LoadXMesh(const char* fileName)
 	SamDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
 	SamDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
 	SamDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
-	Direct3D11::GetDevice()->CreateSamplerState(&SamDesc, &m_pSampleLinear);
+	if (FAILED(Direct3D11::GetDevice()->CreateSamplerState(&SamDesc, &m_pSampler)))
+	{
+		return E_FAIL;
+	}
 
 	return S_OK;
 }
