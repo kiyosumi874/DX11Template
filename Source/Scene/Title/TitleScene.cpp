@@ -64,7 +64,10 @@ TitleScene::TitleScene()
 		transform->position.y = -1.0;
 		transform->position.z = 1.0;
 		auto staticMesh = obj->AddComponent<HierarchyMesh>();
-		staticMesh->Init("model/RobotA_1motion_2truck.x");
+		if (FAILED(staticMesh->Init("model/RobotA_1motion_2truck.x")))
+		{
+			MessageBox(0, "HierarchyMesh‰Šú‰»Ž¸”s", NULL, MB_OK);
+		}
 		m_objectList.emplace_back(obj);
 	}
 	{
@@ -74,16 +77,22 @@ TitleScene::TitleScene()
 		transform->position.y = -1.0;
 		transform->position.z = 0.5;
 		auto staticMesh = obj->AddComponent<HierarchyMesh>();
-		staticMesh->Init("model/Josh_Motion_Wakeup.x");
+		if (FAILED(staticMesh->Init("model/Josh_Motion_Wakeup.x")))
+		{
+			MessageBox(0, "HierarchyMesh‰Šú‰»Ž¸”s", NULL, MB_OK);
+		}
 		m_objectList.emplace_back(obj);
 	}
 
-	// staticMesh
+	// StaticMesh
 	{
 		Object* obj = new Object;
 		auto transform = obj->AddComponent<Transform>();
 		auto staticMesh = obj->AddComponent<StaticMesh>();
-		staticMesh->Init("model/RobotA_pivot.x");
+		if (FAILED(staticMesh->Init("model/RobotA_pivot.x")))
+		{
+			MessageBox(0, "StaticMesh‰Šú‰»Ž¸”s", NULL, MB_OK);
+		}
 		m_objectList.emplace_back(obj);
 	}
 
@@ -93,7 +102,10 @@ TitleScene::TitleScene()
 		auto transform = obj->AddComponent<Transform>();
 		transform->position.x = 0.5;
 		auto skinMesh = obj->AddComponent<SkinMesh>();
-		skinMesh->Init("model/Hand_animation_1motion_2truck.x");
+		if (FAILED(skinMesh->Init("model/Hand_animation_1motion_2truck.x")))
+		{
+			MessageBox(0, "SkinMesh‰Šú‰»Ž¸”s", NULL, MB_OK);
+		}
 		m_objectList.emplace_back(obj);
 	}
 
