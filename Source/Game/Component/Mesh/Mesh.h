@@ -24,6 +24,7 @@ struct SHADER_SKIN_GLOBAL0
 	D3DXVECTOR4 vEye;//カメラ位置
 };
 
+//シェーダーに渡す値
 struct SHADER_SKIN_GLOBAL1
 {
 	D3DXMATRIX mW;//ワールド行列
@@ -33,6 +34,7 @@ struct SHADER_SKIN_GLOBAL1
 	D3DXVECTOR4 vSpecular;//鏡面反射
 };
 
+//シェーダーに渡す値
 struct SHADER_GLOBAL_BONES
 {
 	D3DXMATRIX mBone[MAX_BONES];
@@ -132,7 +134,7 @@ class D3DXPARSER
 {
 public:
 
-	MY_HIERARCHY cHierarchy;
+	//MY_HIERARCHY cHierarchy;
 	MY_HIERARCHY* m_pHierarchy;
 	LPD3DXFRAME m_pFrameRoot;
 	MYMESHCONTAINER* m_pContainer;
@@ -142,7 +144,7 @@ public:
 	HRESULT AllocateBoneMatrix(LPD3DXMESHCONTAINER);
 	HRESULT AllocateAllBoneMatrices(LPD3DXFRAME);
 	VOID UpdateFrameMatrices(LPD3DXFRAME, LPD3DXMATRIX);
-	//
+	
 	int GetNumVertices();
 	int GetNumFaces();
 	int GetNumMaterials();
