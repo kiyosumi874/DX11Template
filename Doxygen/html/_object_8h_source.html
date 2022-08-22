@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>DX11Template: C:/Users/shiih/Desktop/kiyosumi/DX11Template/Source/Game/Object.h ソースファイル</title>
+<title>DX11Template: C:/Users/shiih/Desktop/kiyosumi/DX11Template/Source/Game/Component/Object.h ソースファイル</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -101,53 +101,60 @@ $(document).ready(function(){initNavTree('_object_8h_source.html',''); initResiz
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="class_object.html#a40860402e64d8008fb42329df7097cdb">   27</a></span>    <a class="code hl_function" href="class_object.html#a40860402e64d8008fb42329df7097cdb">Object</a>() {}</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="class_object.html#a8c3eb2a8ba24189f5fd1d1c449c56573">   33</a></span>    <a class="code hl_function" href="class_object.html#a8c3eb2a8ba24189f5fd1d1c449c56573">‾Object</a>() </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    { <span class="keywordflow">for</span> (<span class="keyword">auto</span> com : m_componentList) { <span class="keyword">delete</span> com; } }</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="class_object.html#a2bac4495e863092c6367556d62666271">   40</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_object.html#a2bac4495e863092c6367556d62666271">Update</a>()</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    { <span class="keywordflow">for</span> (<span class="keyword">auto</span> com : m_componentList) { com-&gt;Update(); } }</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    { </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span> com : m_componentList)</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            com-&gt;Terminate();</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            <span class="keyword">delete</span> com;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        } </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        m_componentList.clear();</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    }</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="class_object.html#ab1eb1cefecf21ae4eb4e003c896c8eb3">   47</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_object.html#ab1eb1cefecf21ae4eb4e003c896c8eb3">Draw</a>()</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    { <span class="keywordflow">for</span> (<span class="keyword">auto</span> com : m_componentList) { com-&gt;Draw(); } }</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="class_object.html#a2bac4495e863092c6367556d62666271">   47</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_object.html#a2bac4495e863092c6367556d62666271">Update</a>()</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    { <span class="keywordflow">for</span> (<span class="keyword">auto</span> com : m_componentList) { com-&gt;Update(); } }</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="class_object.html#a841066e4a62adf927a57f492c38b6a30">   55</a></span>    T* <a class="code hl_function" href="class_object.html#a841066e4a62adf927a57f492c38b6a30">GetComponent</a>()</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    {</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span> com : m_componentList)</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        {</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            T* buff = <span class="keyword">dynamic_cast&lt;</span>T*<span class="keyword">&gt;</span>(com);</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            <span class="keywordflow">if</span> (buff != <span class="keyword">nullptr</span>) </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            { </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                <span class="keywordflow">return</span> buff; </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            }</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        }</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    }</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    T* AddComponent()</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    {</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        T* buff = <span class="keyword">new</span> T();</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        buff-&gt;Parent = <span class="keyword">this</span>;</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        m_componentList.push_back(buff);</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        buff-&gt;Start();</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="keywordflow">return</span> buff;</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    }</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    list&lt;Component*&gt; m_componentList; <span class="comment">// コンポーネントリスト</span></div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>};</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="class_object.html#ab1eb1cefecf21ae4eb4e003c896c8eb3">   54</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_object.html#ab1eb1cefecf21ae4eb4e003c896c8eb3">Draw</a>()</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    { <span class="keywordflow">for</span> (<span class="keyword">auto</span> com : m_componentList) { com-&gt;Draw(); } }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="class_object.html#a841066e4a62adf927a57f492c38b6a30">   62</a></span>    T* <a class="code hl_function" href="class_object.html#a841066e4a62adf927a57f492c38b6a30">GetComponent</a>()</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span> com : m_componentList)</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            T* buff = <span class="keyword">dynamic_cast&lt;</span>T*<span class="keyword">&gt;</span>(com);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            <span class="keywordflow">if</span> (buff != <span class="keyword">nullptr</span>) </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            { </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                <span class="keywordflow">return</span> buff; </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        }</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    }</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    T* AddComponent()</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        T* buff = <span class="keyword">new</span> T();</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        buff-&gt;m_parent = <span class="keyword">this</span>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        m_componentList.emplace_front(buff);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        buff-&gt;Start();</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="keywordflow">return</span> buff;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    }</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    list&lt;Component*&gt; m_componentList; <span class="comment">// コンポーネントリスト</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>};</div>
 <div class="ttc" id="a_component_8h_html"><div class="ttname"><a href="_component_8h.html">Component.h</a></div><div class="ttdoc">コンポーネント</div></div>
 <div class="ttc" id="aclass_object_html"><div class="ttname"><a href="class_object.html">Object</a></div><div class="ttdoc">ゲームオブジェクト</div><div class="ttdef"><b>Definition:</b> Object.h:21</div></div>
-<div class="ttc" id="aclass_object_html_a2bac4495e863092c6367556d62666271"><div class="ttname"><a href="class_object.html#a2bac4495e863092c6367556d62666271">Object::Update</a></div><div class="ttdeci">void Update()</div><div class="ttdoc">更新</div><div class="ttdef"><b>Definition:</b> Object.h:40</div></div>
+<div class="ttc" id="aclass_object_html_a2bac4495e863092c6367556d62666271"><div class="ttname"><a href="class_object.html#a2bac4495e863092c6367556d62666271">Object::Update</a></div><div class="ttdeci">void Update()</div><div class="ttdoc">更新</div><div class="ttdef"><b>Definition:</b> Object.h:47</div></div>
 <div class="ttc" id="aclass_object_html_a40860402e64d8008fb42329df7097cdb"><div class="ttname"><a href="class_object.html#a40860402e64d8008fb42329df7097cdb">Object::Object</a></div><div class="ttdeci">Object()</div><div class="ttdoc">コンストラクタ</div><div class="ttdef"><b>Definition:</b> Object.h:27</div></div>
-<div class="ttc" id="aclass_object_html_a841066e4a62adf927a57f492c38b6a30"><div class="ttname"><a href="class_object.html#a841066e4a62adf927a57f492c38b6a30">Object::GetComponent</a></div><div class="ttdeci">T * GetComponent()</div><div class="ttdoc">オブジェクトが持っているコンポーネント取得</div><div class="ttdef"><b>Definition:</b> Object.h:55</div></div>
+<div class="ttc" id="aclass_object_html_a841066e4a62adf927a57f492c38b6a30"><div class="ttname"><a href="class_object.html#a841066e4a62adf927a57f492c38b6a30">Object::GetComponent</a></div><div class="ttdeci">T * GetComponent()</div><div class="ttdoc">オブジェクトが持っているコンポーネント取得</div><div class="ttdef"><b>Definition:</b> Object.h:62</div></div>
 <div class="ttc" id="aclass_object_html_a8c3eb2a8ba24189f5fd1d1c449c56573"><div class="ttname"><a href="class_object.html#a8c3eb2a8ba24189f5fd1d1c449c56573">Object::‾Object</a></div><div class="ttdeci">‾Object()</div><div class="ttdoc">デストラクタ</div><div class="ttdef"><b>Definition:</b> Object.h:33</div></div>
-<div class="ttc" id="aclass_object_html_ab1eb1cefecf21ae4eb4e003c896c8eb3"><div class="ttname"><a href="class_object.html#ab1eb1cefecf21ae4eb4e003c896c8eb3">Object::Draw</a></div><div class="ttdeci">void Draw()</div><div class="ttdoc">描画</div><div class="ttdef"><b>Definition:</b> Object.h:47</div></div>
+<div class="ttc" id="aclass_object_html_ab1eb1cefecf21ae4eb4e003c896c8eb3"><div class="ttname"><a href="class_object.html#ab1eb1cefecf21ae4eb4e003c896c8eb3">Object::Draw</a></div><div class="ttdeci">void Draw()</div><div class="ttdoc">描画</div><div class="ttdef"><b>Definition:</b> Object.h:54</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_3777292849a1481e53303ca2af78ff89.html">Game</a></li><li class="navelem"><a class="el" href="_object_8h.html">Object.h</a></li>
+    <li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_3777292849a1481e53303ca2af78ff89.html">Game</a></li><li class="navelem"><a class="el" href="dir_fb5afee337bf3d39c97008dd8ff1a850.html">Component</a></li><li class="navelem"><a class="el" href="_object_8h.html">Object.h</a></li>
     <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
   </ul>
 </div>

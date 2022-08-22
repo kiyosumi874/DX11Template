@@ -6,6 +6,9 @@
 * @date 2022_08_02
 */
 
+// マクロ定義
+#define NOMINMAX // maxとminのエラー回避
+
 // ヘッダーファイルのインクルード
 #include "TitleScene.h"
 #include <Windows.h>
@@ -27,6 +30,9 @@
 #include "Game/Component/Mesh/StaticMesh/StaticMesh.h"
 #include "Game/Component/Mesh/HierarchyMesh/HierarchyMesh.h"
 #include "Game/Component/Mesh/SkinMesh/SkinMesh.h"
+//#include "assimp/Importer.hpp"
+//#include "assimp/scene.h"
+//#include "assimp/postprocess.h"
 // using宣言
 using scene::TitleScene; using scene::TAG_SCENE;
 
@@ -138,11 +144,6 @@ TitleScene::TitleScene()
 		ui->Init(Vector3D(data.posX, data.posY, 0), Vector3D(32, 32, 0), "Resource/VisualStudio 2022.png", true, 1);
 		m_objectList.emplace_back(obj);
 	}
-	
-	
-
-	
-	
 }
 
 /**

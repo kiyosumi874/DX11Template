@@ -332,6 +332,7 @@
     <None Include="Source\Game\Component\Primitive\Shader\Primitive2D.hlsli">
       <Filter>Source\Game\Component\Primitive\Shader</Filter>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Source\Game\Component\Primitive\Shader\PrimitivePS.hlsl">

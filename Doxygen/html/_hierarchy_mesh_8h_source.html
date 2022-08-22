@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.3"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DX11Template: C:/Users/shiih/Desktop/kiyosumi/DX11Template/Source/Game/Component/Mesh/HierarchyMesh/HierarchyMesh.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">DX11Template<span id="projectnumber">&#160;1.00</span>
+   </div>
+   <div id="projectbrief">DX11のテンプレ</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.3 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'検索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('_hierarchy_mesh_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">HierarchyMesh.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_hierarchy_mesh_8h.html">[詳解]</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// ヘッダーファイルのインクルード</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;d3dx9.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;d3d11.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="_component_8h.html">Game/Component/Component.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="_transform_8h.html">Game/Component/Transform/Transform.h</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="_common_8h.html">System/Common.h</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">// using宣言</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">using</span> <a class="code hl_struct" href="structmath_1_1_vector3_d.html">math::Vector3D</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">using</span> std::vector;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="struct_constant_buffer_mesh.html">   21</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_constant_buffer_mesh.html">ConstantBufferMesh</a></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>{</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    D3DXMATRIX world;<span class="comment">//ワールド行列</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    D3DXMATRIX worldVewProj;<span class="comment">//ワールドから射影までの変換行列</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    D3DXVECTOR4 lightDir;<span class="comment">//ライト方向</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    D3DXVECTOR4 eye;<span class="comment">//カメラ位置</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>};</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="struct_constant_buffer_material.html">   29</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_constant_buffer_material.html">ConstantBufferMaterial</a></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>{</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    D3DXVECTOR4 ambient;<span class="comment">//アンビエント光</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    D3DXVECTOR4 diffuse;<span class="comment">//ディフューズ色</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    D3DXVECTOR4 specular;<span class="comment">//鏡面反射</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>};</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">//オリジナル　マテリアル構造体</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="struct_my_h_material.html">   37</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_my_h_material.html">MyHMaterial</a></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>{</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    CHAR name[100];</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    D3DXVECTOR4 ambient;<span class="comment">//アンビエント</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    D3DXVECTOR4 diffuse;<span class="comment">//ディフューズ</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    D3DXVECTOR4 specular;<span class="comment">//スペキュラー</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    CHAR textureName[256];<span class="comment">//テクスチャーファイル名</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    ID3D11ShaderResourceView* pTexture;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    DWORD numFace;<span class="comment">//そのマテリアルであるポリゴン数</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <a class="code hl_struct" href="struct_my_h_material.html">MyHMaterial</a>()</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        ZeroMemory(<span class="keyword">this</span>, <span class="keyword">sizeof</span>(<a class="code hl_struct" href="struct_my_h_material.html">MyHMaterial</a>));</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    }</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    ‾MyHMaterial()</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        SAFE_RELEASE(pTexture);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    }</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>};</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">//頂点の構造体</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="struct_my_h_vertex.html">   57</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_my_h_vertex.html">MyHVertex</a></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>{</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    D3DXVECTOR3 pos;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    D3DXVECTOR3 norm;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    D3DXVECTOR2 tex;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>};</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="struct_my_h_vertex_no_tex.html">   64</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_my_h_vertex_no_tex.html">MyHVertexNoTex</a></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>{</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    D3DXVECTOR3 pos;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    D3DXVECTOR3 norm;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>};</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">//パーツメッシュ　アプリ定義メッシュ(スタティックメッシュのサンプルにおけるCD3DXMESHクラスと同等）</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="struct_parts_mesh.html">   71</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_parts_mesh.html">PartsMesh</a></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>{</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    DWORD numMaterial;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    ID3D11Buffer* pVertexBuffer;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    ID3D11Buffer** ppIndexBuffer;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <a class="code hl_struct" href="struct_my_h_material.html">MyHMaterial</a>* pMaterial;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">bool</span> useTexture;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>};</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">//派生フレーム構造体</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="struct_m_y_h_f_r_a_m_e.html">   81</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_m_y_h_f_r_a_m_e.html">MYHFRAME</a> : <span class="keyword">public</span> D3DXFRAME</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>{</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    D3DXMATRIXA16 CombinedTransformationMatrix;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <a class="code hl_struct" href="struct_parts_mesh.html">PartsMesh</a>* pPartsMesh;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <a class="code hl_struct" href="struct_m_y_h_f_r_a_m_e.html">MYHFRAME</a>()</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    {</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        ZeroMemory(<span class="keyword">this</span>, <span class="keyword">sizeof</span>(<a class="code hl_struct" href="struct_m_y_h_f_r_a_m_e.html">MYHFRAME</a>));</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    }</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>};</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment">//メッシュコンテナー構造体 フレーム内で使用</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="struct_m_y_h_m_e_s_h_c_o_n_t_a_i_n_e_r.html">   91</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_m_y_h_m_e_s_h_c_o_n_t_a_i_n_e_r.html">MYHMESHCONTAINER</a> : <span class="keyword">public</span> D3DXMESHCONTAINER</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>{</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    LPDIRECT3DTEXTURE9* ppTextures;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>};</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment">//Xファイル内のアニメーション階層を読み下すクラス。</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="class_m_y___h___h_i_e_r_a_r_c_h_y.html">   96</a></span><span class="keyword">class </span><a class="code hl_class" href="class_m_y___h___h_i_e_r_a_r_c_h_y.html">MY_H_HIERARCHY</a> : <span class="keyword">public</span> ID3DXAllocateHierarchy</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>{</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <a class="code hl_class" href="class_m_y___h___h_i_e_r_a_r_c_h_y.html">MY_H_HIERARCHY</a>() {}</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    STDMETHOD(CreateFrame)(THIS_ LPCSTR, LPD3DXFRAME*);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    STDMETHOD(CreateMeshContainer)(THIS_ LPCSTR, CONST D3DXMESHDATA*, CONST D3DXMATERIAL*,</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        CONST D3DXEFFECTINSTANCE*, DWORD, CONST DWORD*, LPD3DXSKININFO, LPD3DXMESHCONTAINER*);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    STDMETHOD(DestroyFrame)(THIS_ LPD3DXFRAME);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    STDMETHOD(DestroyMeshContainer)(THIS_ LPD3DXMESHCONTAINER);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>};</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="class_hierarchy_mesh.html">  111</a></span><span class="keyword">class </span><a class="code hl_class" href="class_hierarchy_mesh.html">HierarchyMesh</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_component.html">Component</a></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>{</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_hierarchy_mesh.html#a2969c3ea6a0fb4e810143f1dce815c4d">Start</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_hierarchy_mesh.html#a9e871ce93dcea3a98e83643c8fe5f4d5">Update</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_hierarchy_mesh.html#a39c6b04a8ebc0848f15e02f5eea312dc">Draw</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_hierarchy_mesh.html#a5c4f2cc0c5cbb854b872608a0b52c167">Terminate</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    HRESULT <a class="code hl_function" href="class_hierarchy_mesh.html#a07cf4256872e40b8f17857b6810ebf9a">Init</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* fileName);</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="keywordtype">void</span> ChangeAnimSet(<span class="keywordtype">int</span> index);</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    HRESULT LoadXAnimMesh(<span class="keyword">const</span> <span class="keywordtype">char</span>* fileName);</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    HRESULT InitShader();</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordtype">void</span> BuildAllMesh(D3DXFRAME* pFrame);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    HRESULT CreateAppMeshFromD3DXMesh(LPD3DXFRAME pFrame);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keywordtype">void</span> DrawFrame(LPD3DXFRAME p);</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keywordtype">void</span> DrawPartsMesh(<a class="code hl_struct" href="struct_parts_mesh.html">PartsMesh</a>* p, D3DXMATRIX World);</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keywordtype">void</span> UpdateHierarchyMatrices(D3DXFRAME* p, LPD3DXMATRIX pParentMatrix);</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="comment">//アニメ関連</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <a class="code hl_class" href="class_m_y___h___h_i_e_r_a_r_c_h_y.html">MY_H_HIERARCHY</a>* m_pHierarchy;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    LPD3DXFRAME m_pFrameRoot;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    LPD3DXANIMATIONCONTROLLER m_pAnimController;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="comment">// resource</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    ID3D11InputLayout* m_pVertexLayout;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    ID3D11InputLayout* m_pVertexLayoutNoTex;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    ID3D11VertexShader* m_pVertexShader;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    ID3D11VertexShader* m_pVertexShaderNoTex;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    ID3D11PixelShader* m_pPixelShader;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    ID3D11PixelShader* m_pPixelShaderNoTex;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    ID3D11Buffer* m_pConstantBufferMesh;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    ID3D11Buffer* m_pConstantBufferMaterial;</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    ID3D11SamplerState* m_pSampler;<span class="comment">//テクスチャーのサンプラー</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    LPD3DXANIMATIONSET m_pAnimSet[100];<span class="comment">//100個までのアニメーションセットに対応</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>};</div>
+<div class="ttc" id="a_common_8h_html"><div class="ttname"><a href="_common_8h.html">Common.h</a></div><div class="ttdoc">マクロの定義などいろいろ</div></div>
+<div class="ttc" id="a_component_8h_html"><div class="ttname"><a href="_component_8h.html">Component.h</a></div><div class="ttdoc">コンポーネント</div></div>
+<div class="ttc" id="a_transform_8h_html"><div class="ttname"><a href="_transform_8h.html">Transform.h</a></div><div class="ttdoc">位置,回転,拡大率の情報(コンポーネント)</div></div>
+<div class="ttc" id="aclass_component_html"><div class="ttname"><a href="class_component.html">Component</a></div><div class="ttdoc">コンポーネントクラス(親クラス)</div><div class="ttdef"><b>Definition:</b> Component.h:19</div></div>
+<div class="ttc" id="aclass_hierarchy_mesh_html"><div class="ttname"><a href="class_hierarchy_mesh.html">HierarchyMesh</a></div><div class="ttdoc">動かないメッシュクラス</div><div class="ttdef"><b>Definition:</b> HierarchyMesh.h:112</div></div>
+<div class="ttc" id="aclass_hierarchy_mesh_html_a07cf4256872e40b8f17857b6810ebf9a"><div class="ttname"><a href="class_hierarchy_mesh.html#a07cf4256872e40b8f17857b6810ebf9a">HierarchyMesh::Init</a></div><div class="ttdeci">HRESULT Init(const char *fileName)</div><div class="ttdoc">初期化</div><div class="ttdef"><b>Definition:</b> HierarchyMesh.cpp:263</div></div>
+<div class="ttc" id="aclass_hierarchy_mesh_html_a2969c3ea6a0fb4e810143f1dce815c4d"><div class="ttname"><a href="class_hierarchy_mesh.html#a2969c3ea6a0fb4e810143f1dce815c4d">HierarchyMesh::Start</a></div><div class="ttdeci">void Start() override</div><div class="ttdoc">生成したときに最初に一回だけ走る関数</div><div class="ttdef"><b>Definition:</b> HierarchyMesh.cpp:193</div></div>
+<div class="ttc" id="aclass_hierarchy_mesh_html_a39c6b04a8ebc0848f15e02f5eea312dc"><div class="ttname"><a href="class_hierarchy_mesh.html#a39c6b04a8ebc0848f15e02f5eea312dc">HierarchyMesh::Draw</a></div><div class="ttdeci">void Draw() override</div><div class="ttdoc">描画</div><div class="ttdef"><b>Definition:</b> HierarchyMesh.cpp:211</div></div>
+<div class="ttc" id="aclass_hierarchy_mesh_html_a5c4f2cc0c5cbb854b872608a0b52c167"><div class="ttname"><a href="class_hierarchy_mesh.html#a5c4f2cc0c5cbb854b872608a0b52c167">HierarchyMesh::Terminate</a></div><div class="ttdeci">void Terminate() override</div><div class="ttdoc">終了処理</div><div class="ttdef"><b>Definition:</b> HierarchyMesh.cpp:244</div></div>
+<div class="ttc" id="aclass_hierarchy_mesh_html_a9e871ce93dcea3a98e83643c8fe5f4d5"><div class="ttname"><a href="class_hierarchy_mesh.html#a9e871ce93dcea3a98e83643c8fe5f4d5">HierarchyMesh::Update</a></div><div class="ttdeci">void Update() override</div><div class="ttdoc">更新</div><div class="ttdef"><b>Definition:</b> HierarchyMesh.cpp:197</div></div>
+<div class="ttc" id="aclass_m_y___h___h_i_e_r_a_r_c_h_y_html"><div class="ttname"><a href="class_m_y___h___h_i_e_r_a_r_c_h_y.html">MY_H_HIERARCHY</a></div><div class="ttdef"><b>Definition:</b> HierarchyMesh.h:97</div></div>
+<div class="ttc" id="astruct_constant_buffer_material_html"><div class="ttname"><a href="struct_constant_buffer_material.html">ConstantBufferMaterial</a></div><div class="ttdef"><b>Definition:</b> HierarchyMesh.h:30</div></div>
+<div class="ttc" id="astruct_constant_buffer_mesh_html"><div class="ttname"><a href="struct_constant_buffer_mesh.html">ConstantBufferMesh</a></div><div class="ttdef"><b>Definition:</b> HierarchyMesh.h:22</div></div>
+<div class="ttc" id="astruct_m_y_h_f_r_a_m_e_html"><div class="ttname"><a href="struct_m_y_h_f_r_a_m_e.html">MYHFRAME</a></div><div class="ttdef"><b>Definition:</b> HierarchyMesh.h:82</div></div>
+<div class="ttc" id="astruct_m_y_h_m_e_s_h_c_o_n_t_a_i_n_e_r_html"><div class="ttname"><a href="struct_m_y_h_m_e_s_h_c_o_n_t_a_i_n_e_r.html">MYHMESHCONTAINER</a></div><div class="ttdef"><b>Definition:</b> HierarchyMesh.h:92</div></div>
+<div class="ttc" id="astruct_my_h_material_html"><div class="ttname"><a href="struct_my_h_material.html">MyHMaterial</a></div><div class="ttdef"><b>Definition:</b> HierarchyMesh.h:38</div></div>
+<div class="ttc" id="astruct_my_h_vertex_html"><div class="ttname"><a href="struct_my_h_vertex.html">MyHVertex</a></div><div class="ttdef"><b>Definition:</b> HierarchyMesh.h:58</div></div>
+<div class="ttc" id="astruct_my_h_vertex_no_tex_html"><div class="ttname"><a href="struct_my_h_vertex_no_tex.html">MyHVertexNoTex</a></div><div class="ttdef"><b>Definition:</b> HierarchyMesh.h:65</div></div>
+<div class="ttc" id="astruct_parts_mesh_html"><div class="ttname"><a href="struct_parts_mesh.html">PartsMesh</a></div><div class="ttdef"><b>Definition:</b> HierarchyMesh.h:72</div></div>
+<div class="ttc" id="astructmath_1_1_vector3_d_html"><div class="ttname"><a href="structmath_1_1_vector3_d.html">math::Vector3D</a></div><div class="ttdoc">positionなどに使おう</div><div class="ttdef"><b>Definition:</b> Math.h:22</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_3777292849a1481e53303ca2af78ff89.html">Game</a></li><li class="navelem"><a class="el" href="dir_fb5afee337bf3d39c97008dd8ff1a850.html">Component</a></li><li class="navelem"><a class="el" href="dir_3d90fbdaea75e4290bd37fcdd80cb64c.html">Mesh</a></li><li class="navelem"><a class="el" href="dir_c88360007f92c9360c6bb5d2a08109ab.html">HierarchyMesh</a></li><li class="navelem"><a class="el" href="_hierarchy_mesh_8h.html">HierarchyMesh.h</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+  </ul>
+</div>
+</body>
+</html>

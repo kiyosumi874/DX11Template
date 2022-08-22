@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['update_0',['Update',['../class_component.html#a706bc482b34b1bfed6714a6cbaed20a7',1,'Component::Update()'],['../class_object.html#a2bac4495e863092c6367556d62666271',1,'Object::Update()'],['../classscene_1_1_game_clear_scene.html#ad76d16c3a1e7d3cc4bc45e9534191387',1,'scene::GameClearScene::Update()'],['../classscene_1_1_game_over_scene.html#a155c3d4e0dc9f4777e1415627f9ad662',1,'scene::GameOverScene::Update()'],['../classscene_1_1_play_scene.html#a234f297a2173afca5b927a6121b3c9e2',1,'scene::PlayScene::Update()'],['../classscene_1_1_scene.html#a2c7bce057aada8a2f0edf7b081c8b26f',1,'scene::Scene::Update()'],['../classscene_1_1_title_scene.html#a22159ea2bc278cd3b7e0c8d14e533cdd',1,'scene::TitleScene::Update()'],['../class_fps.html#a936692e9bec6ea2b88d413cf4fbb6899',1,'Fps::Update()'],['../class_input.html#ac08d1b9319c62009374d28c8421742e8',1,'Input::Update()']]]
+  ['releaseshader_0',['ReleaseShader',['../class_shader_director.html#a9ad6700590c7a584120110d789138eeb',1,'ShaderDirector']]],
+  ['run_1',['Run',['../class_director.html#ab92d6a6ee4f407e7a248c3d60a3f4f47',1,'Director']]]
 ];

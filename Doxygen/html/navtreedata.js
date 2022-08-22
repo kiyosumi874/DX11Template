@@ -54,7 +54,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_camera_8h.html"
+"_camera_8h.html",
+"classscene_1_1_scene_manager.html#af7fe07b59060fabb5cc48059becaceba"
 ];
 
 var SYNCONMSG = 'クリックで同期表示が無効になります';

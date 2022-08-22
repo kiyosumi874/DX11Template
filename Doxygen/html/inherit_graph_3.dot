@@ -4,5 +4,5 @@ digraph "クラス階層図"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node0 [label="Direct3D11",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_direct3_d11.html",tooltip="Direct3D11周りを整理するクラス(シングルトン)"];
+  Node0 [label="ConstantBuffer0",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_constant_buffer0.html",tooltip=" "];
 }

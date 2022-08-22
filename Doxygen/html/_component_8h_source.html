@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>DX11Template: C:/Users/shiih/Desktop/kiyosumi/DX11Template/Source/Game/Component.h ソースファイル</title>
+<title>DX11Template: C:/Users/shiih/Desktop/kiyosumi/DX11Template/Source/Game/Component/Component.h ソースファイル</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -95,42 +95,37 @@ $(document).ready(function(){initNavTree('_component_8h_source.html',''); initRe
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_component.html">   18</a></span><span class="keyword">class </span><a class="code hl_class" href="class_component.html">Component</a></div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="class_component.html#a8775db6d1a2c1afc2e77cd3c8f39da6f">   26</a></span>    <a class="code hl_function" href="class_component.html#a8775db6d1a2c1afc2e77cd3c8f39da6f">Component</a>()</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        : m_parent(nullptr)</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    {}</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="class_component.html#a6a5d8cb85ccfd749a12b0a04c586dbd6">   34</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="class_component.html#a6a5d8cb85ccfd749a12b0a04c586dbd6">‾Component</a>()</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keywordflow">if</span> (m_parent)</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        {</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            <span class="keyword">delete</span> m_parent;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            m_parent = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        }</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    }</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="class_component.html#a8925904290bca4cada4811751850c265">   47</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_component.html#a8925904290bca4cada4811751850c265">Start</a>() {}</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="class_component.html#a706bc482b34b1bfed6714a6cbaed20a7">   53</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_component.html#a706bc482b34b1bfed6714a6cbaed20a7">Update</a>() {}</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="class_component.html#a612cc823dba689dd5a2e8b70e07835e0">   59</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_component.html#a612cc823dba689dd5a2e8b70e07835e0">Draw</a>() {}</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <a class="code hl_class" href="class_object.html">Object</a>* m_parent; <span class="comment">// Objectクラスのポインタ(GetComponentなどに使う)</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>};</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="class_component.html#a8775db6d1a2c1afc2e77cd3c8f39da6f">   25</a></span>    <a class="code hl_function" href="class_component.html#a8775db6d1a2c1afc2e77cd3c8f39da6f">Component</a>()</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        : m_parent(nullptr)</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    {}</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="class_component.html#a6a5d8cb85ccfd749a12b0a04c586dbd6">   33</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="class_component.html#a6a5d8cb85ccfd749a12b0a04c586dbd6">‾Component</a>() {}</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="class_component.html#a8925904290bca4cada4811751850c265">   39</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_component.html#a8925904290bca4cada4811751850c265">Start</a>() {}</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="class_component.html#abc5a44450117f3744d805eb5189aba9a">   45</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_component.html#abc5a44450117f3744d805eb5189aba9a">Terminate</a>() {}</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="class_component.html#a706bc482b34b1bfed6714a6cbaed20a7">   51</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_component.html#a706bc482b34b1bfed6714a6cbaed20a7">Update</a>() {}</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="class_component.html#a612cc823dba689dd5a2e8b70e07835e0">   57</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_component.html#a612cc823dba689dd5a2e8b70e07835e0">Draw</a>() {}</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <a class="code hl_class" href="class_object.html">Object</a>* m_parent; <span class="comment">// Objectクラスのポインタ(GetComponentなどに使う)</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>};</div>
 <div class="ttc" id="aclass_component_html"><div class="ttname"><a href="class_component.html">Component</a></div><div class="ttdoc">コンポーネントクラス(親クラス)</div><div class="ttdef"><b>Definition:</b> Component.h:19</div></div>
-<div class="ttc" id="aclass_component_html_a612cc823dba689dd5a2e8b70e07835e0"><div class="ttname"><a href="class_component.html#a612cc823dba689dd5a2e8b70e07835e0">Component::Draw</a></div><div class="ttdeci">virtual void Draw()</div><div class="ttdoc">描画</div><div class="ttdef"><b>Definition:</b> Component.h:59</div></div>
-<div class="ttc" id="aclass_component_html_a6a5d8cb85ccfd749a12b0a04c586dbd6"><div class="ttname"><a href="class_component.html#a6a5d8cb85ccfd749a12b0a04c586dbd6">Component::‾Component</a></div><div class="ttdeci">virtual ‾Component()</div><div class="ttdoc">デストラクタ</div><div class="ttdef"><b>Definition:</b> Component.h:34</div></div>
-<div class="ttc" id="aclass_component_html_a706bc482b34b1bfed6714a6cbaed20a7"><div class="ttname"><a href="class_component.html#a706bc482b34b1bfed6714a6cbaed20a7">Component::Update</a></div><div class="ttdeci">virtual void Update()</div><div class="ttdoc">更新</div><div class="ttdef"><b>Definition:</b> Component.h:53</div></div>
-<div class="ttc" id="aclass_component_html_a8775db6d1a2c1afc2e77cd3c8f39da6f"><div class="ttname"><a href="class_component.html#a8775db6d1a2c1afc2e77cd3c8f39da6f">Component::Component</a></div><div class="ttdeci">Component()</div><div class="ttdoc">コンストラクタ</div><div class="ttdef"><b>Definition:</b> Component.h:26</div></div>
-<div class="ttc" id="aclass_component_html_a8925904290bca4cada4811751850c265"><div class="ttname"><a href="class_component.html#a8925904290bca4cada4811751850c265">Component::Start</a></div><div class="ttdeci">virtual void Start()</div><div class="ttdoc">生成したときに最初に一回だけ走る関数</div><div class="ttdef"><b>Definition:</b> Component.h:47</div></div>
+<div class="ttc" id="aclass_component_html_a612cc823dba689dd5a2e8b70e07835e0"><div class="ttname"><a href="class_component.html#a612cc823dba689dd5a2e8b70e07835e0">Component::Draw</a></div><div class="ttdeci">virtual void Draw()</div><div class="ttdoc">描画</div><div class="ttdef"><b>Definition:</b> Component.h:57</div></div>
+<div class="ttc" id="aclass_component_html_a6a5d8cb85ccfd749a12b0a04c586dbd6"><div class="ttname"><a href="class_component.html#a6a5d8cb85ccfd749a12b0a04c586dbd6">Component::‾Component</a></div><div class="ttdeci">virtual ‾Component()</div><div class="ttdoc">デストラクタ</div><div class="ttdef"><b>Definition:</b> Component.h:33</div></div>
+<div class="ttc" id="aclass_component_html_a706bc482b34b1bfed6714a6cbaed20a7"><div class="ttname"><a href="class_component.html#a706bc482b34b1bfed6714a6cbaed20a7">Component::Update</a></div><div class="ttdeci">virtual void Update()</div><div class="ttdoc">更新</div><div class="ttdef"><b>Definition:</b> Component.h:51</div></div>
+<div class="ttc" id="aclass_component_html_a8775db6d1a2c1afc2e77cd3c8f39da6f"><div class="ttname"><a href="class_component.html#a8775db6d1a2c1afc2e77cd3c8f39da6f">Component::Component</a></div><div class="ttdeci">Component()</div><div class="ttdoc">コンストラクタ</div><div class="ttdef"><b>Definition:</b> Component.h:25</div></div>
+<div class="ttc" id="aclass_component_html_a8925904290bca4cada4811751850c265"><div class="ttname"><a href="class_component.html#a8925904290bca4cada4811751850c265">Component::Start</a></div><div class="ttdeci">virtual void Start()</div><div class="ttdoc">生成したときに最初に一回だけ走る関数</div><div class="ttdef"><b>Definition:</b> Component.h:39</div></div>
+<div class="ttc" id="aclass_component_html_abc5a44450117f3744d805eb5189aba9a"><div class="ttname"><a href="class_component.html#abc5a44450117f3744d805eb5189aba9a">Component::Terminate</a></div><div class="ttdeci">virtual void Terminate()</div><div class="ttdoc">削除したときに最初に一回だけ走る関数</div><div class="ttdef"><b>Definition:</b> Component.h:45</div></div>
 <div class="ttc" id="aclass_object_html"><div class="ttname"><a href="class_object.html">Object</a></div><div class="ttdoc">ゲームオブジェクト</div><div class="ttdef"><b>Definition:</b> Object.h:21</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_3777292849a1481e53303ca2af78ff89.html">Game</a></li><li class="navelem"><a class="el" href="_component_8h.html">Component.h</a></li>
+    <li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_3777292849a1481e53303ca2af78ff89.html">Game</a></li><li class="navelem"><a class="el" href="dir_fb5afee337bf3d39c97008dd8ff1a850.html">Component</a></li><li class="navelem"><a class="el" href="_component_8h.html">Component.h</a></li>
     <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
   </ul>
 </div>

@@ -6,4 +6,11 @@ digraph "C:/Users/shiih/Desktop/kiyosumi/DX11Template/Source/Scene/Title/TitleSc
   Node1 [label="C:/Users/shiih/Desktop\l/kiyosumi/DX11Template\l/Source/Scene/Title/TitleScene.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="タイトルシーン"];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="Scene/Scene.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_scene_8h.html",tooltip="シーンの親"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="list",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Game/Component/Object.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_object_8h.html",tooltip="ゲームオブジェクト"];
+  Node4 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Component.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_component_8h.html",tooltip="コンポーネント"];
 }

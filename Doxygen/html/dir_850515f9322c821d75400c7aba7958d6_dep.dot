@@ -9,5 +9,5 @@ digraph "C:/Users/shiih/Desktop/kiyosumi/DX11Template/Source/Scene/Play"
   dir_850515f9322c821d75400c7aba7958d6 [shape=box, label="Play", style="filled,bold,", fillcolor="#edf0f7", color="grey25", URL="dir_850515f9322c821d75400c7aba7958d6.html"];
   }
   dir_86602465ad759445696399282595f21f [shape=box, label="System", style="dashed,", fillcolor="#edf0f7", color="red", URL="dir_86602465ad759445696399282595f21f.html"];
-  dir_850515f9322c821d75400c7aba7958d6->dir_86602465ad759445696399282595f21f [headlabel="1", labeldistance=1.5 headhref="dir_000009_000016.html"];
+  dir_850515f9322c821d75400c7aba7958d6->dir_86602465ad759445696399282595f21f [headlabel="1", labeldistance=1.5 headhref="dir_000015_000025.html"];
 }

@@ -92,6 +92,7 @@ $(document).ready(function(){initNavTree('_window_8cpp.html',''); initResizable(
 <p>Window生成,WndProc(CALLBACK関数)の管理  
 <a href="#details">[詳解]</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_window_8h_source.html">Window.h</a>&quot;</code><br />
+<code>#include &quot;imgui.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Window.cpp の依存先関係図:</div>
 <div class="dyncontent">
@@ -100,6 +101,9 @@ Window.cpp の依存先関係図:</div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 関数</h2></td></tr>
+<tr class="memitem:a87a3f9652a75339308cf5fd5699ef1fd"><td class="memItemLeft" align="right" valign="top"><a id="a87a3f9652a75339308cf5fd5699ef1fd" name="a87a3f9652a75339308cf5fd5699ef1fd"></a>
+IMGUI_IMPL_API LRESULT&#160;</td><td class="memItemRight" valign="bottom"><b>ImGui_ImplWin32_WndProcHandler</b> (HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)</td></tr>
+<tr class="separator:a87a3f9652a75339308cf5fd5699ef1fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae749e989b362e19783c7af4a2bf46c95"><td class="memItemLeft" align="right" valign="top"><a id="ae749e989b362e19783c7af4a2bf46c95" name="ae749e989b362e19783c7af4a2bf46c95"></a>
 LRESULT CALLBACK&#160;</td><td class="memItemRight" valign="bottom"><b>WndProc</b> (HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)</td></tr>
 <tr class="separator:ae749e989b362e19783c7af4a2bf46c95"><td class="memSeparator" colspan="2">&#160;</td></tr>
