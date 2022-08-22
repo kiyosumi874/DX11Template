@@ -125,6 +125,4 @@ private:
 	// ボーン関連
 	int m_iNumBone; // ボーンの数
 	BONE* m_BoneArray; // ボーン構造体の動的配列
-
-	
 };

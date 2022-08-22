@@ -90,10 +90,14 @@ $(document).ready(function(){initNavTree('_shader_director_8h.html',''); initRes
 </div><!--header-->
 <div class="contents">
 
-<p>シェーダーの管理  
+<p>シェーダーの管理(いまはこれ自体にデータがあるが今後処理だけにして使いまわせるようにする)  
 <a href="#details">[詳解]</a></p>
 <div class="textblock"><code>#include &lt;D3D11.h&gt;</code><br />
 <code>#include &lt;D3DX10.h&gt;</code><br />
+<code>#include &lt;d3dx11.h&gt;</code><br />
+<code>#include &lt;d3dcompiler.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="_direct3_d11_8h_source.html">D3D11/Direct3D11.h</a>&quot;</code><br />
+<code>#include &lt;<a class="el" href="_common_8h_source.html">System/Common.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 ShaderDirector.h の依存先関係図:</div>
 <div class="dyncontent">
@@ -111,6 +115,8 @@ ShaderDirector.h の依存先関係図:</div>
 クラス</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_primitive_vertex.html">PrimitiveVertex</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">メッシュ  <a href="struct_primitive_vertex.html#details">[詳解]</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_primitive_vertex2_d.html">PrimitiveVertex2D</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_primitive_constant_buffer.html">PrimitiveConstantBuffer</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">プリミティブの定数バッファー  <a href="struct_primitive_constant_buffer.html#details">[詳解]</a><br /></td></tr>
@@ -135,7 +141,8 @@ ShaderDirector.h の依存先関係図:</div>
 <tr class="separator:a51a6aa944b7e25a8016127f069eb4a89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
-<div class="textblock"><p >シェーダーの管理 </p>
+<div class="textblock"><p >シェーダーの管理(いまはこれ自体にデータがあるが今後処理だけにして使いまわせるようにする) </p>
+<p >シェーダーの管理</p>
 <p >ShaderDirectorクラスはシングルトンなので注意 </p><dl class="section author"><dt>著者</dt><dd>shiihara_kiyosumi </dd></dl>
 <dl class="section date"><dt>日付</dt><dd>2022_08_05 </dd></dl>
 </div></div><!-- contents -->

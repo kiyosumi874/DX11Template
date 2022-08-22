@@ -120,7 +120,7 @@ $(document).ready(function(){initNavTree('_tell_camera_data_8h_source.html','');
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        m_this-&gt;m_cameraDataVec.emplace_back(data);</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    }</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="class_tell_camera_data.html#af92d9549dd048bad97c3b72c2a54a617">   63</a></span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_tell_camera_data.html#af92d9549dd048bad97c3b72c2a54a617">SubCamera</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_camera_data.html">CameraData</a>&amp; data)</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="class_tell_camera_data.html#a61b70888abac29e4ea322a768115755b">   63</a></span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="class_tell_camera_data.html#a61b70888abac29e4ea322a768115755b">SubCamera</a>(<span class="keyword">const</span> CAMERA_NUMBER key)</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    {</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="keyword">auto</span>&amp; cameraDataVec = m_this-&gt;m_cameraDataVec;</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
@@ -131,7 +131,7 @@ $(document).ready(function(){initNavTree('_tell_camera_data_8h_source.html','');
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span> it = cameraDataVec.begin(); it != cameraDataVec.end();)</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        {</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            <span class="keywordflow">if</span> (it-&gt;key == data.key)</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            <span class="keywordflow">if</span> (it-&gt;key == key)</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            {</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                it = cameraDataVec.erase(it);</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
@@ -171,9 +171,9 @@ $(document).ready(function(){initNavTree('_tell_camera_data_8h_source.html','');
 <div class="ttc" id="aclass_tell_camera_data_html_a4d666cf272271a3520a31c393f167586"><div class="ttname"><a href="class_tell_camera_data.html#a4d666cf272271a3520a31c393f167586">TellCameraData::CreateInstance</a></div><div class="ttdeci">static void CreateInstance()</div><div class="ttdoc">自分のインスタンスを生成</div><div class="ttdef"><b>Definition:</b> TellCameraData.h:27</div></div>
 <div class="ttc" id="aclass_tell_camera_data_html_a512cd9c238fd5406fc39dda6730d51e8"><div class="ttname"><a href="class_tell_camera_data.html#a512cd9c238fd5406fc39dda6730d51e8">TellCameraData::AddCamera</a></div><div class="ttdeci">static void AddCamera(const CameraData &amp;data)</div><div class="ttdoc">カメラの情報を追加</div><div class="ttdef"><b>Definition:</b> TellCameraData.h:53</div></div>
 <div class="ttc" id="aclass_tell_camera_data_html_a5f18d932d03e8ab7e097e2c47690278d"><div class="ttname"><a href="class_tell_camera_data.html#a5f18d932d03e8ab7e097e2c47690278d">TellCameraData::DeleteInstance</a></div><div class="ttdeci">static void DeleteInstance()</div><div class="ttdoc">自分のインスタンスを削除</div><div class="ttdef"><b>Definition:</b> TellCameraData.h:39</div></div>
+<div class="ttc" id="aclass_tell_camera_data_html_a61b70888abac29e4ea322a768115755b"><div class="ttname"><a href="class_tell_camera_data.html#a61b70888abac29e4ea322a768115755b">TellCameraData::SubCamera</a></div><div class="ttdeci">static bool SubCamera(const CAMERA_NUMBER key)</div><div class="ttdoc">カメラの情報を削除</div><div class="ttdef"><b>Definition:</b> TellCameraData.h:63</div></div>
 <div class="ttc" id="aclass_tell_camera_data_html_a64e43c285518aa0757cf7197a5f73587"><div class="ttname"><a href="class_tell_camera_data.html#a64e43c285518aa0757cf7197a5f73587">TellCameraData::GetCameraData</a></div><div class="ttdeci">static bool GetCameraData(CameraData *cameraData, CAMERA_NUMBER key)</div><div class="ttdoc">カメラの情報を取得</div><div class="ttdef"><b>Definition:</b> TellCameraData.h:91</div></div>
-<div class="ttc" id="aclass_tell_camera_data_html_af92d9549dd048bad97c3b72c2a54a617"><div class="ttname"><a href="class_tell_camera_data.html#af92d9549dd048bad97c3b72c2a54a617">TellCameraData::SubCamera</a></div><div class="ttdeci">static bool SubCamera(const CameraData &amp;data)</div><div class="ttdoc">カメラの情報を削除</div><div class="ttdef"><b>Definition:</b> TellCameraData.h:63</div></div>
-<div class="ttc" id="astruct_camera_data_html"><div class="ttname"><a href="struct_camera_data.html">CameraData</a></div><div class="ttdoc">カメラのデータ</div><div class="ttdef"><b>Definition:</b> CameraStruct.h:28</div></div>
+<div class="ttc" id="astruct_camera_data_html"><div class="ttname"><a href="struct_camera_data.html">CameraData</a></div><div class="ttdoc">カメラのデータ</div><div class="ttdef"><b>Definition:</b> CameraStruct.h:32</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

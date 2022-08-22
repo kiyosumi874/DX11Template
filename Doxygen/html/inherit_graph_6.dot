@@ -4,5 +4,5 @@ digraph "クラス階層図"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node0 [label="Input",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_input.html",tooltip="キーボードなどの入力情報を管理するクラス(シングルトン)"];
+  Node0 [label="ConstantBufferMesh",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_constant_buffer_mesh.html",tooltip=" "];
 }

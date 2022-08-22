@@ -4,5 +4,9 @@ digraph "クラス階層図"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node0 [label="ShaderDirector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_shader_director.html",tooltip="シェーダーの管理クラス(シングルトン)"];
+  Node0 [label="ID3DXAllocateHierarchy",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node0 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 [label="MY_HIERARCHY",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_m_y___h_i_e_r_a_r_c_h_y.html",tooltip=" "];
+  Node0 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="MY_H_HIERARCHY",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_m_y___h___h_i_e_r_a_r_c_h_y.html",tooltip=" "];
 }

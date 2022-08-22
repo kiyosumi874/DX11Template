@@ -1,6 +1,7 @@
 var _shader_director_8h =
 [
     [ "PrimitiveVertex", "struct_primitive_vertex.html", null ],
+    [ "PrimitiveVertex2D", "struct_primitive_vertex2_d.html", null ],
     [ "PrimitiveConstantBuffer", "struct_primitive_constant_buffer.html", null ],
     [ "PrimitiveConstantBuffer2D", "struct_primitive_constant_buffer2_d.html", null ],
     [ "ShaderVariable", "struct_shader_variable.html", null ],

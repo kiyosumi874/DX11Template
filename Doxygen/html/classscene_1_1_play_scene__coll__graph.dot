@@ -6,4 +6,6 @@ digraph "scene::PlayScene"
   Node1 [label="scene::PlayScene",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="PlaySceneクラス"];
   Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="scene::Scene",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classscene_1_1_scene.html",tooltip="シーンの親クラス"];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" m_objectList" ,fontname="Helvetica"];
+  Node3 [label="list\< Object * \>",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
 }
