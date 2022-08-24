@@ -34,13 +34,13 @@ public:
 
     /**
     * @fn Start
-    * @brief ¶¬‚µ‚½‚Æ‚«‚ÉÅ‰‚Éˆê‰ñ‚¾‚¯‘–‚éŠÖ”
+    * @brief ¶¬‚µ‚½‚Æ‚«‚Éˆê‰ñ‚¾‚¯‘–‚éŠÖ”
     */
     virtual void Start() {}
 
     /**
     * @fn Terminate
-    * @brief íœ‚µ‚½‚Æ‚«‚ÉÅ‰‚Éˆê‰ñ‚¾‚¯‘–‚éŠÖ”
+    * @brief íœ‚µ‚½‚Æ‚«‚Éˆê‰ñ‚¾‚¯‘–‚éŠÖ”
     */
     virtual void Terminate() {}
 

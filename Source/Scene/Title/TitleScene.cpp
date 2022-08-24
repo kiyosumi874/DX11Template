@@ -53,97 +53,20 @@ TitleScene::TitleScene()
 	ShaderDirector::CreateShader(SHADER_KIND::PRIMITIVE2D);
 
 	// camera
-	{
-		Object* obj = new Object;
-		auto camera = obj->AddComponent<Camera>();
-		camera->SetCameraNumber(CAMERA_NUMBER::CAMERA_0);
-		camera->SetCameraPositionGaze(0, 1.0f, -2.0f,0,0,0);
-		TellCameraData::AddCamera(camera->GetCameraData());
-		m_objectList.emplace_back(obj);
-	}
+	//InitCamera();
 
 	// HierarchyMesh
-	{
-		Object* obj = new Object;
-		auto transform = obj->AddComponent<Transform>();
-		transform->position.x = -0.5;
-		transform->position.y = -1.0;
-		transform->position.z = 1.0;
-		auto staticMesh = obj->AddComponent<HierarchyMesh>();
-		if (FAILED(staticMesh->Init("model/RobotA_1motion_2truck.x")))
-		{
-			MessageBox(0, "HierarchyMesh‰Šú‰»Ž¸”s", NULL, MB_OK);
-		}
-		m_objectList.emplace_back(obj);
-	}
-	{
-		Object* obj = new Object;
-		auto transform = obj->AddComponent<Transform>();
-		transform->position.x = -0.8;
-		transform->position.y = -1.0;
-		transform->position.z = 0.5;
-		auto staticMesh = obj->AddComponent<HierarchyMesh>();
-		if (FAILED(staticMesh->Init("model/Josh_Motion_Wakeup.x")))
-		{
-			MessageBox(0, "HierarchyMesh‰Šú‰»Ž¸”s", NULL, MB_OK);
-		}
-		m_objectList.emplace_back(obj);
-	}
+	//InitHierarchyMesh();
 
 	// StaticMesh
-	{
-		Object* obj = new Object;
-		auto transform = obj->AddComponent<Transform>();
-		auto staticMesh = obj->AddComponent<StaticMesh>();
-		if (FAILED(staticMesh->Init("model/RobotA_pivot.x")))
-		{
-			MessageBox(0, "StaticMesh‰Šú‰»Ž¸”s", NULL, MB_OK);
-		}
-		m_objectList.emplace_back(obj);
-	}
+	//InitStaticMesh();
 
 	// SkinMesh
-	{
-		Object* obj = new Object;
-		auto transform = obj->AddComponent<Transform>();
-		transform->position.x = 0.5;
-		auto skinMesh = obj->AddComponent<SkinMesh>();
-		if (FAILED(skinMesh->Init("model/Hand_animation_1motion_2truck.x")))
-		{
-			MessageBox(0, "SkinMesh‰Šú‰»Ž¸”s", NULL, MB_OK);
-		}
-		m_objectList.emplace_back(obj);
-	}
+	//InitSkinMesh();
 
-	// UI0
-	{
-		File::FileData data;
-		data = File::LoadFile("OutputData/UI0.txt");
-
-		Object* obj = new Object;
-		auto transform = obj->AddComponent<Transform>();
-		transform->scale.x = data.scaleX;
-		transform->scale.y = data.scaleY;
-		transform->rotation.z = data.rotateZ;
-		auto ui = obj->AddComponent<Image>();
-		ui->Init(Vector3D(data.posX, data.posY, 0), Vector3D(160, 151, 0), "Resource/0.png", true, 0);
-		m_objectList.emplace_back(obj);
-	}
-
-	// UI1
-	{
-		File::FileData data;
-		data = File::LoadFile("OutputData/UI1.txt");
-
-		Object* obj = new Object;
-		auto transform = obj->AddComponent<Transform>();
-		transform->scale.x = data.scaleX;
-		transform->scale.y = data.scaleY;
-		transform->rotation.z = data.rotateZ;
-		auto ui = obj->AddComponent<Image>();
-		ui->Init(Vector3D(data.posX, data.posY, 0), Vector3D(32, 32, 0), "Resource/VisualStudio 2022.png", true, 1);
-		m_objectList.emplace_back(obj);
-	}
+	// UI
+	InitUI();
+	
 }
 
 /**
@@ -218,8 +141,7 @@ void TitleScene::Draw()
 bool scene::TitleScene::ImageImGuiConfig(Object** pObj, const char* windowName, const char* fileName, const int ID)
 {
 	// usingéŒ¾
-	using ImGui::Begin; using ImGui::End; using ImGui::DragFloat;
-	using ImGui::SetNextWindowSize; using ImGui::SliderFloat;
+	using ImGui::Begin; using ImGui::End; using ImGui::DragFloat;using ImGui::SliderFloat;
 	using ImGui::Button; using ImGui::SameLine; using ImGui::Text;
 
 	auto obj = *pObj;
@@ -254,3 +176,105 @@ bool scene::TitleScene::ImageImGuiConfig(Object** pObj, const char* windowName, 
 	return false;
 }
 #endif // _DEBUG
+
+void scene::TitleScene::InitCamera()
+{
+	{
+		Object* obj = new Object;
+		auto camera = obj->AddComponent<Camera>();
+		camera->SetCameraNumber(CAMERA_NUMBER::CAMERA_0);
+		camera->SetCameraPositionGaze(0, 1.0f, -2.0f, 0, 0, 0);
+		TellCameraData::AddCamera(camera->GetCameraData());
+		m_objectList.emplace_back(obj);
+	}
+}
+
+void scene::TitleScene::InitStaticMesh()
+{
+	{
+		Object* obj = new Object;
+		auto transform = obj->AddComponent<Transform>();
+		auto staticMesh = obj->AddComponent<StaticMesh>();
+		if (FAILED(staticMesh->Init("model/RobotA_pivot.x")))
+		{
+			MessageBox(0, "StaticMesh‰Šú‰»Ž¸”s", NULL, MB_OK);
+		}
+		m_objectList.emplace_back(obj);
+	}
+}
+void scene::TitleScene::InitHierarchyMesh()
+{
+	{
+		Object* obj = new Object;
+		auto transform = obj->AddComponent<Transform>();
+		transform->position.x = -0.5;
+		transform->position.y = -1.0;
+		transform->position.z = 1.0;
+		auto staticMesh = obj->AddComponent<HierarchyMesh>();
+		if (FAILED(staticMesh->Init("model/RobotA_1motion_2truck.x")))
+		{
+			MessageBox(0, "HierarchyMesh‰Šú‰»Ž¸”s", NULL, MB_OK);
+		}
+		m_objectList.emplace_back(obj);
+	}
+	{
+		Object* obj = new Object;
+		auto transform = obj->AddComponent<Transform>();
+		transform->position.x = -0.8;
+		transform->position.y = -1.0;
+		transform->position.z = 0.5;
+		auto staticMesh = obj->AddComponent<HierarchyMesh>();
+		if (FAILED(staticMesh->Init("model/Josh_Motion_Wakeup.x")))
+		{
+			MessageBox(0, "HierarchyMesh‰Šú‰»Ž¸”s", NULL, MB_OK);
+		}
+		m_objectList.emplace_back(obj);
+	}
+}
+void scene::TitleScene::InitSkinMesh()
+{
+	{
+		Object* obj = new Object;
+		auto transform = obj->AddComponent<Transform>();
+		transform->position.x = 0.5;
+		auto skinMesh = obj->AddComponent<SkinMesh>();
+		if (FAILED(skinMesh->Init("model/Hand_animation_1motion_2truck.x")))
+		{
+			MessageBox(0, "SkinMesh‰Šú‰»Ž¸”s", NULL, MB_OK);
+		}
+		m_objectList.emplace_back(obj);
+	}
+}
+
+void scene::TitleScene::InitUI()
+{
+	// UI0
+	{
+		File::FileData data;
+		data = File::LoadFile("OutputData/UI0.txt");
+
+		Object* obj = new Object;
+		auto transform = obj->AddComponent<Transform>();
+		transform->scale.x = data.scaleX;
+		transform->scale.y = data.scaleY;
+		transform->rotation.z = data.rotateZ;
+		auto ui = obj->AddComponent<Image>();
+		ui->Init(Vector3D(data.posX, data.posY, 0), Vector3D(160, 151, 0), "Resource/0.png", true, 0);
+		m_objectList.emplace_back(obj);
+	}
+
+	// UI1
+	{
+		File::FileData data;
+		data = File::LoadFile("OutputData/UI1.txt");
+
+		Object* obj = new Object;
+		auto transform = obj->AddComponent<Transform>();
+		transform->scale.x = data.scaleX;
+		transform->scale.y = data.scaleY;
+		transform->rotation.z = data.rotateZ;
+		auto ui = obj->AddComponent<Image>();
+		ui->Init(Vector3D(data.posX, data.posY, 0), Vector3D(32, 32, 0), "Resource/VisualStudio 2022.png", true, 1);
+		m_objectList.emplace_back(obj);
+	}
+}

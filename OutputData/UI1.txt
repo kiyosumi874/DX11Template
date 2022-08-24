@@ -1,5 +1,5 @@
-posX:642.50
-posY:588.50
-scaleX:5.46
-scaleY:5.10
-rotateZ:0.11
+posX:563.50
+posY:644.00
+scaleX:2.00
+scaleY:2.00
+rotateZ:0.00
