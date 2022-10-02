@@ -7,11 +7,12 @@
 
 // ヘッダーファイルのインクルード
 #pragma once
-#include <vector>
+#include <unordered_map>
 #include "CameraStruct.h"
+#include "System/Common.h"
 
 // using宣言
-using std::vector;
+using std::unordered_map;
 
 /**
 * @class TellCameraData
@@ -52,7 +53,7 @@ public:
 	*/
 	static void AddCamera(const CameraData& data)
 	{
-		m_this->m_cameraDataVec.emplace_back(data);
+		m_this->m_cameraDataVec[data.key] = data;
 	}
 
 	/**
@@ -66,18 +67,11 @@ public:
 
 		if (cameraDataVec.empty())
 		{
+			MSG("Cameraは現在登録されていません")
 			return false;
 		}
 
-		for (auto it = cameraDataVec.begin(); it != cameraDataVec.end();)
-		{
-			if (it->key == key)
-			{
-				it = cameraDataVec.erase(it);
-				return true;
-			}
-			it++;
-		}
+		cameraDataVec.erase(key);
 		return false;
 	}
 
@@ -91,14 +85,7 @@ public:
 	static bool GetCameraData(CameraData* cameraData, CAMERA_NUMBER key)
 	{
 		auto& cameraDataVec = m_this->m_cameraDataVec;
-		for (auto it = cameraDataVec.begin(); it != cameraDataVec.end(); it++)
-		{
-			if (it->key == key)
-			{
-				*cameraData = *it;
-				return true;
-			}
-		}
+		*cameraData = cameraDataVec[key];
 		return false;
 	}
 
@@ -116,7 +103,7 @@ private:
 	*/
 	~TellCameraData();
 
-	vector<CameraData> m_cameraDataVec; // カメラの情報を保存する配列
+	unordered_map<CAMERA_NUMBER,CameraData> m_cameraDataVec; // カメラの情報を保存する配列
 
 	static TellCameraData* m_this; // 静的な自分のクラスのポインタ
 

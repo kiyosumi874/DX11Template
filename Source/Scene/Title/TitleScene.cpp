@@ -52,21 +52,7 @@ TitleScene::TitleScene()
 	ShaderDirector::CreateShader(SHADER_KIND::PRIMITIVE);
 	ShaderDirector::CreateShader(SHADER_KIND::PRIMITIVE2D);
 
-	// camera
-	//InitCamera();
-
-	// HierarchyMesh
-	//InitHierarchyMesh();
-
-	// StaticMesh
-	//InitStaticMesh();
-
-	// SkinMesh
-	//InitSkinMesh();
-
-	// UI
-	InitUI();
-	
+	InitObject();
 }
 
 /**
@@ -85,37 +71,40 @@ TitleScene::~TitleScene()
 */
 TAG_SCENE TitleScene::Update()
 {
+//#ifdef _DEBUG
+//	// ImGuiの"SaveComplete!!"の表示する時間の管理
+//	for (int i = 0; i < g_elementNum; i++)
+//	{
+//		if (g_saveButtonCounter[i] > 0)
+//		{
+//			if (++g_saveButtonCounter[i] > 90)
+//			{
+//				g_saveButtonCounter[i] = 0;
+//			}
+//		}
+//	}
+//#endif // _DEBUG
+
+//	// オブジェクトの更新
+//	for (auto obj : m_objectList)
+//	{
+//#ifdef _DEBUG
+//		if (obj->GetComponent<Image>() != nullptr)
+//		{
+//			ImageImGuiConfig(&obj, "UI0", "OutputData/UI0.txt", 0);
+//			ImageImGuiConfig(&obj, "UI1", "OutputData/UI1.txt", 1);
+//		}
+//#endif // _DEBUG
+//		obj->Update();
+//	}
+
+	// オブジェクトの更新
+	UpdateObject();
+
 	if (Input::IsDown(BUTTON_ID_START))
 	{
 		// PlaySceneに切り替わる
 		return TAG_SCENE::PLAY;
-	}
-
-#ifdef _DEBUG
-	// ImGuiの"SaveComplete!!"の表示する時間の管理
-	for (int i = 0; i < g_elementNum; i++)
-	{
-		if (g_saveButtonCounter[i] > 0)
-		{
-			if (++g_saveButtonCounter[i] > 90)
-			{
-				g_saveButtonCounter[i] = 0;
-			}
-		}
-	}
-#endif // _DEBUG
-
-	// オブジェクトの更新
-	for (auto obj : m_objectList)
-	{
-#ifdef _DEBUG
-		if (obj->GetComponent<Image>() != nullptr)
-		{
-			ImageImGuiConfig(&obj, "UI0", "OutputData/UI0.txt", 0);
-			ImageImGuiConfig(&obj, "UI1", "OutputData/UI1.txt", 1);
-		}
-#endif // _DEBUG
-		obj->Update();
 	}
 
 	// ループが続く
@@ -129,10 +118,7 @@ TAG_SCENE TitleScene::Update()
 void TitleScene::Draw()
 {
 	// オブジェクトの描画
-	for (auto& obj : m_objectList)
-	{
-		obj->Draw();
-	}
+	DrawObject();
 
 	MyOutputDebugString("TitleScene\n");
 }
@@ -175,32 +161,60 @@ bool scene::TitleScene::ImageImGuiConfig(Object** pObj, const char* windowName, 
 	}
 	return false;
 }
+void scene::TitleScene::InitObject()
+{
+	InitCamera();
+	InitSkyDome();
+	InitStaticMesh();
+}
+void scene::TitleScene::UpdateObject()
+{
+	for (auto& obj : m_objectList)
+	{
+		obj->Update();
+	}
+}
+void scene::TitleScene::DrawObject()
+{
+	for (auto& obj : m_objectList)
+	{
+		obj->Draw();
+	}
+}
+void scene::TitleScene::InitSkyDome()
+{
+	Object* obj = new Object;
+	auto transform = obj->AddComponent<Transform>();
+	auto staticMesh = obj->AddComponent<StaticMesh>();
+	if (FAILED(staticMesh->Init("model/Skydome_T2/Dome_T202.x")))
+	{
+		MessageBox(0, "InitSkyDome初期化失敗", NULL, MB_OK);
+	}
+	m_objectList.emplace_back(obj);
+}
 #endif // _DEBUG
 
 void scene::TitleScene::InitCamera()
 {
-	{
-		Object* obj = new Object;
-		auto camera = obj->AddComponent<Camera>();
-		camera->SetCameraNumber(CAMERA_NUMBER::CAMERA_0);
-		camera->SetCameraPositionGaze(0, 1.0f, -2.0f, 0, 0, 0);
-		TellCameraData::AddCamera(camera->GetCameraData());
-		m_objectList.emplace_back(obj);
-	}
+	Object* obj = new Object;
+	auto camera = obj->AddComponent<Camera>();
+	camera->SetCameraNumber(CAMERA_NUMBER::CAMERA_0);
+	camera->SetCameraPositionGaze(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+	TellCameraData::AddCamera(camera->GetCameraData());
+	m_objectList.emplace_back(obj);
 }
 
 void scene::TitleScene::InitStaticMesh()
 {
+	Object* obj = new Object;
+	auto transform = obj->AddComponent<Transform>();
+	transform->position = Vector3D(0.0f, 0.0f, 20.0f);
+	auto staticMesh = obj->AddComponent<StaticMesh>();
+	if (FAILED(staticMesh->Init("model/RobotA_pivot.x")))
 	{
-		Object* obj = new Object;
-		auto transform = obj->AddComponent<Transform>();
-		auto staticMesh = obj->AddComponent<StaticMesh>();
-		if (FAILED(staticMesh->Init("model/RobotA_pivot.x")))
-		{
-			MessageBox(0, "StaticMesh初期化失敗", NULL, MB_OK);
-		}
-		m_objectList.emplace_back(obj);
+		MessageBox(0, "StaticMesh初期化失敗", NULL, MB_OK);
 	}
+	m_objectList.emplace_back(obj);
 }
 void scene::TitleScene::InitHierarchyMesh()
 {
@@ -233,17 +247,15 @@ void scene::TitleScene::InitHierarchyMesh()
 }
 void scene::TitleScene::InitSkinMesh()
 {
+	Object* obj = new Object;
+	auto transform = obj->AddComponent<Transform>();
+	transform->position.x = 0.5;
+	auto skinMesh = obj->AddComponent<SkinMesh>();
+	if (FAILED(skinMesh->Init("model/Hand_animation_1motion_2truck.x")))
 	{
-		Object* obj = new Object;
-		auto transform = obj->AddComponent<Transform>();
-		transform->position.x = 0.5;
-		auto skinMesh = obj->AddComponent<SkinMesh>();
-		if (FAILED(skinMesh->Init("model/Hand_animation_1motion_2truck.x")))
-		{
-			MessageBox(0, "SkinMesh初期化失敗", NULL, MB_OK);
-		}
-		m_objectList.emplace_back(obj);
+		MessageBox(0, "SkinMesh初期化失敗", NULL, MB_OK);
 	}
+	m_objectList.emplace_back(obj);
 }
 
 void scene::TitleScene::InitUI()
