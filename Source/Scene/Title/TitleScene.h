@@ -55,12 +55,17 @@ namespace scene
 		bool ImageImGuiConfig(Object** pObj, const char* windowName, const char* fileName, const int ID);
 #endif // _DEBUG
 
+		void InitObject();
+		void UpdateObject();
+		void DrawObject();
+
+		void InitSkyDome();
+
 		void InitCamera();
 		void InitStaticMesh();
 		void InitHierarchyMesh();
 		void InitSkinMesh();
 		void InitUI();
-
 	};
 
 }
