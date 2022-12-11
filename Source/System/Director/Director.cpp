@@ -98,8 +98,6 @@ HRESULT Director::Init(HINSTANCE hInstance)
 
 	// sceneManager¶¬
 	{
-		// usingéŒ¾
-		using scene::TAG_SCENE;
 		m_pSceneManager = new SceneManager();
 		m_pSceneManager->SetNowScene(TAG_SCENE::TITLE);
 	}

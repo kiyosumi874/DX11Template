@@ -34,6 +34,7 @@
     <ClCompile Include="Source\Game\Component\Image\Image.cpp" />
     <ClCompile Include="Source\Game\Component\Mesh\HierarchyMesh\HierarchyMesh.cpp" />
     <ClCompile Include="Source\Game\Component\Mesh\Mesh.cpp" />
+    <ClCompile Include="Source\Game\Component\Mesh\ObjMesh\ObjMesh.cpp" />
     <ClCompile Include="Source\Game\Component\Mesh\SkinMesh\SkinMesh.cpp" />
     <ClCompile Include="Source\Game\Component\Mesh\StaticMesh\StaticMesh.cpp" />
     <ClCompile Include="Source\Game\Component\Primitive\Line\Line.cpp" />
@@ -46,12 +47,14 @@
     <ClCompile Include="Source\Scene\Over\GameOverScene.cpp" />
     <ClCompile Include="Source\Scene\Play\PlayScene.cpp" />
     <ClCompile Include="Source\Scene\SceneManager\SceneManager.cpp" />
+    <ClCompile Include="Source\Scene\TinyObjTest\TinyObjTestScene.cpp" />
     <ClCompile Include="Source\Scene\Title\TitleScene.cpp" />
     <ClCompile Include="Source\System\Director\Director.cpp" />
     <ClCompile Include="Source\System\Fps\Fps.cpp" />
     <ClCompile Include="Source\System\Input\Input.cpp" />
     <ClCompile Include="Source\System\Math\Math.cpp" />
     <ClCompile Include="Source\System\Window\Window.cpp" />
+    <ClCompile Include="Source\TinyObj\tiny_obj_loader.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h" />
@@ -72,6 +75,7 @@
     <ClInclude Include="Source\Game\Component\Image\Image.h" />
     <ClInclude Include="Source\Game\Component\Mesh\HierarchyMesh\HierarchyMesh.h" />
     <ClInclude Include="Source\Game\Component\Mesh\Mesh.h" />
+    <ClInclude Include="Source\Game\Component\Mesh\ObjMesh\ObjMesh.h" />
     <ClInclude Include="Source\Game\Component\Mesh\SkinMesh\SkinMesh.h" />
     <ClInclude Include="Source\Game\Component\Mesh\StaticMesh\StaticMesh.h" />
     <ClInclude Include="Source\Game\Component\Object.h" />
@@ -86,6 +90,7 @@
     <ClInclude Include="Source\Scene\Play\PlayScene.h" />
     <ClInclude Include="Source\Scene\Scene.h" />
     <ClInclude Include="Source\Scene\SceneManager\SceneManager.h" />
+    <ClInclude Include="Source\Scene\TinyObjTest\TinyObjTestScene.h" />
     <ClInclude Include="Source\Scene\Title\TitleScene.h" />
     <ClInclude Include="Source\System\Common.h" />
     <ClInclude Include="Source\System\Director\Director.h" />
@@ -94,6 +99,7 @@
     <ClInclude Include="Source\System\Input\Input.h" />
     <ClInclude Include="Source\System\Math\Math.h" />
     <ClInclude Include="Source\System\Window\Window.h" />
+    <ClInclude Include="Source\TinyObj\tiny_obj_loader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -114,6 +120,12 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="Shader\MESH2.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="Shader\UI.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Effect</ShaderType>

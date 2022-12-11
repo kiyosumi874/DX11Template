@@ -1,9 +1,9 @@
 /**
-* @file PlayScene.h
-* @brief プレイシーン
+* @file TinyObjTestScene.h
+* @brief ローダーのテストシーン
 * @details Sceneを継承している
 * @author shiihara_kiyosumi
-* @date 2022_08_02
+* @date 2022_12_10
 */
 
 // ヘッダーファイルのインクルード
@@ -11,24 +11,24 @@
 #include "Scene/Scene.h"
 
 /**
-* @class PlayScene
-* @brief PlaySceneクラス
+* @class TinyObjTestScene
+* @brief TinyObjTestSceneクラス
 * @details Sceneを継承している
 */
-class PlayScene : public Scene
+class TinyObjTestScene : public Scene
 {
 public:
 	/**
-	* @fn PlayScene
+	* @fn TinyObjTestScene
 	* @brief コンストラクタ
 	*/
-	PlayScene();
+	TinyObjTestScene();
 
 	/**
-	* @fn ~PlayScene
+	* @fn ~TinyObjTestScene
 	* @brief デストラクタ
 	*/
-	~PlayScene() override;
+	~TinyObjTestScene() override;
 
 	/**
 	* @fn Update
@@ -44,5 +44,5 @@ public:
 	void Draw() override;
 
 private:
-
+	class ObjMesh* m_pObjMesh;
 };

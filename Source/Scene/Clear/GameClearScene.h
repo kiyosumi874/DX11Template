@@ -11,44 +11,37 @@
 #include "Scene/Scene.h"
 
 /**
-* @namespace scene
-* @brief シーンの名前空間
+* @class GameClearScene
+* @brief GameClearSceneクラス
+* @details Sceneを継承している
 */
-namespace scene
+class GameClearScene : public Scene
 {
+public:
 	/**
-	* @class GameClearScene
-	* @brief GameClearSceneクラス
-	* @details Sceneを継承している
+	* @fn GameClearScene
+	* @brief コンストラクタ
 	*/
-	class GameClearScene : public Scene
-	{
-	public:
-		/**
-		* @fn GameClearScene
-		* @brief コンストラクタ
-		*/
-		GameClearScene();
+	GameClearScene();
 
-		/**
-		* @fn ~GameClearScene
-		* @brief デストラクタ
-		*/
-		~GameClearScene() override;
+	/**
+	* @fn ~GameClearScene
+	* @brief デストラクタ
+	*/
+	~GameClearScene() override;
 
-		/**
-		* @fn Update
-		* @brief 更新
-		* @return TAG_SCENE シーンの種類
-		*/
-		TAG_SCENE Update() override;
+	/**
+	* @fn Update
+	* @brief 更新
+	* @return TAG_SCENE シーンの種類
+	*/
+	TAG_SCENE Update() override;
 
-		/**
-		* @fn Draw
-		* @brief 描画
-		*/
-		void Draw() override;
+	/**
+	* @fn Draw
+	* @brief 描画
+	*/
+	void Draw() override;
 
-	private:
-	};
-}
+private:
+};

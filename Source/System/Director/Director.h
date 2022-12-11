@@ -11,9 +11,6 @@
 #include "System/Window/Window.h"
 #include "Scene/SceneManager/SceneManager.h"
 
-// using宣言
-using scene::SceneManager;
-
 /**
 * @class Director
 * @brief プログラムの管理クラス

@@ -14,71 +14,63 @@
 using std::list;
 
 /**
-* @namespace scene
-* @brief シーンの名前空間
-*/
-namespace scene
-{
-
-	/**
 	* @enum TAG_SCENE
 	* @brief シーンの種類
 	*/
-	enum class TAG_SCENE
-	{
-		TITLE,
-		PLAY,
-		CLEAR,
-		OVER,
-		END,
+enum class TAG_SCENE
+{
+	TITLE,
+	PLAY,
+	CLEAR,
+	OVER,
+	END,
+	TEST,
 
-		NONE
-	};
+	NONE
+};
+
+/**
+* @class Scene
+* @brief シーンの親クラス
+*/
+class Scene
+{
+public:
+	/**
+	* @fn Scene
+	* @brief コンストラクタ
+	*/
+	Scene() {}
 
 	/**
-	* @class Scene
-	* @brief シーンの親クラス
+	* @fn ~Scene
+	* @brief デストラクタ(仮想関数)
 	*/
-	class Scene
+	virtual ~Scene()
 	{
-	public:
-		/**
-		* @fn Scene
-		* @brief コンストラクタ
-		*/
-		Scene() {}
-
-		/**
-		* @fn ~Scene
-		* @brief デストラクタ(仮想関数)
-		*/
-		virtual ~Scene()
+		if (!m_objectList.empty())
 		{
-			if (!m_objectList.empty())
+			for (auto obj : m_objectList)
 			{
-				for (auto obj : m_objectList)
-				{
-					delete obj;
-				}
-				m_objectList.clear();
+				delete obj;
 			}
+			m_objectList.clear();
 		}
+	}
 
-		/**
-		* @fn Update
-		* @brief 更新(純粋仮想関数)
-		* @return TAG_SCENE シーンの種類
-		*/
-		virtual TAG_SCENE Update() = 0;
+	/**
+	* @fn Update
+	* @brief 更新(純粋仮想関数)
+	* @return TAG_SCENE シーンの種類
+	*/
+	virtual TAG_SCENE Update() = 0;
 
-		/**
-		* @fn Draw
-		* @brief 描画(純粋仮想関数)
-		*/
-		virtual void Draw() = 0;
-	protected:
+	/**
+	* @fn Draw
+	* @brief 描画(純粋仮想関数)
+	*/
+	virtual void Draw() = 0;
+protected:
 
-		list<Object*> m_objectList; // オブジェクトリスト
-	};
-
-}
+	list<Object*> m_objectList; // オブジェクトリスト
+};

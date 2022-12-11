@@ -11,45 +11,38 @@
 #include "Scene/Scene.h"
 
 /**
-* @namespace scene
-* @brief シーンの名前空間
+* @class GameOverScene
+* @brief GameOverSceneクラス
+* @details Sceneを継承している
 */
-namespace scene
+class GameOverScene : public Scene
 {
+public:
 	/**
-	* @class GameOverScene
-	* @brief GameOverSceneクラス
-	* @details Sceneを継承している
+	* @fn GameOverScene
+	* @brief コンストラクタ
 	*/
-	class GameOverScene : public Scene
-	{
-	public:
-		/**
-		* @fn GameOverScene
-		* @brief コンストラクタ
-		*/
-		GameOverScene();
+	GameOverScene();
 
-		/**
-		* @fn ~GameOverScene
-		* @brief デストラクタ
-		*/
-		~GameOverScene() override;
+	/**
+	* @fn ~GameOverScene
+	* @brief デストラクタ
+	*/
+	~GameOverScene() override;
 
-		/**
-		* @fn Update
-		* @brief 更新
-		* @return TAG_SCENE シーンの種類
-		*/
-		TAG_SCENE Update() override;
+	/**
+	* @fn Update
+	* @brief 更新
+	* @return TAG_SCENE シーンの種類
+	*/
+	TAG_SCENE Update() override;
 
-		/**
-		* @fn Draw
-		* @brief 描画
-		*/
-		void Draw() override;
+	/**
+	* @fn Draw
+	* @brief 描画
+	*/
+	void Draw() override;
 
-	private:
+private:
 
-	};
-}
+};

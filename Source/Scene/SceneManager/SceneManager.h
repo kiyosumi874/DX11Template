@@ -10,50 +10,43 @@
 #include "Scene/Scene.h"
 
 /**
-* @namespace scene
-* @brief シーンの名前空間
+* @class SceneManager
+* @brief シーンを管理するクラス
 */
-namespace scene
+class SceneManager
 {
+public:
 	/**
-	* @class SceneManager
-	* @brief シーンを管理するクラス
+	* @fn SceneManager
+	* @brief コンストラクタ
 	*/
-	class SceneManager
-	{
-	public:
-		/**
-		* @fn SceneManager
-		* @brief コンストラクタ
-		*/
-		SceneManager();
+	SceneManager();
 
-		/**
-		* @fn ~SceneManager
-		* @brief デストラクタ
-		*/
-		~SceneManager();
+	/**
+	* @fn ~SceneManager
+	* @brief デストラクタ
+	*/
+	~SceneManager();
 
-		/**
-		* @fn GameLoop
-		* @brief ゲームループ
-		* @return trueで終了
-		*/
-		bool GameLoop();
+	/**
+	* @fn GameLoop
+	* @brief ゲームループ
+	* @return trueで終了
+	*/
+	bool GameLoop();
 
-		/**
-		* @fn SetNowScene
-		* @brief シーンをセットする
-		* @param[in] tag 進みたいシーンのタグ
-		*/
-		void SetNowScene(const TAG_SCENE& tag);
-	private:
-		/**
-		* @fn ClearScene
-		* @brief 今のシーンをデリート
-		*/
-		void ClearScene();
+	/**
+	* @fn SetNowScene
+	* @brief シーンをセットする
+	* @param[in] tag 進みたいシーンのタグ
+	*/
+	void SetNowScene(const TAG_SCENE& tag);
+private:
+	/**
+	* @fn ClearScene
+	* @brief 今のシーンをデリート
+	*/
+	void ClearScene();
 
-		Scene* m_nowScene; // 現在のシーンのポインタ
-	};
-}
+	Scene* m_nowScene; // 現在のシーンのポインタ
+};

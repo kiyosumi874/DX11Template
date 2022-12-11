@@ -101,6 +101,15 @@
     <Filter Include="Source\Game\Component\Mesh\HierarchyMesh">
       <UniqueIdentifier>{6a809ce3-e19f-4324-af37-d7519af9ef0f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Scene\TinyObjTest">
+      <UniqueIdentifier>{b0d706d3-810e-4703-98ea-eb3c3a52d63d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\TinyObj">
+      <UniqueIdentifier>{0aa907e3-213d-4f92-a692-c26e187dc79f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Game\Component\Mesh\ObjMesh">
+      <UniqueIdentifier>{c712f38f-276a-41d9-b2ec-0e22ce02a82f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\main.cpp">
@@ -201,6 +210,15 @@
     </ClCompile>
     <ClCompile Include="Source\Game\Component\Mesh\SkinMesh\SkinMesh.cpp">
       <Filter>Source\Game\Component\Mesh\SkinMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\TinyObjTest\TinyObjTestScene.cpp">
+      <Filter>Source\Scene\TinyObjTest</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TinyObj\tiny_obj_loader.cc">
+      <Filter>Source\TinyObj</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\Component\Mesh\ObjMesh\ObjMesh.cpp">
+      <Filter>Source\Game\Component\Mesh\ObjMesh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -324,6 +342,15 @@
     <ClInclude Include="Source\Game\Component\Mesh\SkinMesh\SkinMesh.h">
       <Filter>Source\Game\Component\Mesh\SkinMesh</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Scene\TinyObjTest\TinyObjTestScene.h">
+      <Filter>Source\Scene\TinyObjTest</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TinyObj\tiny_obj_loader.h">
+      <Filter>Source\TinyObj</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Component\Mesh\ObjMesh\ObjMesh.h">
+      <Filter>Source\Game\Component\Mesh\ObjMesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\Game\Component\Primitive\Shader\Primitive.hlsli">
@@ -354,6 +381,9 @@
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="Shader\Geometry_Material_Texture_Skin.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\MESH2.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>

@@ -11,11 +11,10 @@
 #include "Scene/Play/PlayScene.h"
 #include "Scene/Clear/GameClearScene.h"
 #include "Scene/Over/GameOverScene.h"
+#include "Scene/TinyObjTest/TinyObjTestScene.h"
 #include "System/Fps/Fps.h"
 #include "System/Input/Input.h"
 
-// usingêÈåæ
-using scene::SceneManager; using scene::TAG_SCENE;
 
 /**
 * @class SceneManager
@@ -88,6 +87,9 @@ void SceneManager::SetNowScene(const TAG_SCENE& tag)
 		break;
 	case TAG_SCENE::OVER:
 		m_nowScene = new GameOverScene();
+		break;
+	case TAG_SCENE::TEST:
+		m_nowScene = new TinyObjTestScene();
 		break;
 	case TAG_SCENE::NONE:
 		break;

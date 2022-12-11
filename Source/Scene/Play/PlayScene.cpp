@@ -11,9 +11,6 @@
 #include <Windows.h>
 #include "System/Input/Input.h"
 
-// using宣言
-using scene::PlayScene; using scene::TAG_SCENE;
-
 /**
 * @fn PlayScene
 * @brief コンストラクタ

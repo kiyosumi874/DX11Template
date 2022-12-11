@@ -30,11 +30,6 @@
 #include "Game/Component/Mesh/StaticMesh/StaticMesh.h"
 #include "Game/Component/Mesh/HierarchyMesh/HierarchyMesh.h"
 #include "Game/Component/Mesh/SkinMesh/SkinMesh.h"
-//#include "assimp/Importer.hpp"
-//#include "assimp/scene.h"
-//#include "assimp/postprocess.h"
-// usingêÈåæ
-using scene::TitleScene; using scene::TAG_SCENE;
 
 #ifdef _DEBUG
 // ImGuiÇÃÇΩÇﬂÇÃê√ìIïœêî
@@ -88,7 +83,7 @@ TAG_SCENE TitleScene::Update()
 	if (Input::IsDown(BUTTON_ID_START))
 	{
 		// PlaySceneÇ…êÿÇËë÷ÇÌÇÈ
-		return TAG_SCENE::PLAY;
+		return TAG_SCENE::TEST;
 	}
 
 #ifdef _DEBUG
@@ -138,7 +133,7 @@ void TitleScene::Draw()
 }
 
 #ifdef _DEBUG
-bool scene::TitleScene::ImageImGuiConfig(Object** pObj, const char* windowName, const char* fileName, const int ID)
+bool TitleScene::ImageImGuiConfig(Object** pObj, const char* windowName, const char* fileName, const int ID)
 {
 	// usingêÈåæ
 	using ImGui::Begin; using ImGui::End; using ImGui::DragFloat;using ImGui::SliderFloat;
@@ -177,7 +172,7 @@ bool scene::TitleScene::ImageImGuiConfig(Object** pObj, const char* windowName, 
 }
 #endif // _DEBUG
 
-void scene::TitleScene::InitCamera()
+void TitleScene::InitCamera()
 {
 	{
 		Object* obj = new Object;
@@ -189,7 +184,7 @@ void scene::TitleScene::InitCamera()
 	}
 }
 
-void scene::TitleScene::InitStaticMesh()
+void TitleScene::InitStaticMesh()
 {
 	{
 		Object* obj = new Object;
@@ -202,7 +197,7 @@ void scene::TitleScene::InitStaticMesh()
 		m_objectList.emplace_back(obj);
 	}
 }
-void scene::TitleScene::InitHierarchyMesh()
+void TitleScene::InitHierarchyMesh()
 {
 	{
 		Object* obj = new Object;
@@ -231,7 +226,7 @@ void scene::TitleScene::InitHierarchyMesh()
 		m_objectList.emplace_back(obj);
 	}
 }
-void scene::TitleScene::InitSkinMesh()
+void TitleScene::InitSkinMesh()
 {
 	{
 		Object* obj = new Object;
@@ -246,7 +241,7 @@ void scene::TitleScene::InitSkinMesh()
 	}
 }
 
-void scene::TitleScene::InitUI()
+void TitleScene::InitUI()
 {
 	// UI0
 	{

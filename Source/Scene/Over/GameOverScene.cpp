@@ -11,9 +11,6 @@
 #include <Windows.h>
 #include "System/Input/Input.h"
 
-// using宣言
-using scene::GameOverScene; using scene::TAG_SCENE;
-
 /**
 * @fn GameOverScene
 * @brief コンストラクタ
