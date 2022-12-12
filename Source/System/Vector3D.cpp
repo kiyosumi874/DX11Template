@@ -1,15 +1,4 @@
-/**
-* @file Math.cpp
-* @brief 算術系便利ファイル
-* @author shiihara_kiyosumi
-* @date 2022_08_02
-*/
-
-// ヘッダーファイルのインクルード
-#include "Math.h"
-
-// using宣言
-using math::Vector3D;
+#include "Vector3D.h"
 
 /**
  * @fn Vector3D

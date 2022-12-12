@@ -23,9 +23,6 @@
     <Filter Include="Source\System\Director">
       <UniqueIdentifier>{2283f059-871f-4eed-8abd-e3164c864eed}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\System\Math">
-      <UniqueIdentifier>{942a481e-94c9-4f48-8a61-0afc3fd6920c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\System\Window">
       <UniqueIdentifier>{c44b0cfc-53e1-4d9f-a475-3fe49c010d48}</UniqueIdentifier>
     </Filter>
@@ -124,9 +121,6 @@
     <ClCompile Include="Source\System\Director\Director.cpp">
       <Filter>Source\System\Director</Filter>
     </ClCompile>
-    <ClCompile Include="Source\System\Math\Math.cpp">
-      <Filter>Source\System\Math</Filter>
-    </ClCompile>
     <ClCompile Include="Source\System\Window\Window.cpp">
       <Filter>Source\System\Window</Filter>
     </ClCompile>
@@ -220,6 +214,9 @@
     <ClCompile Include="Source\Game\Component\Mesh\ObjMesh\ObjMesh.cpp">
       <Filter>Source\Game\Component\Mesh\ObjMesh</Filter>
     </ClCompile>
+    <ClCompile Include="Source\System\Vector3D.cpp">
+      <Filter>Source\System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\D3D11\Direct3D11.h">
@@ -230,9 +227,6 @@
     </ClInclude>
     <ClInclude Include="Source\System\Director\Director.h">
       <Filter>Source\System\Director</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\System\Math\Math.h">
-      <Filter>Source\System\Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\System\Window\Window.h">
       <Filter>Source\System\Window</Filter>
@@ -350,6 +344,9 @@
     </ClInclude>
     <ClInclude Include="Source\Game\Component\Mesh\ObjMesh\ObjMesh.h">
       <Filter>Source\Game\Component\Mesh\ObjMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\System\Vector3D.h">
+      <Filter>Source\System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

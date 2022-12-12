@@ -14,7 +14,6 @@
 #include <Windows.h>
 #include "System/Input/Input.h"
 #include "D3D11/ShaderDirector/ShaderDirector.h"
-#include "System/Math/Math.h"
 #include "imgui.h"
 #include "System/Common.h"
 #include "Game/Camera/Camera.h"

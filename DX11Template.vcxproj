@@ -52,7 +52,7 @@
     <ClCompile Include="Source\System\Director\Director.cpp" />
     <ClCompile Include="Source\System\Fps\Fps.cpp" />
     <ClCompile Include="Source\System\Input\Input.cpp" />
-    <ClCompile Include="Source\System\Math\Math.cpp" />
+    <ClCompile Include="Source\System\Vector3D.cpp" />
     <ClCompile Include="Source\System\Window\Window.cpp" />
     <ClCompile Include="Source\TinyObj\tiny_obj_loader.cc" />
   </ItemGroup>
@@ -97,7 +97,7 @@
     <ClInclude Include="Source\System\File.h" />
     <ClInclude Include="Source\System\Fps\Fps.h" />
     <ClInclude Include="Source\System\Input\Input.h" />
-    <ClInclude Include="Source\System\Math\Math.h" />
+    <ClInclude Include="Source\System\Vector3D.h" />
     <ClInclude Include="Source\System\Window\Window.h" />
     <ClInclude Include="Source\TinyObj\tiny_obj_loader.h" />
   </ItemGroup>

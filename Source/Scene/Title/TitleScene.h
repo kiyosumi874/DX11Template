@@ -12,10 +12,10 @@
 
 
 /**
-	* @class TitleScene
-	* @brief TitleSceneクラス
-	* @details Sceneを継承している
-	*/
+* @class TitleScene
+* @brief TitleSceneクラス
+* @details Sceneを継承している
+*/
 class TitleScene : public Scene
 {
 public:
