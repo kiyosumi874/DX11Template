@@ -23,7 +23,6 @@
 #include "Game/Component/Primitive/Line/Line.h"
 #include "Game/Component/Primitive/Triangle/Triangle.h"
 #include "Game/Component/Primitive/Quad/Quad.h"
-#include "Game/Component/Transform/Transform.h"
 #include "Game/Component/Image/Image.h"
 #include "System/File.h"
 #include "Game/Component/Mesh/StaticMesh/StaticMesh.h"
@@ -70,6 +69,7 @@ TitleScene::TitleScene()
 TitleScene::~TitleScene()
 {
 	TellCameraData::SubCamera(CAMERA_NUMBER::CAMERA_0);
+	SAFE_DELETE(m_image);
 }
 
 /**
@@ -99,18 +99,24 @@ TAG_SCENE TitleScene::Update()
 	}
 #endif // _DEBUG
 
+	m_image->Update();
 	// オブジェクトの更新
-	for (auto obj : m_objectList)
-	{
+//	for (auto obj : m_objectList)
+//	{
+//#ifdef _DEBUG
+//		if (obj->GetComponent<Image>() != nullptr)
+//		{
+//			ImageImGuiConfig(&obj, "UI0", "OutputData/UI0.txt", 0);
+//			ImageImGuiConfig(&obj, "UI1", "OutputData/UI1.txt", 1);
+//		}
+//#endif // _DEBUG
+//		obj->Update();
+//	}
+
 #ifdef _DEBUG
-		if (obj->GetComponent<Image>() != nullptr)
-		{
-			ImageImGuiConfig(&obj, "UI0", "OutputData/UI0.txt", 0);
-			ImageImGuiConfig(&obj, "UI1", "OutputData/UI1.txt", 1);
-		}
+	ImageImGuiConfig(m_image, "UI0", "OutputData/UI0.txt", 0);
 #endif // _DEBUG
-		obj->Update();
-	}
+
 
 	// ループが続く
 	return TAG_SCENE::NONE;
@@ -123,39 +129,39 @@ TAG_SCENE TitleScene::Update()
 void TitleScene::Draw()
 {
 	// オブジェクトの描画
-	for (auto& obj : m_objectList)
+	/*for (auto& obj : m_objectList)
 	{
 		obj->Draw();
-	}
-
+	}*/
+	m_image->Draw();
 	MyOutputDebugString("TitleScene\n");
 }
 
 #ifdef _DEBUG
-bool TitleScene::ImageImGuiConfig(Object** pObj, const char* windowName, const char* fileName, const int ID)
+bool TitleScene::ImageImGuiConfig(Image*& pImage, const char* windowName, const char* fileName, const int ID)
 {
 	// using宣言
 	using ImGui::Begin; using ImGui::End; using ImGui::DragFloat;using ImGui::SliderFloat;
 	using ImGui::Button; using ImGui::SameLine; using ImGui::Text;
 
-	auto obj = *pObj;
-
-	if (obj->GetComponent<Image>()->GetID() == ID)
+	if (pImage->GetID() == ID)
 	{
 		Begin(windowName);
-		auto& posX = obj->GetComponent<Transform>()->position.x;
-		auto& posY = obj->GetComponent<Transform>()->position.y;
-		auto& scaleX = obj->GetComponent<Transform>()->scale.x;
-		auto& scaleY = obj->GetComponent<Transform>()->scale.y;
-		auto& rotateZ = obj->GetComponent<Transform>()->rotation.z;
-		DragFloat("posX", &posX, 0.5f, 0.0f, WINDOW_WIDTH);
-		DragFloat("posY", &posY, 0.5f, 0.0f, WINDOW_HEIGHT);
-		DragFloat("scaleX", &scaleX, 0.005f, 0.0f, 10.0f);
-		DragFloat("scaleY", &scaleY, 0.005f, 0.0f, 10.0f);
-		DragFloat("rotateZ", &rotateZ, 0.005f, 0.0f, 360.0f * D3DX_PI / 180.0f);
+		auto pos = pImage->GetPos();
+		auto scale = pImage->GetScale();
+		auto rotate = pImage->GetRotate();
+		DragFloat("posX", &pos.x, 0.5f, 0.0f, WINDOW_WIDTH);
+		DragFloat("posY", &pos.y, 0.5f, 0.0f, WINDOW_HEIGHT);
+		DragFloat("scaleX", &scale.x, 0.005f, 0.0f, 10.0f);
+		DragFloat("scaleY", &scale.y, 0.005f, 0.0f, 10.0f);
+		DragFloat("rotateZ", &rotate.z, 0.005f, 0.0f, 360.0f * D3DX_PI / 180.0f);
+		/*pImage->SetPos(pos);
+		pImage->SetRotate(rotate);
+		pImage->SetScale(scale);*/
+
 		if (Button("Save"))
 		{
-			File::FileData data(posX, posY, scaleX, scaleY, rotateZ);
+			File::FileData data(pos.x, pos.y, scale.x, scale.y, rotate.z);
 			File::OutputFile(fileName, data);
 			g_saveButtonCounter[ID]++;
 		}
@@ -174,18 +180,22 @@ bool TitleScene::ImageImGuiConfig(Object** pObj, const char* windowName, const c
 void TitleScene::InitCamera()
 {
 	{
-		Object* obj = new Object;
+		m_camera = new Camera();
+		m_camera->SetCameraNumber(CAMERA_NUMBER::CAMERA_0);
+		m_camera->SetCameraPositionGaze(0, 1.0f, -2.0f, 0, 0, 0);
+		TellCameraData::AddCamera(m_camera->GetCameraData());
+		/*Object* obj = new Object;
 		auto camera = obj->AddComponent<Camera>();
 		camera->SetCameraNumber(CAMERA_NUMBER::CAMERA_0);
 		camera->SetCameraPositionGaze(0, 1.0f, -2.0f, 0, 0, 0);
 		TellCameraData::AddCamera(camera->GetCameraData());
-		m_objectList.emplace_back(obj);
+		m_objectList.emplace_back(obj);*/
 	}
 }
 
 void TitleScene::InitStaticMesh()
 {
-	{
+	/*{
 		Object* obj = new Object;
 		auto transform = obj->AddComponent<Transform>();
 		auto staticMesh = obj->AddComponent<StaticMesh>();
@@ -194,11 +204,11 @@ void TitleScene::InitStaticMesh()
 			MessageBox(0, "StaticMesh初期化失敗", NULL, MB_OK);
 		}
 		m_objectList.emplace_back(obj);
-	}
+	}*/
 }
 void TitleScene::InitHierarchyMesh()
 {
-	{
+	/*{
 		Object* obj = new Object;
 		auto transform = obj->AddComponent<Transform>();
 		transform->position.x = -0.5;
@@ -223,11 +233,11 @@ void TitleScene::InitHierarchyMesh()
 			MessageBox(0, "HierarchyMesh初期化失敗", NULL, MB_OK);
 		}
 		m_objectList.emplace_back(obj);
-	}
+	}*/
 }
 void TitleScene::InitSkinMesh()
 {
-	{
+	/*{
 		Object* obj = new Object;
 		auto transform = obj->AddComponent<Transform>();
 		transform->position.x = 0.5;
@@ -237,7 +247,7 @@ void TitleScene::InitSkinMesh()
 			MessageBox(0, "SkinMesh初期化失敗", NULL, MB_OK);
 		}
 		m_objectList.emplace_back(obj);
-	}
+	}*/
 }
 
 void TitleScene::InitUI()
@@ -247,19 +257,23 @@ void TitleScene::InitUI()
 		File::FileData data;
 		data = File::LoadFile("OutputData/UI0.txt");
 
-		Object* obj = new Object;
+		m_image = new Image();
+		m_image->SetPos(Vector3D(data.posX, data.posY, 0.0f));
+		m_image->SetRotate(Vector3D(0.0f,0.0f,data.rotateZ));
+		m_image->Init(Vector3D(data.posX, data.posY, 0), Vector3D(160, 151, 0), "Resource/0.png", true, 0);
+		/*Object* obj = new Object;
 		auto transform = obj->AddComponent<Transform>();
 		transform->scale.x = data.scaleX;
 		transform->scale.y = data.scaleY;
 		transform->rotation.z = data.rotateZ;
 		auto ui = obj->AddComponent<Image>();
 		ui->Init(Vector3D(data.posX, data.posY, 0), Vector3D(160, 151, 0), "Resource/0.png", true, 0);
-		m_objectList.emplace_back(obj);
+		m_objectList.emplace_back(obj);*/
 	}
 
 	// UI1
 	{
-		File::FileData data;
+		/*File::FileData data;
 		data = File::LoadFile("OutputData/UI1.txt");
 
 		Object* obj = new Object;
@@ -269,6 +283,6 @@ void TitleScene::InitUI()
 		transform->rotation.z = data.rotateZ;
 		auto ui = obj->AddComponent<Image>();
 		ui->Init(Vector3D(data.posX, data.posY, 0), Vector3D(32, 32, 0), "Resource/VisualStudio 2022.png", true, 1);
-		m_objectList.emplace_back(obj);
+		m_objectList.emplace_back(obj);*/
 	}
 }

@@ -23,7 +23,7 @@ TinyObjTestScene::TinyObjTestScene()
 	: m_pObjMesh(nullptr)
 {
 	m_pObjMesh = new ObjMesh();
-	if (FAILED(m_pObjMesh->Init(Direct3D11::GetDevice(), Direct3D11::GetDeviceContext(), "cottage_obj.obj")))
+	if (FAILED(m_pObjMesh->Init(Direct3D11::GetDevice(), Direct3D11::GetDeviceContext(), "default.obj")))
 	{
 		MessageBox(0, "ObjMesh‰Šú‰»¸”s", NULL, MB_OK);
 		return;

@@ -10,6 +10,8 @@
 #pragma once
 #include "Scene/Scene.h"
 
+class Image;
+class Camera;
 
 /**
 * @class TitleScene
@@ -46,8 +48,11 @@ public:
 
 private:
 #ifdef _DEBUG
-	bool ImageImGuiConfig(Object** pObj, const char* windowName, const char* fileName, const int ID);
+	bool ImageImGuiConfig(Image*& pImage, const char* windowName, const char* fileName, const int ID);
 #endif // _DEBUG
+
+	Image* m_image;
+	Camera* m_camera;
 
 	void InitCamera();
 	void InitStaticMesh();

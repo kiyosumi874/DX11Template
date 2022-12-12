@@ -7,14 +7,10 @@
 
 // ヘッダーファイルのインクルード
 #pragma once
-#include "Game/Component/Component.h"
-#include "Game/Component/Transform/Transform.h"
-#include "System/Math/Math.h"
+#include "System/Transform.h"
 #include <D3D11.h>
 #include <D3DX10.h>
 
-// using宣言
-using math::Vector3D;
 
 /**
 * @struct ImageShaderConstBuffer
@@ -42,14 +38,20 @@ struct ImageVertex
 * @class Image
 * @brief Imageクラス
 */
-class Image : public Component
+class Image
 {
 public:
 	/**
-	* @fn Start
+	* @fn コンストラクタ
 	* @brief 生成したときに最初に一回だけ走る関数
 	*/
-	void Start() override;
+	Image();
+
+	/**
+	* @fn デストラクタ
+	* @brief 終了処理
+	*/
+	~Image();
 
 	/**
 	* @fn Update
@@ -63,11 +65,7 @@ public:
 	*/
 	void Draw();
 
-	/**
-	* @fn Terminate
-	* @brief 終了処理
-	*/
-	void Terminate() override;
+	
 
 	/**
 	* @fn Init
@@ -84,7 +82,40 @@ public:
 		return m_ID;
 	}
 
+	// getter
+	const Vector3D& GetPos() const
+	{
+		return m_transform->GetPos();
+	}
+
+	const Vector3D& GetRotate() const
+	{
+		return m_transform->GetRotate();
+	}
+
+	const Vector3D& GetScale() const
+	{
+		return m_transform->GetScale();
+	}
+
+	// setter
+	void SetPos(const Vector3D& pos)
+	{
+		m_transform->SetPos(pos);
+	}
+
+	void SetRotate(const Vector3D& rotate)
+	{
+		m_transform->SetPos(rotate);
+	}
+
+	void SetScale(const Vector3D& scale)
+	{
+		m_transform->SetPos(scale);
+	}
+
 private:
+	Transform* m_transform;
 	bool m_isAlpha; // アルファブレンディングが有効か？trueで有効
 	int m_ID;
 	ID3D11InputLayout* m_pInputLayout; // インプットレイアウト

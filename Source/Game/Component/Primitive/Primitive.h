@@ -9,10 +9,8 @@
 #pragma once
 #include <D3D11.h>
 #include "Game/Component/Component.h"
-#include "System/Math/Math.h"
+#include "System/Vector3D.h"
 
-// usingéŒ¾
-using math::Vector3D;
 
 class Transform;
 

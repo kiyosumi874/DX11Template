@@ -10,7 +10,7 @@
 #include "D3D11/Direct3D11.h"
 #include "D3D9/Direct3D9.h"
 #include "Game/Component/Object.h"
-#include "Game/Component/Transform/Transform.h"
+#include "System/Transform.h"
 #include <Game/Camera/CameraStruct.h>
 #include <Game/Camera/TellCameraData.h>
 

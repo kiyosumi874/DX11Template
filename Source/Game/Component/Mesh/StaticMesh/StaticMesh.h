@@ -10,12 +10,11 @@
 #include <d3dx9.h>
 #include <d3d11.h>
 #include "Game/Component/Component.h"
-#include "Game/Component/Transform/Transform.h"
+#include "System/Transform.h"
 #include "System/Common.h"
 #include <vector>
 
 // usingêÈåæ
-using math::Vector3D;
 using std::vector;
 
 struct ConstantBuffer0

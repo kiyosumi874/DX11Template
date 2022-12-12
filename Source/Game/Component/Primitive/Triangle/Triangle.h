@@ -7,11 +7,8 @@
 
 // ヘッダーファイルのインクルード
 #pragma once
-#include "System/Math/Math.h"
 #include "Game/Component/Primitive/Primitive.h"
-
-// using宣言
-using math::Vector3D;
+#include "System/Vector3D.h"
 
 /**
 * @class Triangle

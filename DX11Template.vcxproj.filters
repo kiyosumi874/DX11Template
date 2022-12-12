@@ -62,9 +62,6 @@
     <Filter Include="Source\Game\Component\Primitive\Shader">
       <UniqueIdentifier>{616e8862-8ebc-4338-ab67-72323f0375f7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Game\Component\Transform">
-      <UniqueIdentifier>{bad79055-435c-4f1c-a927-38820eae62e3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Game\Component\Primitive\Line">
       <UniqueIdentifier>{93825597-ebff-4ef6-94dd-2633fbbdb9a0}</UniqueIdentifier>
     </Filter>
@@ -106,6 +103,9 @@
     </Filter>
     <Filter Include="Source\Game\Component\Mesh\ObjMesh">
       <UniqueIdentifier>{c712f38f-276a-41d9-b2ec-0e22ce02a82f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Game\UI">
+      <UniqueIdentifier>{10495560-ab16-4195-a707-d90f991c4425}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -279,9 +279,6 @@
     <ClInclude Include="Source\Game\Component\Primitive\Point\Point.h">
       <Filter>Source\Game\Component\Primitive\Point</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Component\Transform\Transform.h">
-      <Filter>Source\Game\Component\Transform</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Game\Component\Primitive\Line\Line.h">
       <Filter>Source\Game\Component\Primitive\Line</Filter>
     </ClInclude>
@@ -346,6 +343,9 @@
       <Filter>Source\Game\Component\Mesh\ObjMesh</Filter>
     </ClInclude>
     <ClInclude Include="Source\System\Vector3D.h">
+      <Filter>Source\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\System\Transform.h">
       <Filter>Source\System</Filter>
     </ClInclude>
   </ItemGroup>

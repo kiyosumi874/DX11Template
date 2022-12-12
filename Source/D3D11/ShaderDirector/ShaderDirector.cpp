@@ -10,12 +10,9 @@
 #include "ShaderDirector.h"
 #include "System/Common.h"
 #include <cassert>
-#include "System/Math/Math.h"
+#include "System/Vector3D.h"
 
 
-
-// usingéŒ¾
-using math::Vector3D;
 
 // ƒNƒ‰ƒX‚ÌÃ“I•Ï”‚Ì‰Šú‰»
 ShaderDirector* ShaderDirector::m_this = nullptr;

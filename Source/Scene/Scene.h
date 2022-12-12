@@ -7,16 +7,11 @@
 
 // 多重インクルード防止
 #pragma once
-#include <list>
-#include "Game/Component/Object.h"
-
-// using宣言
-using std::list;
 
 /**
-	* @enum TAG_SCENE
-	* @brief シーンの種類
-	*/
+* @enum TAG_SCENE
+* @brief シーンの種類
+*/
 enum class TAG_SCENE
 {
 	TITLE,
@@ -48,14 +43,6 @@ public:
 	*/
 	virtual ~Scene()
 	{
-		if (!m_objectList.empty())
-		{
-			for (auto obj : m_objectList)
-			{
-				delete obj;
-			}
-			m_objectList.clear();
-		}
 	}
 
 	/**
@@ -70,7 +57,4 @@ public:
 	* @brief 描画(純粋仮想関数)
 	*/
 	virtual void Draw() = 0;
-protected:
-
-	list<Object*> m_objectList; // オブジェクトリスト
 };

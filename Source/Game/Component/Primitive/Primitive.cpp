@@ -5,7 +5,8 @@
 #include "D3D11/ShaderDirector/ShaderDirector.h"
 #include "Game/Camera/TellCameraData.h"
 #include "Game/Component/Object.h"
-#include "Game/Component/Transform/Transform.h"
+#include "System/Transform.h"
+
 
 
 Primitive::Primitive()

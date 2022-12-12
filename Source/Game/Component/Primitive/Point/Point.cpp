@@ -9,7 +9,7 @@
 #include "Point.h"
 #include "D3D11/Direct3D11.h"
 #include "D3D11/ShaderDirector/ShaderDirector.h"
-#include "Game/Component/Transform/Transform.h"
+#include "System/Transform.h"
 #include "Game/Component/Object.h"
 
 /**

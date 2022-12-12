@@ -10,7 +10,6 @@
 #include "Game/Component/Object.h"
 #include "D3D11/ShaderDirector/ShaderDirector.h"
 #include "System/Common.h"
-#include "Game/Component/Transform/Transform.h"
 
 // using宣言
 using D3D11::CreateVertexBuffer;
@@ -20,8 +19,24 @@ using D3D11::CreateInputLayout;
 using D3D11::CreatePixelShader;
 using D3D11::CreateConstantBuffer;
 
-void Image::Start()
+
+Image::Image()
 {
+	m_transform = new Transform();
+}
+
+Image::~Image()
+{
+	// 包含クラス
+	SAFE_DELETE(m_transform);
+
+	SAFE_RELEASE(m_pInputLayout);
+	SAFE_RELEASE(m_pVertexShader);
+	SAFE_RELEASE(m_pPixelShader);
+	SAFE_RELEASE(m_pConstantBuffer);
+	SAFE_RELEASE(m_pVertexBuffer);
+	SAFE_RELEASE(m_pSampler);
+	SAFE_RELEASE(m_pTexture);
 }
 
 void Image::Update()
@@ -73,7 +88,6 @@ void Image::Draw()
 
 		// アフィン変換
 		{
-			auto transform = m_parent->GetComponent<Transform>();
 
 			D3DXMATRIX scale;
 			D3DXMATRIX rotate;
@@ -81,9 +95,9 @@ void Image::Draw()
 
 			D3DXMatrixIdentity(&world); // 行列の初期化
 
-			D3DXMatrixScaling(&scale, transform->scale.x, transform->scale.y, transform->scale.z);
-			D3DXMatrixRotationYawPitchRoll(&rotate, transform->rotation.y, transform->rotation.x, transform->rotation.z);
-			D3DXMatrixTranslation(&pos, transform->position.x, transform->position.y, transform->position.z);
+			D3DXMatrixScaling(&scale, m_transform->GetScale().x, m_transform->GetScale().y, m_transform->GetScale().z);
+			D3DXMatrixRotationYawPitchRoll(&rotate, m_transform->GetRotate().y, m_transform->GetRotate().x, m_transform->GetRotate().z);
+			D3DXMatrixTranslation(&pos, m_transform->GetPos().x, m_transform->GetPos().y, m_transform->GetPos().z);
 
 			// DirectXは行優先なのでScaleから乗算
 			D3DXMatrixMultiply(&world, &world, &scale);
@@ -113,16 +127,6 @@ void Image::Draw()
 
 }
 
-void Image::Terminate()
-{
-	SAFE_RELEASE(m_pInputLayout);
-	SAFE_RELEASE(m_pVertexShader);
-	SAFE_RELEASE(m_pPixelShader);
-	SAFE_RELEASE(m_pConstantBuffer);
-	SAFE_RELEASE(m_pVertexBuffer);
-	SAFE_RELEASE(m_pSampler);
-	SAFE_RELEASE(m_pTexture);
-}
 
 /**
 * @fn Init
@@ -136,7 +140,7 @@ void Image::Init(const Vector3D& centerPos, const Vector3D& size, const char* te
 {
 	m_isAlpha = isAlpha;
 	m_ID = ID;
-	m_parent->GetComponent<Transform>()->position = centerPos;
+	m_transform->SetPos(centerPos);
 	/*auto posX = m_parent->GetComponent<Transform>()->position.x = pos1.x;
 	auto posY = m_parent->GetComponent<Transform>()->position.y = pos1.y;*/
 	//気をつけること。z値を１以上にしない。クリップ空間でz=1は最も奥を意味する。したがって描画されない。
