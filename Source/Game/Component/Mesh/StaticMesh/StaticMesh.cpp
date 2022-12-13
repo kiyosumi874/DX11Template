@@ -28,8 +28,6 @@ void StaticMesh::Start()
 
 void StaticMesh::Update()
 {
-	auto transform = m_parent->GetComponent<Transform>();
-	transform->rotation.y += 0.01f;
 }
 
 void StaticMesh::Draw()
@@ -182,6 +180,7 @@ HRESULT StaticMesh::Init(const char* fileName)
 	if (FAILED(FetchMaterial()))
 	{
 		SAFE_RELEASE(m_pD3DXMtrlBuffer);
+		MSG("FetchMaterial");
 		return E_FAIL;
 	}
 	SAFE_RELEASE(m_pD3DXMtrlBuffer); // もう使わん
@@ -189,18 +188,21 @@ HRESULT StaticMesh::Init(const char* fileName)
 	// インデックスバッファー作成
 	if (FAILED(CreateIndexBuffer()))
 	{
+		MSG("CreateIndexBuffer");
 		return E_FAIL;
 	}
 
 	// バーテックスバッファー作成
 	if (FAILED(CreateVertexBuffer()))
 	{
+		MSG("CreateVertexBuffer");
 		return E_FAIL;
 	}
 
 	//テクスチャー用サンプラー作成
 	if (FAILED(CreateSampler()))
 	{
+		MSG("CreateSampler");
 		return E_FAIL;
 	}
 

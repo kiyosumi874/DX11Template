@@ -1,15 +1,15 @@
 /**
 * @file TitleScene.cpp
-* @brief ƒ^ƒCƒgƒ‹ƒV[ƒ“
-* @details Scene‚ğŒp³‚µ‚Ä‚¢‚é
+* @brief ã‚¿ã‚¤ãƒˆãƒ«ã‚·ãƒ¼ãƒ³
+* @details Sceneã‚’ç¶™æ‰¿ã—ã¦ã„ã‚‹
 * @author shiihara_kiyosumi
 * @date 2022_08_02
 */
 
-// ƒ}ƒNƒ’è‹`
-#define NOMINMAX // max‚Æmin‚ÌƒGƒ‰[‰ñ”ğ
+// ãƒã‚¯ãƒ­å®šç¾©
+#define NOMINMAX // maxã¨minã®ã‚¨ãƒ©ãƒ¼å›é¿
 
-// ƒwƒbƒ_[ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 #include "TitleScene.h"
 #include <Windows.h>
 #include "System/Input/Input.h"
@@ -30,7 +30,7 @@
 #include "Game/Component/Mesh/SkinMesh/SkinMesh.h"
 
 #ifdef _DEBUG
-// ImGui‚Ì‚½‚ß‚ÌÃ“I•Ï”
+// ImGuiã®ãŸã‚ã®é™çš„å¤‰æ•°
 const int g_elementNum = 2;
 int g_saveButtonCounter[g_elementNum] = {0};
 #endif // _DEBUG
@@ -38,33 +38,19 @@ int g_saveButtonCounter[g_elementNum] = {0};
 
 /**
 * @fn TitleScene
-* @brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+* @brief ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 */
 TitleScene::TitleScene()
 {
 	ShaderDirector::CreateShader(SHADER_KIND::PRIMITIVE);
 	ShaderDirector::CreateShader(SHADER_KIND::PRIMITIVE2D);
 
-	// camera
-	//InitCamera();
-
-	// HierarchyMesh
-	//InitHierarchyMesh();
-
-	// StaticMesh
-	//InitStaticMesh();
-
-	// SkinMesh
-	//InitSkinMesh();
-
-	// UI
-	InitUI();
-	
+	InitObject();
 }
 
 /**
 * @fn ~TitleScene
-* @brief ƒfƒXƒgƒ‰ƒNƒ^
+* @brief ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 */
 TitleScene::~TitleScene()
 {
@@ -74,33 +60,32 @@ TitleScene::~TitleScene()
 
 /**
 * @fn Update
-* @brief XV
-* @return TAG_SCENE ƒV[ƒ“‚Ìí—Ş
+* @brief æ›´æ–°
+* @return TAG_SCENE ã‚·ãƒ¼ãƒ³ã®ç¨®é¡
 */
 TAG_SCENE TitleScene::Update()
 {
 	if (Input::IsDown(BUTTON_ID_START))
 	{
-		// PlayScene‚ÉØ‚è‘Ö‚í‚é
+		// PlaySceneã«åˆ‡ã‚Šæ›¿ã‚ã‚‹
 		return TAG_SCENE::TEST;
 	}
 
-#ifdef _DEBUG
-	// ImGui‚Ì"SaveComplete!!"‚Ì•\¦‚·‚éŠÔ‚ÌŠÇ—
-	for (int i = 0; i < g_elementNum; i++)
-	{
-		if (g_saveButtonCounter[i] > 0)
-		{
-			if (++g_saveButtonCounter[i] > 90)
-			{
-				g_saveButtonCounter[i] = 0;
-			}
-		}
-	}
-#endif // _DEBUG
+//	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ›´æ–°
+//	for (auto obj : m_objectList)
+//	{
+//#ifdef _DEBUG
+//		if (obj->GetComponent<Image>() != nullptr)
+//		{
+//			ImageImGuiConfig(&obj, "UI0", "OutputData/UI0.txt", 0);
+//			ImageImGuiConfig(&obj, "UI1", "OutputData/UI1.txt", 1);
+//		}
+//#endif // _DEBUG
+//		obj->Update();
+//	}
 
 	m_image->Update();
-	// ƒIƒuƒWƒFƒNƒg‚ÌXV
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ›´æ–°
 //	for (auto obj : m_objectList)
 //	{
 //#ifdef _DEBUG
@@ -117,18 +102,17 @@ TAG_SCENE TitleScene::Update()
 	ImageImGuiConfig(m_image, "UI0", "OutputData/UI0.txt", 0);
 #endif // _DEBUG
 
-
-	// ƒ‹[ƒv‚ª‘±‚­
+	// ãƒ«ãƒ¼ãƒ—ãŒç¶šã
 	return TAG_SCENE::NONE;
 }
 
 /**
 * @fn Draw
-* @brief •`‰æ
+* @brief æç”»
 */
 void TitleScene::Draw()
 {
-	// ƒIƒuƒWƒFƒNƒg‚Ì•`‰æ
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æç”»
 	/*for (auto& obj : m_objectList)
 	{
 		obj->Draw();
@@ -140,7 +124,7 @@ void TitleScene::Draw()
 #ifdef _DEBUG
 bool TitleScene::ImageImGuiConfig(Image*& pImage, const char* windowName, const char* fileName, const int ID)
 {
-	// usingéŒ¾
+	// usingå®£è¨€
 	using ImGui::Begin; using ImGui::End; using ImGui::DragFloat;using ImGui::SliderFloat;
 	using ImGui::Button; using ImGui::SameLine; using ImGui::Text;
 
@@ -175,6 +159,37 @@ bool TitleScene::ImageImGuiConfig(Image*& pImage, const char* windowName, const 
 	}
 	return false;
 }
+void scene::TitleScene::InitObject()
+{
+	InitCamera();
+	InitSkyDome();
+	InitStaticMesh();
+}
+void scene::TitleScene::UpdateObject()
+{
+	for (auto& obj : m_objectList)
+	{
+		obj->Update();
+	}
+}
+void scene::TitleScene::DrawObject()
+{
+	for (auto& obj : m_objectList)
+	{
+		obj->Draw();
+	}
+}
+void scene::TitleScene::InitSkyDome()
+{
+	Object* obj = new Object;
+	auto transform = obj->AddComponent<Transform>();
+	auto staticMesh = obj->AddComponent<StaticMesh>();
+	if (FAILED(staticMesh->Init("model/Skydome_T2/Dome_T202.x")))
+	{
+		MessageBox(0, "InitSkyDomeåˆæœŸåŒ–å¤±æ•—", NULL, MB_OK);
+	}
+	m_objectList.emplace_back(obj);
+}
 #endif // _DEBUG
 
 void TitleScene::InitCamera()
@@ -201,7 +216,7 @@ void TitleScene::InitStaticMesh()
 		auto staticMesh = obj->AddComponent<StaticMesh>();
 		if (FAILED(staticMesh->Init("model/RobotA_pivot.x")))
 		{
-			MessageBox(0, "StaticMesh‰Šú‰»¸”s", NULL, MB_OK);
+			MessageBox(0, "StaticMeshåˆæœŸåŒ–å¤±æ•—", NULL, MB_OK);
 		}
 		m_objectList.emplace_back(obj);
 	}*/
@@ -217,7 +232,7 @@ void TitleScene::InitHierarchyMesh()
 		auto staticMesh = obj->AddComponent<HierarchyMesh>();
 		if (FAILED(staticMesh->Init("model/RobotA_1motion_2truck.x")))
 		{
-			MessageBox(0, "HierarchyMesh‰Šú‰»¸”s", NULL, MB_OK);
+			MessageBox(0, "HierarchyMeshåˆæœŸåŒ–å¤±æ•—", NULL, MB_OK);
 		}
 		m_objectList.emplace_back(obj);
 	}
@@ -230,7 +245,7 @@ void TitleScene::InitHierarchyMesh()
 		auto staticMesh = obj->AddComponent<HierarchyMesh>();
 		if (FAILED(staticMesh->Init("model/Josh_Motion_Wakeup.x")))
 		{
-			MessageBox(0, "HierarchyMesh‰Šú‰»¸”s", NULL, MB_OK);
+			MessageBox(0, "HierarchyMeshåˆæœŸåŒ–å¤±æ•—", NULL, MB_OK);
 		}
 		m_objectList.emplace_back(obj);
 	}*/
@@ -244,7 +259,7 @@ void TitleScene::InitSkinMesh()
 		auto skinMesh = obj->AddComponent<SkinMesh>();
 		if (FAILED(skinMesh->Init("model/Hand_animation_1motion_2truck.x")))
 		{
-			MessageBox(0, "SkinMesh‰Šú‰»¸”s", NULL, MB_OK);
+			MessageBox(0, "SkinMeshåˆæœŸåŒ–å¤±æ•—", NULL, MB_OK);
 		}
 		m_objectList.emplace_back(obj);
 	}*/

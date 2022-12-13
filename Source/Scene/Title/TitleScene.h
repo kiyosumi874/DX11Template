@@ -1,12 +1,12 @@
 /**
 * @file TitleScene.h
-* @brief ƒ^ƒCƒgƒ‹ƒV[ƒ“
-* @details Scene‚ğŒp³‚µ‚Ä‚¢‚é
+* @brief ã‚¿ã‚¤ãƒˆãƒ«ã‚·ãƒ¼ãƒ³
+* @details Sceneã‚’ç¶™æ‰¿ã—ã¦ã„ã‚‹
 * @author shiihara_kiyosumi
 * @date 2022_08_02
 */
 
-// ƒwƒbƒ_[ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh
+// ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 #pragma once
 #include "Scene/Scene.h"
 
@@ -15,34 +15,34 @@ class Camera;
 
 /**
 * @class TitleScene
-* @brief TitleSceneƒNƒ‰ƒX
-* @details Scene‚ğŒp³‚µ‚Ä‚¢‚é
+* @brief TitleSceneã‚¯ãƒ©ã‚¹
+* @details Sceneã‚’ç¶™æ‰¿ã—ã¦ã„ã‚‹
 */
 class TitleScene : public Scene
 {
 public:
 	/**
 	* @fn TitleScene
-	* @brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	* @brief ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*/
 	TitleScene();
 
 	/**
 	* @fn ~TitleScene
-	* @brief ƒfƒXƒgƒ‰ƒNƒ^
+	* @brief ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*/
 	~TitleScene() override;
 
 	/**
 	* @fn Update
-	* @brief XV
-	* @return TAG_SCENE ƒV[ƒ“‚Ìí—Ş
+	* @brief æ›´æ–°
+	* @return TAG_SCENE ã‚·ãƒ¼ãƒ³ã®ç¨®é¡
 	*/
 	TAG_SCENE Update() override;
 
 	/**
 	* @fn Draw
-	* @brief •`‰æ
+	* @brief æç”»
 	*/
 	void Draw() override;
 
