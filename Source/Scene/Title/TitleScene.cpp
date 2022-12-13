@@ -155,9 +155,9 @@ bool TitleScene::ImageImGuiConfig(Image*& pImage, const char* windowName, const 
 		DragFloat("scaleX", &scale.x, 0.005f, 0.0f, 10.0f);
 		DragFloat("scaleY", &scale.y, 0.005f, 0.0f, 10.0f);
 		DragFloat("rotateZ", &rotate.z, 0.005f, 0.0f, 360.0f * D3DX_PI / 180.0f);
-		/*pImage->SetPos(pos);
+		pImage->SetPos(pos);
 		pImage->SetRotate(rotate);
-		pImage->SetScale(scale);*/
+		pImage->SetScale(scale);
 
 		if (Button("Save"))
 		{

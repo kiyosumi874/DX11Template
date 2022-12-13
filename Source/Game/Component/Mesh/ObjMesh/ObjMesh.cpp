@@ -1,4 +1,9 @@
 #include "ObjMesh.h"
+#include <D3D11/Direct3D11.h>
+#include <D3D11/ShaderDirector/ShaderDirector.h>
+#include <System/Transform.h>
+#include <Game/Camera/CameraStruct.h>
+#include <Game/Camera/TellCameraData.h>
 
 //
 //
@@ -511,4 +516,121 @@ void ObjMesh::Render(D3DXMATRIX& mView,D3DXMATRIX& mProj,
 		m_pDeviceContext->DrawIndexed(m_pMaterial[i].dwNumFace*3 , 0 ,0);
 	}
 
+}
+
+void ObjMesh::Draw(const Transform& transform)
+{
+	UINT mask = 0xffffffff;
+	Direct3D11::GetDeviceContext()->OMSetBlendState(NULL, NULL, mask);
+
+	
+
+	//使用するシェーダーのセット
+	Direct3D11::GetDeviceContext()->VSSetShader(m_pVertexShader, NULL, 0);
+	Direct3D11::GetDeviceContext()->PSSetShader(m_pPixelShader, NULL, 0);
+
+	D3DXMATRIX world;
+
+	// アフィン変換
+	{
+		D3DXMATRIX scale;
+		D3DXMATRIX rotate;
+		D3DXMATRIX pos;
+
+		D3DXMatrixIdentity(&world); // 行列の初期化
+
+		D3DXMatrixScaling(&scale, transform.GetScale().x, transform.GetScale().y, transform.GetScale().z);
+		D3DXMatrixRotationYawPitchRoll(&rotate, transform.GetRotate().y, transform.GetRotate().x, transform.GetRotate().z);
+		D3DXMatrixTranslation(&pos, transform.GetPos().x, transform.GetPos().y, transform.GetPos().z);
+
+		// DirectXは行優先なのでScaleから乗算
+		D3DXMatrixMultiply(&world, &world, &scale);
+		D3DXMatrixMultiply(&world, &world, &rotate);
+		D3DXMatrixMultiply(&world, &world, &pos);
+	}
+
+	CameraData data;
+	ZeroMemory(&data, sizeof(CameraData));
+	bool isSuccess = TellCameraData::GetCameraData(&data, CAMERA_NUMBER::CAMERA_0);
+
+	if (!isSuccess)
+	{
+		// エラーメッセージ
+		MyOutputDebugString("カメラ取得失敗");
+	}
+
+	//シェーダーのコンスタントバッファーに各種データを渡す
+	D3D11_MAPPED_SUBRESOURCE pData;
+	if (SUCCEEDED(Direct3D11::GetDeviceContext()->Map(m_pConstantBuffer0, 0, D3D11_MAP_WRITE_DISCARD, 0, &pData)))
+	{
+		SIMPLECONSTANT_BUFFER0 sg;
+		//ワールド行列を渡す
+		sg.mW = world;
+		D3DXMatrixTranspose(&sg.mW, &sg.mW);
+		//ワールド、カメラ、射影行列を渡す
+		sg.mWVP = world * data.matrixView * data.matrixProj;
+		D3DXMatrixTranspose(&sg.mWVP, &sg.mWVP);
+		//ライトの方向を渡す
+		auto vLight = D3DXVECTOR3(1, 1, -1);
+		sg.vLightDir = D3DXVECTOR4(vLight.x, vLight.y, vLight.z, 0.0f);
+		//視点位置を渡す
+		sg.vEye = D3DXVECTOR4(data.pos.x, data.pos.y, data.pos.z, 0);
+
+		memcpy_s(pData.pData, pData.RowPitch, (void*)&sg, sizeof(SIMPLECONSTANT_BUFFER0));
+		m_pDeviceContext->Unmap(m_pConstantBuffer0, 0);
+	}
+	//このコンスタントバッファーをどのシェーダーで使うか
+	Direct3D11::GetDeviceContext()->VSSetConstantBuffers(0, 1, &m_pConstantBuffer0);
+	Direct3D11::GetDeviceContext()->PSSetConstantBuffers(0, 1, &m_pConstantBuffer0);
+	//頂点インプットレイアウトをセット
+	Direct3D11::GetDeviceContext()->IASetInputLayout(m_pVertexLayout);
+
+	//プリミティブ・トポロジーをセット
+	Direct3D11::GetDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+
+	//バーテックスバッファーをセット
+	UINT stride = sizeof(MY_VERTEX);
+	UINT offset = 0;
+	m_pDeviceContext->IASetVertexBuffers(0, 1, &m_pVertexBuffer, &stride, &offset);
+
+	//マテリアルの数だけ、それぞれのマテリアルのインデックスバッファ－を描画
+	for (DWORD i = 0; i < m_dwNumMaterial; i++)
+	{
+		//使用されていないマテリアル対策
+		if (m_pMaterial[i].dwNumFace == 0)
+		{
+			continue;
+		}
+		//インデックスバッファーをセット
+		stride = sizeof(int);
+		offset = 0;
+		m_pDeviceContext->IASetIndexBuffer(m_ppIndexBuffer[i], DXGI_FORMAT_R32_UINT, 0);
+		//マテリアルの各要素をエフェクト（シェーダー）に渡す
+		D3D11_MAPPED_SUBRESOURCE pData;
+		if (SUCCEEDED(m_pDeviceContext->Map(m_pConstantBuffer1, 0, D3D11_MAP_WRITE_DISCARD, 0, &pData)))
+		{
+			SIMPLECONSTANT_BUFFER1 sg;
+			sg.vAmbient = m_pMaterial[i].Ka;//アンビエントををシェーダーに渡す
+			sg.vDiffuse = m_pMaterial[i].Kd;//ディフューズカラーをシェーダーに渡す
+			sg.vSpecular = m_pMaterial[i].Ks;//スペキュラーをシェーダーに渡す
+			memcpy_s(pData.pData, pData.RowPitch, (void*)&sg, sizeof(SIMPLECONSTANT_BUFFER1));
+			m_pDeviceContext->Unmap(m_pConstantBuffer1, 0);
+		}
+		m_pDeviceContext->VSSetConstantBuffers(1, 1, &m_pConstantBuffer1);
+		m_pDeviceContext->PSSetConstantBuffers(1, 1, &m_pConstantBuffer1);
+		//テクスチャーをシェーダーに渡す
+		if (m_pMaterial[i].szTextureName[0] != NULL)
+		{
+			m_pDeviceContext->PSSetSamplers(0, 1, &m_pSampleLinear);
+			m_pDeviceContext->PSSetShaderResources(0, 1, &m_pMaterial[i].pTexture);
+		}
+		else
+		{
+			ID3D11ShaderResourceView* Nothing[1] = { 0 };
+			m_pDeviceContext->PSSetShaderResources(0, 1, Nothing);
+		}
+		//プリミティブをレンダリング
+		m_pDeviceContext->DrawIndexed(m_pMaterial[i].dwNumFace * 3, 0, 0);
+	}
 }

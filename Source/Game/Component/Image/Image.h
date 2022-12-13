@@ -106,12 +106,12 @@ public:
 
 	void SetRotate(const Vector3D& rotate)
 	{
-		m_transform->SetPos(rotate);
+		m_transform->SetRotate(rotate);
 	}
 
 	void SetScale(const Vector3D& scale)
 	{
-		m_transform->SetPos(scale);
+		m_transform->SetScale(scale);
 	}
 
 private:

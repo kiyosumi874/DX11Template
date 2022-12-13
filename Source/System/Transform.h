@@ -24,6 +24,13 @@ public:
 		scale = Vector3D(1.0f, 1.0f, 1.0f);
 	}
 
+	Transform(const Vector3D& pos, const Vector3D& rot, const Vector3D& scale)
+	{
+		position = pos;
+		rotation = rot;
+		this->scale = scale;
+	}
+
 	// getter
 	const Vector3D& GetPos() const
 	{
