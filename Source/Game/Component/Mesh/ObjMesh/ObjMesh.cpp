@@ -4,7 +4,6 @@
 #include <System/Transform.h>
 #include <Game/Camera/CameraStruct.h>
 #include <Game/Camera/TellCameraData.h>
-
 //
 //
 //
@@ -192,9 +191,10 @@ HRESULT ObjMesh::LoadMaterialFromFile(LPCSTR FileName,MY_MATERIAL** ppMaterial)
 		//map_Kd　テクスチャー
 		if(strcmp(key,"map_Kd")==0)
 		{
-			fscanf_s(fp,"%s",&pMaterial[iMCount].szTextureName,sizeof(pMaterial[iMCount].szTextureName));	
+			fscanf_s(fp,"%s",&pMaterial[iMCount].szTextureName,sizeof(pMaterial[iMCount].szTextureName));
+			HRESULT hr;
 			//テクスチャーを作成
-			if(FAILED(D3DX11CreateShaderResourceViewFromFileA( m_pDevice, pMaterial[iMCount].szTextureName, NULL, NULL, &pMaterial[iMCount].pTexture, NULL )))
+			if(FAILED(D3DX11CreateShaderResourceViewFromFileA( m_pDevice, pMaterial[iMCount].szTextureName, NULL, NULL, &pMaterial[iMCount].pTexture, &hr)))
 			{
 				return E_FAIL;
 			}
