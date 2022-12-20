@@ -45,4 +45,6 @@ public:
 
 private:
 	class ObjMesh* m_pObjMesh;
+	class Camera* m_camera;
+
 };

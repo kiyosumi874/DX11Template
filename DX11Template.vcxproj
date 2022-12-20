@@ -91,6 +91,7 @@
     <ClCompile Include="Source\Scene\Title\TitleScene.cpp" />
     <ClCompile Include="Source\System\Director\Director.cpp" />
     <ClCompile Include="Source\System\Fps\Fps.cpp" />
+    <ClCompile Include="Source\System\ImguiWrapper.cpp" />
     <ClCompile Include="Source\System\Input\Input.cpp" />
     <ClCompile Include="Source\System\Vector3D.cpp" />
     <ClCompile Include="Source\System\Window\Window.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="Source\System\Director\Director.h" />
     <ClInclude Include="Source\System\File.h" />
     <ClInclude Include="Source\System\Fps\Fps.h" />
+    <ClInclude Include="Source\System\ImguiWrapper.h" />
     <ClInclude Include="Source\System\Input\Input.h" />
     <ClInclude Include="Source\System\Transform.h" />
     <ClInclude Include="Source\System\Vector3D.h" />

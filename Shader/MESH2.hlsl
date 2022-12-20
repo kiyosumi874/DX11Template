@@ -66,7 +66,7 @@ VS_OUTPUT VS( float4 Pos : POSITION ,float4 Norm : NORMAL,float2 Tex : TEXCOORD)
 float4 PS( VS_OUTPUT input ) : SV_Target
 {
 	float4 color=g_texColor.Sample( g_samLinear, input.Tex );
-	color+=input.Color/2;
+	color+=input.Color/3.0f;
 
 	return color;
 }

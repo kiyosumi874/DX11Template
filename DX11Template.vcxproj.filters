@@ -217,6 +217,9 @@
     <ClCompile Include="Source\System\Vector3D.cpp">
       <Filter>Source\System</Filter>
     </ClCompile>
+    <ClCompile Include="Source\System\ImguiWrapper.cpp">
+      <Filter>Source\System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\D3D11\Direct3D11.h">
@@ -346,6 +349,9 @@
       <Filter>Source\System</Filter>
     </ClInclude>
     <ClInclude Include="Source\System\Transform.h">
+      <Filter>Source\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\System\ImguiWrapper.h">
       <Filter>Source\System</Filter>
     </ClInclude>
   </ItemGroup>
