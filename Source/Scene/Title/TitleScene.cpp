@@ -60,6 +60,8 @@ TitleScene::TitleScene()
 	// UI
 	InitUI();
 	
+	setting = new ImguiWrapper::Setting<Image>();
+	setting->Init(*m_image, "Test", "test", ImguiWrapper::Mode::All);
 }
 
 /**
@@ -115,6 +117,7 @@ TAG_SCENE TitleScene::Update()
 
 #ifdef _DEBUG
 	ImageImGuiConfig(m_image, "UI0", "OutputData/UI0.txt", 0);
+	ImguiWrapper::Action<Image>(*setting);
 #endif // _DEBUG
 
 

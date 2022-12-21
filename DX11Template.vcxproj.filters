@@ -252,9 +252,6 @@
     <ClInclude Include="Source\Scene\Over\GameOverScene.h">
       <Filter>Source\Scene\Over</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Scene\Scene.h">
-      <Filter>Source\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Source\System\Input\Input.h">
       <Filter>Source\System\Input</Filter>
     </ClInclude>
@@ -352,6 +349,9 @@
       <Filter>Source\System</Filter>
     </ClInclude>
     <ClInclude Include="Source\System\ImguiWrapper.h">
+      <Filter>Source\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\Scene.h">
       <Filter>Source\System</Filter>
     </ClInclude>
   </ItemGroup>

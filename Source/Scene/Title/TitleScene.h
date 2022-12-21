@@ -9,6 +9,7 @@
 // ヘッダーファイルのインクルード
 #pragma once
 #include "Scene/Scene.h"
+#include "System/ImguiWrapper.h"
 
 class Image;
 class Camera;
@@ -53,7 +54,7 @@ private:
 
 	Image* m_image;
 	Camera* m_camera;
-
+	ImguiWrapper::Setting<Image>* setting;
 	void InitCamera();
 	void InitStaticMesh();
 	void InitHierarchyMesh();
