@@ -54,7 +54,7 @@ private:
 
 	Image* m_image;
 	Camera* m_camera;
-	ImguiWrapper::Setting<Image>* setting;
+	ImguiWrapper<Image>::Setting* setting;
 	void InitCamera();
 	void InitStaticMesh();
 	void InitHierarchyMesh();

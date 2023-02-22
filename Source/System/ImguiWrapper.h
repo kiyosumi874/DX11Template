@@ -1,6 +1,6 @@
 /**
 * @file ImguiWrapper.h
-* @brief Imguiの静的クラス template static mapの初期化バグを後回しにしています
+* @brief Imguiの静的クラス
 * @author shiihara_kiyosumi
 * @date 2022_12_20
 */
@@ -15,6 +15,7 @@
 * @class ImguiWrapper
 * @brief Imguiのまとめクラス
 */
+template <typename T>
 class ImguiWrapper
 {
 public:
@@ -35,7 +36,6 @@ public:
 	/**
 	* @struct Setting
 	*/
-	template <typename T>
 	class Setting
 	{
 	public:
@@ -67,15 +67,13 @@ public:
 		const char* windowName;
 		const char* fileName;
 		Mode mode;
-	private:
 		int id;
 		int saveButtonCounter;
 	};
 
-	template <typename T>
-	static void Action(Setting<T>& setting)
+	static void Action(Setting& setting)
 	{
-		funcs<T>[setting.mode](setting);
+		funcs[setting.mode](setting);
 	}
 
 
@@ -88,8 +86,7 @@ private:
 
 	static int idCount;
 
-	template <typename T>
-	static std::map<Mode, std::function<void(ImguiWrapper::Setting<T>&)>> funcs;
+	static std::map<Mode, std::function<void(ImguiWrapper::Setting&)>> funcs;
 
 	/*template <typename T>
 	static void AllMode(Setting<T>& setting);
@@ -100,8 +97,7 @@ private:
 	template <typename T>
 	static void PosMode(Setting<T>& setting);*/
 
-	template <typename T>
-	static void AllMode(Setting<T>& setting)
+	static void AllMode(Setting& setting)
 	{
 		using namespace ImGui;
 		Begin(setting.windowName);
@@ -132,20 +128,17 @@ private:
 		End();
 	}
 
-	template <typename T>
-	static void ScaleMode(Setting<T>& setting)
+	static void ScaleMode(Setting& setting)
 	{
 
 	}
 
-	template <typename T>
-	static void RotateMode(Setting<T>& setting)
+	static void RotateMode(Setting& setting)
 	{
 
 	}
 
-	template <typename T>
-	static void PosMode(Setting<T>& setting)
+	static void PosMode(Setting& setting)
 	{
 
 	}
