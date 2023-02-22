@@ -77,7 +77,7 @@ TitleScene::~TitleScene()
 {
 	TellCameraData::SubCamera(CAMERA_NUMBER::CAMERA_0);
 	SAFE_DELETE(image);
-	SAFE_DELETE(skinMesh);
+	//SAFE_DELETE(skinMesh);
 }
 
 /**
