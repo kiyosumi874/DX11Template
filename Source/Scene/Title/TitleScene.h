@@ -52,13 +52,13 @@ private:
 	bool ImageImGuiConfig(Image*& pImage, const char* windowName, const char* fileName, const int ID);
 #endif // _DEBUG
 
-	Image* m_image;
-	Camera* m_camera;
+	Image* image;
+	Camera* camera;
+	//SkinMesh* skinMesh;
 	ImguiWrapper<Image>::Setting* setting;
 	void InitCamera();
 	void InitStaticMesh();
 	void InitHierarchyMesh();
 	void InitSkinMesh();
 	void InitUI();
-
 };

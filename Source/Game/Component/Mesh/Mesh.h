@@ -127,9 +127,7 @@ public:
 	STDMETHOD(DestroyMeshContainer)(THIS_ LPD3DXMESHCONTAINER);
 };
 
-//
-//
-//
+
 class D3DXPARSER
 {
 public:

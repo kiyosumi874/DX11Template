@@ -8,38 +8,33 @@
 // ヘッダーファイルのインクルード
 #pragma once
 #include "Game/Component/Mesh/Mesh.h"
-#include "Game/Component/Component.h"
+#include "System/Transform.h"
 
 /**
 * @class SkinMesh
 * @brief ボーン付きのアニメーションできる
 */
-class SkinMesh : public Component
+class SkinMesh
 {
 public:
 	/**
-	* @fn Start
-	* @brief 最初に一度だけ行う処理
+	* @fn SkinMesh
+	* @breif コンストラクタ
 	*/
-	void Start()override;
+	SkinMesh();
 
 	/**
-	* @fn Terminate
-	* @brief 最後に一度だけ行う処理
+	* @fn ~SkinMesh
+	* @breif デストラクタ
 	*/
-	void Terminate()override;
-
-	/**
-	* @fn Update
-	* @brief 更新
-	*/
-	void Update()override;
+	~SkinMesh();
 
 	/**
 	* @fn Draw
-	* @brief 描画
+	* @breif 描画
+	* @param[in] transform 描画位置
 	*/
-	void Draw()override;
+	void Draw(const Transform& transform);
 
 	/**
 	* @fn Init

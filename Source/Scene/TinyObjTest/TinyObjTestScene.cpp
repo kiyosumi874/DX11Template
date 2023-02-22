@@ -23,15 +23,15 @@
 * @brief コンストラクタ
 */
 TinyObjTestScene::TinyObjTestScene()
-	: m_pObjMesh(nullptr)
+	: objMesh(nullptr)
 {
-	m_camera = new Camera();
-	m_camera->SetCameraNumber(CAMERA_NUMBER::CAMERA_0);
-	m_camera->SetCameraPositionGaze(0, 1.0f, -2.0f, 0, 0, 0);
-	TellCameraData::AddCamera(m_camera->GetCameraData());
+	camera = new Camera();
+	camera->SetCameraNumber(CAMERA_NUMBER::CAMERA_0);
+	camera->SetCameraPositionGaze(0, 1.0f, -2.0f, 0, 0, 0);
+	TellCameraData::AddCamera(camera->GetCameraData());
 
-	m_pObjMesh = new ObjMesh();
-	if (FAILED(m_pObjMesh->Init(Direct3D11::GetDevice(), Direct3D11::GetDeviceContext(), "model/CatGirl.obj")))
+	objMesh = new ObjMesh();
+	if (FAILED(objMesh->Init(Direct3D11::GetDevice(), Direct3D11::GetDeviceContext(), "model/CatGirl.obj")))
 	{
 		MessageBox(0, "ObjMesh初期化失敗", NULL, MB_OK);
 		return;
@@ -45,7 +45,7 @@ TinyObjTestScene::TinyObjTestScene()
 TinyObjTestScene::~TinyObjTestScene()
 {
 	TellCameraData::SubCamera(CAMERA_NUMBER::CAMERA_0);
-	SAFE_DELETE(m_pObjMesh);
+	SAFE_DELETE(objMesh);
 }
 
 /**
@@ -76,5 +76,5 @@ void TinyObjTestScene::Draw()
 	static float rot = 0.0f;
 	rot += 0.01f;
 	tran.SetRotate(Vector3D(0.0f, rot,0.0f));
-	m_pObjMesh->Draw(tran);
+	objMesh->Draw(tran);
 }

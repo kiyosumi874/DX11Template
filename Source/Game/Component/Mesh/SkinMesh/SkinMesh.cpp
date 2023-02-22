@@ -17,18 +17,18 @@
 #pragma warning(disable:4996)
 
 /**
-* @fn Start
-* @brief 最初に一度だけ行う処理
+* @fn SkinMesh
+* @breif コンストラクタ
 */
-void SkinMesh::Start()
+SkinMesh::SkinMesh()
 {
 }
 
 /**
-* @fn Terminate
-* @brief 最後に一度だけ行う処理
+* @fn ~SkinMesh
+* @breif デストラクタ
 */
-void SkinMesh::Terminate()
+SkinMesh::~SkinMesh()
 {
 	delete[] m_BoneArray;
 	delete[] m_pMaterial;
@@ -48,18 +48,11 @@ void SkinMesh::Terminate()
 }
 
 /**
-* @fn Update
-* @brief 更新
-*/
-void SkinMesh::Update()
-{
-}
-
-/**
 * @fn Draw
-* @brief 描画
+* @breif 描画
+* @param[in] transform 描画位置
 */
-void SkinMesh::Draw()
+void SkinMesh::Draw(const Transform& transform)
 {
 	const auto& devCon11 = Direct3D11::GetDeviceContext();
 
@@ -71,17 +64,15 @@ void SkinMesh::Draw()
 
 	// アフィン変換
 	{
-		auto transform = m_parent->GetComponent<Transform>();
-
 		D3DXMATRIX scale;
 		D3DXMATRIX rotate;
 		D3DXMATRIX pos;
 
 		D3DXMatrixIdentity(&world); // 行列の初期化
 
-		D3DXMatrixScaling(&scale, transform->scale.x, transform->scale.y, transform->scale.z);
-		D3DXMatrixRotationYawPitchRoll(&rotate, transform->rotation.y, transform->rotation.x, transform->rotation.z);
-		D3DXMatrixTranslation(&pos, transform->position.x, transform->position.y, transform->position.z);
+		D3DXMatrixScaling(&scale, transform.GetScale().x, transform.GetScale().y, transform.GetScale().z);
+		D3DXMatrixRotationYawPitchRoll(&rotate, transform.GetRotate().y, transform.GetRotate().x, transform.GetRotate().z);
+		D3DXMatrixTranslation(&pos, transform.GetPos().x, transform.GetPos().y, transform.GetPos().z);
 
 		// DirectXは行優先なのでScaleから乗算
 		D3DXMatrixMultiply(&world, &world, &scale);
@@ -89,7 +80,7 @@ void SkinMesh::Draw()
 		D3DXMatrixMultiply(&world, &world, &pos);
 	}
 
-	
+
 
 	// ボーンの情報をシェーダーに渡す
 	{
@@ -109,7 +100,7 @@ void SkinMesh::Draw()
 		devCon11->VSSetConstantBuffers(2, 1, &m_pConstantBufferBone);
 		devCon11->PSSetConstantBuffers(2, 1, &m_pConstantBufferBone);
 	}
-	
+
 
 	//バーテックスバッファーをセット（バーテックスバッファーは一つでいい）
 	UINT stride = sizeof(MY_SKINVERTEX);
@@ -146,7 +137,7 @@ void SkinMesh::Draw()
 		devCon11->VSSetConstantBuffers(0, 1, &m_pConstantBufferLight);
 		devCon11->PSSetConstantBuffers(0, 1, &m_pConstantBufferLight);
 	}
-	
+
 
 	//マテリアルの数だけ、それぞれのマテリアルのインデックスバッファ－を描画
 	for (int i = 0; i < m_dwNumMaterial; i++)
@@ -214,7 +205,7 @@ void SkinMesh::Draw()
 */
 HRESULT SkinMesh::Init(LPCSTR fileName)
 {
-	CreateFromX(fileName);
+	auto hr = CreateFromX(fileName);
 	//D3D11関連の初期化
 	ID3DBlob* pCompiledShader = NULL;
 	ID3DBlob* pErrors = NULL;

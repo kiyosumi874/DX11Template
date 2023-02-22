@@ -69,7 +69,7 @@ public:
 	HRESULT Init(ID3D11Device* pDevice, ID3D11DeviceContext* pContext, LPCSTR FileName);
 	HRESULT InitShader();
 	HRESULT LoadMaterialFromFile(LPCSTR FileName, MY_MATERIAL** ppMaterial);
-	void Render(D3DXMATRIX& mView, D3DXMATRIX& mProj, D3DXVECTOR3& vLight, D3DXVECTOR3& vEye);
+	//void Render(D3DXMATRIX& mView, D3DXMATRIX& mProj, D3DXVECTOR3& vLight, D3DXVECTOR3& vEye);
 	void Draw(const Transform& transform);
 
 	DWORD m_dwNumVert;
@@ -88,9 +88,9 @@ public:
 	ID3D11SamplerState* m_pSampleLinear;
 	ID3D11ShaderResourceView* m_pTexture;
 
-	D3DXVECTOR3 m_vPos;
+	/*D3DXVECTOR3 m_vPos;
 	float m_fYaw, m_fPitch, m_fRoll;
-	float m_fScale;
+	float m_fScale;*/
 
 private:
 	ID3D11Device* m_pDevice;

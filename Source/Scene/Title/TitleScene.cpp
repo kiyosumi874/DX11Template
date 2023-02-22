@@ -60,8 +60,13 @@ TitleScene::TitleScene()
 	// UI
 	InitUI();
 	
+	// GUI
 	setting = new ImguiWrapper<Image>::Setting();
-	setting->Init(*m_image, "Test", "test", ImguiWrapper<Image>::Mode::All);
+	setting->Init(*image, "Test", "test", ImguiWrapper<Image>::Mode::All);
+
+	// SkinMesh
+	/*skinMesh = new SkinMesh();
+	skinMesh->Init("model/Hand_animation_1motion_2truck.x");*/
 }
 
 /**
@@ -71,7 +76,8 @@ TitleScene::TitleScene()
 TitleScene::~TitleScene()
 {
 	TellCameraData::SubCamera(CAMERA_NUMBER::CAMERA_0);
-	SAFE_DELETE(m_image);
+	SAFE_DELETE(image);
+	SAFE_DELETE(skinMesh);
 }
 
 /**
@@ -88,39 +94,9 @@ TAG_SCENE TitleScene::Update()
 	}
 
 #ifdef _DEBUG
-	// ImGuiの"SaveComplete!!"の表示する時間の管理
-	for (int i = 0; i < g_elementNum; i++)
-	{
-		if (g_saveButtonCounter[i] > 0)
-		{
-			if (++g_saveButtonCounter[i] > 90)
-			{
-				g_saveButtonCounter[i] = 0;
-			}
-		}
-	}
-#endif // _DEBUG
-
-	m_image->Update();
-	// オブジェクトの更新
-//	for (auto obj : m_objectList)
-//	{
-//#ifdef _DEBUG
-//		if (obj->GetComponent<Image>() != nullptr)
-//		{
-//			ImageImGuiConfig(&obj, "UI0", "OutputData/UI0.txt", 0);
-//			ImageImGuiConfig(&obj, "UI1", "OutputData/UI1.txt", 1);
-//		}
-//#endif // _DEBUG
-//		obj->Update();
-//	}
-
-#ifdef _DEBUG
-	//ImageImGuiConfig(m_image, "UI0", "OutputData/UI0.txt", 0);
+	image->Update();
 	ImguiWrapper<Image>::Action(*setting);
 #endif // _DEBUG
-
-
 	// ループが続く
 	return TAG_SCENE::NONE;
 }
@@ -131,12 +107,11 @@ TAG_SCENE TitleScene::Update()
 */
 void TitleScene::Draw()
 {
-	// オブジェクトの描画
-	/*for (auto& obj : m_objectList)
-	{
-		obj->Draw();
-	}*/
-	m_image->Draw();
+	image->Draw();
+	/*auto tran = Transform();
+	tran.SetPos(Vector3D(0.5f, 0.0f, 0.0f));
+	tran.SetScale(Vector3D(2.0f, 2.0f, 2.0f));
+	skinMesh->Draw(tran);*/
 	MyOutputDebugString("TitleScene\n");
 }
 
@@ -183,16 +158,10 @@ bool TitleScene::ImageImGuiConfig(Image*& pImage, const char* windowName, const 
 void TitleScene::InitCamera()
 {
 	{
-		m_camera = new Camera();
-		m_camera->SetCameraNumber(CAMERA_NUMBER::CAMERA_0);
-		m_camera->SetCameraPositionGaze(0, 1.0f, -2.0f, 0, 0, 0);
-		TellCameraData::AddCamera(m_camera->GetCameraData());
-		/*Object* obj = new Object;
-		auto camera = obj->AddComponent<Camera>();
+		camera = new Camera();
 		camera->SetCameraNumber(CAMERA_NUMBER::CAMERA_0);
 		camera->SetCameraPositionGaze(0, 1.0f, -2.0f, 0, 0, 0);
 		TellCameraData::AddCamera(camera->GetCameraData());
-		m_objectList.emplace_back(obj);*/
 	}
 }
 
@@ -260,10 +229,10 @@ void TitleScene::InitUI()
 		File::FileData data;
 		data = File::LoadFile("OutputData/UI0.txt");
 
-		m_image = new Image();
-		m_image->SetPos(Vector3D(data.posX, data.posY, 0.0f));
-		m_image->SetRotate(Vector3D(0.0f,0.0f,data.rotateZ));
-		m_image->Init(Vector3D(data.posX, data.posY, 0), Vector3D(160, 151, 0), "Resource/0.png", true, 0);
+		image = new Image();
+		image->SetPos(Vector3D(data.posX, data.posY, 0.0f));
+		image->SetRotate(Vector3D(0.0f,0.0f,data.rotateZ));
+		image->Init(Vector3D(data.posX, data.posY, 0), Vector3D(160, 151, 0), "Resource/0.png", true, 0);
 		/*Object* obj = new Object;
 		auto transform = obj->AddComponent<Transform>();
 		transform->scale.x = data.scaleX;

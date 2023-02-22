@@ -44,7 +44,7 @@ public:
 	void Draw() override;
 
 private:
-	class ObjMesh* m_pObjMesh;
-	class Camera* m_camera;
+	class ObjMesh* objMesh;
+	class Camera* camera;
 
 };
