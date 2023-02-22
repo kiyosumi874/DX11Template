@@ -60,8 +60,8 @@ TitleScene::TitleScene()
 	// UI
 	InitUI();
 	
-	setting = new ImguiWrapper::Setting<Image>();
-	setting->Init(*m_image, "Test", "test", ImguiWrapper::Mode::All);
+	/*setting = new ImguiWrapper::Setting<Image>();
+	setting->Init(*m_image, "Test", "test", ImguiWrapper::Mode::All);*/
 }
 
 /**
@@ -71,7 +71,7 @@ TitleScene::TitleScene()
 TitleScene::~TitleScene()
 {
 	TellCameraData::SubCamera(CAMERA_NUMBER::CAMERA_0);
-	SAFE_DELETE(m_image);
+	//SAFE_DELETE(m_image);
 }
 
 /**
@@ -117,7 +117,7 @@ TAG_SCENE TitleScene::Update()
 
 #ifdef _DEBUG
 	ImageImGuiConfig(m_image, "UI0", "OutputData/UI0.txt", 0);
-	ImguiWrapper::Action<Image>(*setting);
+	//ImguiWrapper::Action(*setting);
 #endif // _DEBUG
 
 
