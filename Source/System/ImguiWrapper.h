@@ -10,12 +10,12 @@
 #include "imgui.h"
 #include "System/File.h"
 #include "System/Common.h"
+#include "Game/Component/Image/Image.h"
 
 /**
 * @class ImguiWrapper
 * @brief Imgui‚Ì‚Ü‚Æ‚ßƒNƒ‰ƒX
 */
-template <typename T>
 class ImguiWrapper
 {
 public:
@@ -51,7 +51,7 @@ public:
 			
 		}
 
-		void Init(T& instance, const char* windowName, const char* fileName, Mode mode)
+		void Init(Image& instance, const char* windowName, const char* fileName, Mode mode)
 		{
 			this->instance = &instance;
 			this->windowName = windowName;
@@ -59,11 +59,7 @@ public:
 			this->mode = mode;
 		}
 
-		/*int GetSaveButtonCounter() { return saveButtonCounter; }
-		void AddSaveButtonCounter() { saveButtonCounter++; }
-		void InitSaveButtonCounter() { saveButtonCounter = 0; }*/
-
-		T* instance;
+		Image* instance;
 		const char* windowName;
 		const char* fileName;
 		Mode mode;
@@ -87,15 +83,6 @@ private:
 	static int idCount;
 
 	static std::map<Mode, std::function<void(ImguiWrapper::Setting&)>> funcs;
-
-	/*template <typename T>
-	static void AllMode(Setting<T>& setting);
-	template <typename T>
-	static void ScaleMode(Setting<T>& setting);
-	template <typename T>
-	static void RotateMode(Setting<T>& setting);
-	template <typename T>
-	static void PosMode(Setting<T>& setting);*/
 
 	static void AllMode(Setting& setting)
 	{

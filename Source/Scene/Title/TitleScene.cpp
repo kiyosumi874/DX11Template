@@ -16,8 +16,6 @@
 #include "D3D11/ShaderDirector/ShaderDirector.h"
 #include "imgui.h"
 #include "System/Common.h"
-#include "Game/Camera/Camera.h"
-#include "Game/Camera/TellCameraData.h"
 #include "Game/Camera/CameraStruct.h"
 #include "Game/Component/Primitive/Point/Point.h"
 #include "Game/Component/Primitive/Line/Line.h"
@@ -27,7 +25,6 @@
 #include "System/File.h"
 #include "Game/Component/Mesh/StaticMesh/StaticMesh.h"
 #include "Game/Component/Mesh/HierarchyMesh/HierarchyMesh.h"
-#include "Game/Component/Mesh/SkinMesh/SkinMesh.h"
 
 #ifdef _DEBUG
 // ImGuiÇÃÇΩÇﬂÇÃê√ìIïœêî
@@ -42,11 +39,8 @@ int g_saveButtonCounter[g_elementNum] = {0};
 */
 TitleScene::TitleScene()
 {
-	ShaderDirector::CreateShader(SHADER_KIND::PRIMITIVE);
-	ShaderDirector::CreateShader(SHADER_KIND::PRIMITIVE2D);
-
 	// camera
-	//InitCamera();
+	InitCamera();
 
 	// HierarchyMesh
 	//InitHierarchyMesh();
@@ -61,12 +55,10 @@ TitleScene::TitleScene()
 	InitUI();
 	
 	// GUI
-	setting = new ImguiWrapper<Image>::Setting();
-	setting->Init(*image, "Test", "test", ImguiWrapper<Image>::Mode::All);
+	setting = new ImguiWrapper::Setting();
+	setting->Init(*image, "Test", "test", ImguiWrapper::Mode::All);
 
-	// SkinMesh
-	/*skinMesh = new SkinMesh();
-	skinMesh->Init("model/Hand_animation_1motion_2truck.x");*/
+	
 }
 
 /**
@@ -75,9 +67,7 @@ TitleScene::TitleScene()
 */
 TitleScene::~TitleScene()
 {
-	TellCameraData::SubCamera(CAMERA_NUMBER::CAMERA_0);
 	SAFE_DELETE(image);
-	//SAFE_DELETE(skinMesh);
 }
 
 /**
@@ -95,7 +85,7 @@ TAG_SCENE TitleScene::Update()
 
 #ifdef _DEBUG
 	image->Update();
-	ImguiWrapper<Image>::Action(*setting);
+	ImguiWrapper::Action(*setting);
 #endif // _DEBUG
 	// ÉãÅ[ÉvÇ™ë±Ç≠
 	return TAG_SCENE::NONE;
@@ -108,10 +98,7 @@ TAG_SCENE TitleScene::Update()
 void TitleScene::Draw()
 {
 	image->Draw();
-	/*auto tran = Transform();
-	tran.SetPos(Vector3D(0.5f, 0.0f, 0.0f));
-	tran.SetScale(Vector3D(2.0f, 2.0f, 2.0f));
-	skinMesh->Draw(tran);*/
+	
 	MyOutputDebugString("TitleScene\n");
 }
 
@@ -157,12 +144,6 @@ bool TitleScene::ImageImGuiConfig(Image*& pImage, const char* windowName, const 
 
 void TitleScene::InitCamera()
 {
-	{
-		camera = new Camera();
-		camera->SetCameraNumber(CAMERA_NUMBER::CAMERA_0);
-		camera->SetCameraPositionGaze(0, 1.0f, -2.0f, 0, 0, 0);
-		TellCameraData::AddCamera(camera->GetCameraData());
-	}
 }
 
 void TitleScene::InitStaticMesh()

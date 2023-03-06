@@ -39,10 +39,6 @@ SkinMesh::~SkinMesh()
 	SAFE_RELEASE(m_pConstantBufferLight);
 	SAFE_RELEASE(m_pConstantBufferWVPMaterial);
 	SAFE_RELEASE(m_pConstantBufferBone);
-	/*for (int i = 0; i < m_dwNumMaterial; i++)
-	{
-		SAFE_RELEASE(m_ppIndexBuffer[i]);
-	}*/
 	delete[] m_ppIndexBuffer;
 	SAFE_DELETE(m_pMeshParser);
 }

@@ -12,12 +12,13 @@
 #include <iostream>
 #include "System/Input/Input.h"
 #include "D3D11/Direct3D11.h"
-#include "Game/Component/Mesh/ObjMesh/ObjMesh.h"
+#include "Game/ObjMesh/ObjMesh.h"
 #include <System/Common.h>
 #include "System/Transform.h"
 #include "Game/Camera/Camera.h"
 #include "Game/Camera/TellCameraData.h"
 #include "Game/Camera/CameraStruct.h"
+
 /**
 * @fn TinyObjTestScene
 * @brief コンストラクタ

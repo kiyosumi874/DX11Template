@@ -6,12 +6,11 @@
 */
 
 #include "ImguiWrapper.h"
-#include "Game/Component/Image/Image.h"
 
 
 
 // Ã“Iƒƒ“ƒo•Ï”‚Ì’è‹`
-int ImguiWrapper<Image>::idCount = 0;
+int ImguiWrapper::idCount = 0;
 
-std::map<ImguiWrapper<Image>::Mode, std::function<void(ImguiWrapper<Image>::Setting&)>> ImguiWrapper<Image>::funcs = { {ImguiWrapper<Image>::Mode::All, AllMode},{ImguiWrapper<Image>::Mode::Scale, ScaleMode},{ImguiWrapper<Image>::Mode::Rotate, RotateMode},{ImguiWrapper<Image>::Mode::Pos, PosMode} };
+std::map<ImguiWrapper::Mode, std::function<void(ImguiWrapper::Setting&)>> ImguiWrapper::funcs = { {ImguiWrapper::Mode::All, AllMode},{ImguiWrapper::Mode::Scale, ScaleMode},{ImguiWrapper::Mode::Rotate, RotateMode},{ImguiWrapper::Mode::Pos, PosMode} };
 

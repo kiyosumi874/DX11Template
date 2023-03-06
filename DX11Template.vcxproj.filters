@@ -86,9 +86,6 @@
     <Filter Include="Source\Game\Component\Mesh">
       <UniqueIdentifier>{e6cd5d70-9d55-4167-a1f1-ca2faff92ba3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Game\Component\Mesh\SkinMesh">
-      <UniqueIdentifier>{15932fd8-edf4-498b-aae1-2634d38f93f2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Game\Component\Mesh\StaticMesh">
       <UniqueIdentifier>{177fe5d3-7a94-41f9-b3ba-3225dcf4dba2}</UniqueIdentifier>
     </Filter>
@@ -101,11 +98,14 @@
     <Filter Include="Source\TinyObj">
       <UniqueIdentifier>{0aa907e3-213d-4f92-a692-c26e187dc79f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Game\Component\Mesh\ObjMesh">
-      <UniqueIdentifier>{c712f38f-276a-41d9-b2ec-0e22ce02a82f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Game\UI">
       <UniqueIdentifier>{10495560-ab16-4195-a707-d90f991c4425}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Game\ObjMesh">
+      <UniqueIdentifier>{c712f38f-276a-41d9-b2ec-0e22ce02a82f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Game\SkinMesh">
+      <UniqueIdentifier>{15932fd8-edf4-498b-aae1-2634d38f93f2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -202,20 +202,20 @@
     <ClCompile Include="Source\Game\Component\Mesh\Mesh.cpp">
       <Filter>Source\Game\Component\Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Component\Mesh\SkinMesh\SkinMesh.cpp">
-      <Filter>Source\Game\Component\Mesh\SkinMesh</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Scene\TinyObjTest\TinyObjTestScene.cpp">
       <Filter>Source\Scene\TinyObjTest</Filter>
     </ClCompile>
     <ClCompile Include="Source\TinyObj\tiny_obj_loader.cc">
       <Filter>Source\TinyObj</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Game\Component\Mesh\ObjMesh\ObjMesh.cpp">
-      <Filter>Source\Game\Component\Mesh\ObjMesh</Filter>
-    </ClCompile>
     <ClCompile Include="Source\System\Vector3D.cpp">
       <Filter>Source\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\ObjMesh\ObjMesh.cpp">
+      <Filter>Source\Game\ObjMesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\SkinMesh\SkinMesh.cpp">
+      <Filter>Source\Game\SkinMesh</Filter>
     </ClCompile>
     <ClCompile Include="Source\System\ImguiWrapper.cpp">
       <Filter>Source\System</Filter>
@@ -330,17 +330,11 @@
     <ClInclude Include="Source\Game\Component\Mesh\Mesh.h">
       <Filter>Source\Game\Component\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Game\Component\Mesh\SkinMesh\SkinMesh.h">
-      <Filter>Source\Game\Component\Mesh\SkinMesh</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Scene\TinyObjTest\TinyObjTestScene.h">
       <Filter>Source\Scene\TinyObjTest</Filter>
     </ClInclude>
     <ClInclude Include="Source\TinyObj\tiny_obj_loader.h">
       <Filter>Source\TinyObj</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Game\Component\Mesh\ObjMesh\ObjMesh.h">
-      <Filter>Source\Game\Component\Mesh\ObjMesh</Filter>
     </ClInclude>
     <ClInclude Include="Source\System\Vector3D.h">
       <Filter>Source\System</Filter>
@@ -348,10 +342,16 @@
     <ClInclude Include="Source\System\Transform.h">
       <Filter>Source\System</Filter>
     </ClInclude>
-    <ClInclude Include="Source\System\ImguiWrapper.h">
+    <ClInclude Include="Source\Scene\Scene.h">
       <Filter>Source\System</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Scene\Scene.h">
+    <ClInclude Include="Source\Game\ObjMesh\ObjMesh.h">
+      <Filter>Source\Game\ObjMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\SkinMesh\SkinMesh.h">
+      <Filter>Source\Game\SkinMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\System\ImguiWrapper.h">
       <Filter>Source\System</Filter>
     </ClInclude>
   </ItemGroup>

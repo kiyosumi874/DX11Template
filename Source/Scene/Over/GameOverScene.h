@@ -10,6 +10,9 @@
 #pragma once
 #include "Scene/Scene.h"
 
+class Camera;
+class SkinMesh;
+
 /**
 * @class GameOverScene
 * @brief GameOverSceneƒNƒ‰ƒX
@@ -44,5 +47,6 @@ public:
 	void Draw() override;
 
 private:
-
+	Camera* camera;
+	SkinMesh* skinMesh;
 };

@@ -12,7 +12,6 @@
 #include "System/ImguiWrapper.h"
 
 class Image;
-class Camera;
 
 /**
 * @class TitleScene
@@ -53,9 +52,7 @@ private:
 #endif // _DEBUG
 
 	Image* image;
-	Camera* camera;
-	//SkinMesh* skinMesh;
-	ImguiWrapper<Image>::Setting* setting;
+	ImguiWrapper::Setting* setting;
 	void InitCamera();
 	void InitStaticMesh();
 	void InitHierarchyMesh();

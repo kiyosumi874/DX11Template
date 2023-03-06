@@ -1,6 +1,6 @@
 /**
 * @file ShaderDirector.h
-* @brief シェーダーの管理(いまはこれ自体にデータがあるが今後処理だけにして使いまわせるようにする)
+* @brief シェーダーの管理
 * @details ShaderDirectorクラスはシングルトンなので注意
 * @author shiihara_kiyosumi
 * @date 2022_08_05
